@@ -3,6 +3,8 @@ package base.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.CommandAction;
+
 // 단순히 forward 방식으로 페이지 이동
 public class WriteFormAction implements CommandAction, etc.ContentPath {
 

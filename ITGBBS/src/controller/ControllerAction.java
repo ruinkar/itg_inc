@@ -1,11 +1,22 @@
 ﻿package controller;
 
-import java.io.*;//FileInputStream
-import java.util.*;//Map,Properties
-import javax.servlet.*;
-import javax.servlet.http.*;
+//FileInputStream
+import java.io.FileInputStream;
+import java.io.IOException;
+//Map,Properties
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
 
-import base.action.CommandAction;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import action.CommandAction;
 
 public class ControllerAction extends HttpServlet {
 	

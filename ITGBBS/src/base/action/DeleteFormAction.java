@@ -3,6 +3,8 @@ package base.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.CommandAction;
+
 public class DeleteFormAction implements CommandAction, etc.ContentPath {
 
 	@Override

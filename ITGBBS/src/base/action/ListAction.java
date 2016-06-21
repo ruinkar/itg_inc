@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.CommandAction;
 import base.model.BoardDAO;
 
 // /list.do 요청시 응답하는 request.Pro()를 호출하는 액션클래스
