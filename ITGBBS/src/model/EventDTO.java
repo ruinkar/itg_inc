@@ -16,7 +16,7 @@ public class EventDTO {
 	private int eperm;	//행사승인
 	private String host;	//주최자
 	private String ename;	//행사명
-	private Timestamp beign;	//행사시작일
+	private Timestamp begin;	//행사시작일
 	private Timestamp end;	//행사종료일
 	private String location;	//행사위치
 	private String eimg;	//행사이미지
@@ -48,11 +48,11 @@ public class EventDTO {
 	public void setEname(String ename) {
 		this.ename = ename;
 	}
-	public Timestamp getBeign() {
-		return beign;
+	public Timestamp getBegin() {
+		return begin;
 	}
-	public void setBeign(Timestamp beign) {
-		this.beign = beign;
+	public void setBeign(Timestamp begin) {
+		this.begin = begin;
 	}
 	public Timestamp getEnd() {
 		return end;
