@@ -54,8 +54,8 @@ public class DBConnectionMgr {
     _user = "root",
     _password = "1234";*/
 
-    /*
-    private String _driver = "oracle.jdbc.driver.OracleDriver",
+    
+    /*private String _driver = "oracle.jdbc.driver.OracleDriver",
     _url = "jdbc:oracle:thin:@localhost:1522:orcl",
     _user = "scott",
     _password = "tiger";*/
@@ -74,7 +74,7 @@ public class DBConnectionMgr {
     	// 파일 불러오기
     	Properties props = new Properties();
     	FileInputStream in
-    	= new FileInputStream("C:/Users/INC-B-05/git/itg_inc/ITGBBS/WebContent/props/dboracle.properties");
+    	= new FileInputStream("C:/Users/INC-B-12/git/itg_inc/ITGBBS/WebContent/props/dboracle.properties");
     	props.load(in); // 파일의 내용을 메모리에 로드
     	in.close();
     	// 드라이버만 따로 시스템에 설정
