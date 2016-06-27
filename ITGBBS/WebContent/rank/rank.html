@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>rank</title>
+<style>
+* {margin:0; text-decoration:none; }
+div {text_align:center; }
+.stage_high_rank {margin:auto; width:60%; text-align:center; }
+/*
+.stage_high_rank:nth-child(odd) {background-color:#938172; }
+.stage_high_rank:nth-child(even) {background-color:#CC9E61; }
+*/
+
+.box_high_rank {margin:0; text-align:center; display:inline-block; }
+.box_high_rank:nth-child(odd) {background-color:#541F14; }
+.box_high_rank:nth-child(even) {background-color:#020304; }
+
+</style>
+<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+<script>
+$(function() {
+	var height_stage = itg.stage.getHeight();
+	
+	var $st_high = $(".stage_high_rank");
+	
+	$st_high.css({
+		height: height_stage
+	});
+	
+	$st_high.each(function(index){
+		var $this = $(this);
+		
+		for(var i = 0; i <= index; i++) {
+			var box = document.createElement("div");
+			var $box = $(box);
+			
+			$box.addClass("box_high_rank");
+			$box.css({
+				width: itg.stage.getWidth(),
+				height: $this.height()
+			});
+			
+			$this.append(box);
+		}
+	});
+});
+
+var itg = {};
+
+itg.stage = {
+	th: 150
+};
+
+itg.stage.getWidth = function() {
+	return this.getHeight();
+};
+
+itg.stage.getHeight = function() {
+	var	temp = $(window).height() / 4;
+	
+	return temp > this.th ? temp : this.th;
+};
+
+
+</script>
+</head>
+<body>
+	<input id="json" type="hidden" value="${json}"/>
+	<div class="stage_high_rank">
+	</div>
+	<div class="stage_high_rank">
+	</div>
+	<div class="stage_high_rank">
+	</div>
+	<div class="stage_high_rank">
+	</div>
+</body>
+</html>

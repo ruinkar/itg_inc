@@ -1,0 +1,1 @@
+<% response.sendRedirect("http://localhost:8090/ITGBBS/rank/rank.do"); %>

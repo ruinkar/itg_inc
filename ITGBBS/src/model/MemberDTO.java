@@ -1,10 +1,12 @@
 package model;
 
+import etc.KeyArchive;
+
 /**
  * member(회원) 테이블의 DTO 클래스
  * @author son
  */
-public class MemberDTO {
+public class MemberDTO implements KeyArchive {
 	private String id; // 아이디
 	private String name; // 이름
 	private String nick; //닉네임
@@ -78,6 +80,28 @@ public class MemberDTO {
 		this.gkey = gkey;
 	}
 	
+	private Object[] values = {
+			id,
+			name,
+			nick,
+			email,
+			thumbnail,
+			mpoint,
+			fkey,
+			gkey
+	};
 	
-
+	@Override
+	public String toString() {
+		
+		String result = "{";
+		
+		for(int i = 0; i < MEMBER.length; i++){
+			result += "\"" + MEMBER[i] + "\" : \"" + String.valueOf(values[i]) + "\"" + (i >= MEMBER.length - 1 ? "" : ", ");
+		}
+		
+		result += "}";
+		
+		return result;
+	}
 }

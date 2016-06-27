@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.MemberDTO;
 import model.RankDAO;
 
 public class RankList implements CommandAction, etc.ContentPath {
@@ -14,10 +15,25 @@ public class RankList implements CommandAction, etc.ContentPath {
 		// TODO Auto-generated method stub
 		System.out.println("RankView.requestPro()");
 		RankDAO dao = new RankDAO();
-		List list = dao.getHighRank();
+		List<MemberDTO> list = dao.getHighRank();
 		int count = dao.getMemberCount();
+		/*
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
+		*/
+		
+		String json = "[";
+		
+		int size = list.size();
+		for(int i = 0; i < size; i++){
+			MemberDTO member = list.get(i);
+			json += member.toString() + (i >= size - 1 ? "" : ",");
+		}
+		
+		json +="]";
+		
+		request.setAttribute("count", count);
+		request.setAttribute("json", json);
 		
 		return RANK + "/rank.jsp";
 	}

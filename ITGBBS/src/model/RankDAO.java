@@ -56,7 +56,7 @@ public class RankDAO {
 	
 
 	// 랭킹 페이지 상단 표시용 상위 랭크
-	public List getHighRank() {
+	public List<MemberDTO> getHighRank() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
