@@ -1,19 +1,13 @@
 package action;
 
-import java.util.Collections;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import base.model.BoardDAO;
-import base.model.BoardDTO;
 import model.RankDAO;
 
-public class RankView implements CommandAction, etc.ContentPath {
+public class RankList implements CommandAction, etc.ContentPath {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -25,9 +19,15 @@ public class RankView implements CommandAction, etc.ContentPath {
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		
-		
 		return RANK + "/rank.jsp";
-		/*
+	}
+
+	/*
+	@Override
+	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		// TODO Auto-generated method stub
+		System.out.println("RankView.requestPro()");
+		
 		// 현재 페이지 설정
 		int count = 0; // 총 레코드 수
 		int number = 0; // 페이지별 시작하는 게시물 번호
@@ -73,7 +73,6 @@ public class RankView implements CommandAction, etc.ContentPath {
 			request.setAttribute(key, pgList.get(key));
 		}
 		
-		return BASE + "/rank.jsp";*/
-	}
-
+		return BASE + "/rank.jsp";
+	} */
 }
