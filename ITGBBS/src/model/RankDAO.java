@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import base.model.BoardDTO;
+import etc.KeyArchive;
 
-public class RankDAO {
-	final String SQL_RANK_VIEW_HIGH
+public class RankDAO implements KeyArchive {
+	final String SQL_RANK_LIST_TOP
 		= "select * from (select * from member order by mpoint desc) where rownum <= 10";
-	final String SQL_RANK_VIEW_OTHERS 
+	final String SQL_RANK_LIST_PAGE 
 		= "select * from (select * from member order by mpoint desc) where rownum between ? and ?";
 
 	DBConnectionMgr pool = null;
@@ -56,7 +56,7 @@ public class RankDAO {
 	
 
 	// 랭킹 페이지 상단 표시용 상위 랭크
-	public List<MemberDTO> getHighRank() {
+	public List<MemberDTO> getRankTop() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -64,7 +64,7 @@ public class RankDAO {
 
 		try {
 			con = pool.getConnection();
-			pstmt = con.prepareStatement(SQL_RANK_VIEW_HIGH);
+			pstmt = con.prepareStatement(SQL_RANK_LIST_TOP);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -84,7 +84,7 @@ public class RankDAO {
 	}
 
 	// 랭킹 페이지 하단 표시용 하위 랭크(현재 페이지에 따른 목록)
-	public List getOthersRank(String start, String end) {
+	public List<MemberDTO> getRankPage(String start, String end) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -92,7 +92,7 @@ public class RankDAO {
 
 		try {
 			con = pool.getConnection();
-			pstmt = con.prepareStatement(SQL_RANK_VIEW_OTHERS);
+			pstmt = con.prepareStatement(SQL_RANK_LIST_PAGE);
 			pstmt.setString(1, start);
 			pstmt.setString(2, end);
 			rs = pstmt.executeQuery();
@@ -139,5 +139,20 @@ public class RankDAO {
 		member.setGkey(rs.getString(KEY_GKEY));
 
 		return member;
+	}
+	
+	public String listJSON(List<MemberDTO> list){
+		int size = list.size();
+		
+		String json = "[";
+		for(int i = 0; i < size; i++){
+			MemberDTO member = list.get(i);
+			json += member.toJSON() + (i >= size - 1 ? "" : ",");
+		}
+		json +="]";
+		
+		System.out.println(json);
+		
+		return json;
 	}
 }

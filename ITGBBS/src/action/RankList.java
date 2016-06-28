@@ -10,33 +10,31 @@ import model.RankDAO;
 
 public class RankList implements CommandAction, etc.ContentPath {
 
+	RankDAO dao = new RankDAO();
+	
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
 		System.out.println("RankView.requestPro()");
-		RankDAO dao = new RankDAO();
-		List<MemberDTO> list = dao.getHighRank();
+		
+		List list = dao.getRankTop();
+		List list_others = dao.getRankPage("1", "10");
 		int count = dao.getMemberCount();
 		/*
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		*/
-		
-		String json = "[";
-		
-		int size = list.size();
-		for(int i = 0; i < size; i++){
-			MemberDTO member = list.get(i);
-			json += member.toString() + (i >= size - 1 ? "" : ",");
-		}
-		
-		json +="]";
+		String json_high = dao.listJSON(list);
+		String json_others = dao.listJSON(list_others);
 		
 		request.setAttribute("count", count);
-		request.setAttribute("json", json);
+		request.setAttribute("json_high", json_high);
+		request.setAttribute("json_others", json_others);
 		
 		return RANK + "/rank.jsp";
 	}
+	
+	
 
 	/*
 	@Override
