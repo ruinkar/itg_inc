@@ -10,16 +10,23 @@ import model.RankDAO;
 
 public class RankList implements CommandAction, etc.ContentPath {
 
-	RankDAO dao = new RankDAO();
+	
 	
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
 		System.out.println("RankView.requestPro()");
 		
+		RankDAO dao = new RankDAO();
+		// 현재 페이지 설정
+		int count = 0; // 총 레코드 수
+		int number = 0; // 페이지별 시작하는 게시물 번호
+		String pageNum = request.getParameter("pageNum"); // 검색 분야, 검색어 처리
+		count = dao.getMemberCount();
+		
+		
 		List list = dao.getRankTop();
 		List list_others = dao.getRankPage("1", "10");
-		int count = dao.getMemberCount();
 		/*
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);

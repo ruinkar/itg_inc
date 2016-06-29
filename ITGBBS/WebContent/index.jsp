@@ -1,1 +1,1 @@
-<% response.sendRedirect("http://localhost:8090/ITGBBS/rank/rank.do"); %>
+<% response.sendRedirect(request.getContextPath() + "/rank/rank.do"); %>

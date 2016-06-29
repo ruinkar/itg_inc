@@ -151,7 +151,7 @@ public class RankDAO implements KeyArchive {
 		}
 		json +="]";
 		
-		System.out.println(json);
+		// System.out.println(json);
 		
 		return json;
 	}
