@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="model.BoardDTO"%>
 <%@page import="model.BoardDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -24,10 +25,19 @@
 	BoardDAO dbPro = new BoardDAO();	//메서드 호출
 	BoardDTO article = dbPro.getArticle(anum);	//updateForm.jst와 소스가 거의 같음
 	
+	
 	//답글쓰기 주소 넘길때 코드를 줄이기 위한 것
 /* 	int ref = article.getRef();
 	int re_step = article.getRe_step();
 	int re_level = article.getRe_level(); */
+	int replyNum = 0; 
+	List repliesList = null;
+	BoardDAO bdPro = new BoardDAO();
+	replyNum = bdPro.getReplyCount(anum);
+	if(replyNum > 0){
+		repliesList = bdPro.getReplies(anum);
+	}
+	System.out.println("replyNum = "+replyNum+", repliesList = " +repliesList);
 %>
 
 
@@ -156,7 +166,7 @@
         
             <li  data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a href="/articles/tech" class="link"><i class="nav-icon fa fa-code"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
         
-            <li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/articles/community" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
+            <li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/ITGBBS/free/okkyFree2.jsp" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
         
             <li  data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/articles/columns" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
         
@@ -238,9 +248,9 @@
                                 <div class="dropdown">
                                     <a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="게시물 설정"></i></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="/article/edit/334602" class="edit"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>
+                                        <li><a href="/ITGBBS/free/updateForm.jsp?anum=<%=article.getAnum()%>" class="edit"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>
                                         
-                                            <li><a href="javascript://" id="article-delete-btn"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
+                                            <li><a href="/ITGBBS/free/deletePro.jsp?anum=<%=article.getAnum()%>&pageNum=<%=pageNum%>" id="article-delete-btn"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
                                         
                                     </ul>
                                 </div>
@@ -252,34 +262,88 @@
             </div>
 
             
+<%if(replyNum > 0){%>
 
             <div class="panel panel-default clearfix">
                 <!-- List group -->
                 <ul class="list-group">
                 
                     <li id="note-title" class="list-group-item note-title">
-                        <h3 class="panel-title">댓글 <span id="note-count">0</span></h3>
+                        <h3 class="panel-title">답변 <span id="note-count"><%=repliesList.size()%></span></h3>
                     </li>
+                    
+                    
+<%for(int i=0; i<repliesList.size(); i++){ 
+		BoardDTO reply = (BoardDTO)repliesList.get(i);%>                  
+                        <li class="list-group-item note-item clearfix" id="note-1084039">
+                            <form action="/content/update/1084039" method="post" data-id="1084039" class="note-update-form" ><input type="hidden" name="_method" value="PUT" id="_method" />
+                                <div class="content-body panel-body pull-left">
+                                    
+                                        
+                                        
+                                            
+                                                <div class="note-select-indicator note-deselected">
+                                                    <i class="fa fa-comment"></i>
+                                                </div>
+                                            
+                                        
+                                    
+
+                                    <div class='avatar avatar-medium clearfix '><a href='/user/info/44697' class='avatar-photo'><img src='//graph.facebook.com/1056089894473018/picture?width=40&height=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/44697"><%=reply.getWriter()%></a> <div class="activity"><span class="fa fa-flash"></span> 1k</div><div class="date-created timeago" title="2016-06-30 17:17:15.0"><%=reply.getAdate()%></div></div></div>
+                                    <fieldset class="form">
+                                        <article id="note-text-1084039" class="list-group-item-text note-text">
+                                            
+                                                <p><%=reply.getAcontent()%></p>
+                                            
+                                        </article>
+                                    </fieldset>
+                                </div>
+
+                                <div class="content-function pull-right text-center">
+                                    <div class="content-function-group">
+                                        <div class="note-evaluate-wrapper"><a href="javascript://" class="note-vote-btn" role="button" data-type="assent" data-eval="true" data-id="1084039"><i id="note-evaluate-assent-1084039" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천"></i></a><div id="content-vote-count-1084039" class="content-eval-count">0</div><a href="javascript://" class="note-vote-btn" role="button" data-type="dissent" data-eval="true" data-id="1084039"><i id="note-evaluate-dissent-1084039" class="fa fa-angle-down note-evaluate-dissent-dissent" data-placement="left" data-toggle="tooltip" title="반대"></i></a></div>
+                                    </div>
+                                </div>
+
+                                
+                            </form>
+
+                            <form action="/content/delete/1084039" method="post" id="note-delete-form-1084039" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+                            </form>
+                        </li>
+<%	} %>               
+<%} %>                    
+                    
+                    
                     
                     <li class="list-group-item note-form clearfix">
                         
-                            <form action="/article/addNote/334602" method="post" class="note-create-form" >
+                        
+                        <!-- 댓글 쓰기 -->
+                            <form action="replyPro.jsp" method="post" class="note-create-form" >
+                                
+                                    <input type="hidden" name="lastNoteId" value="1084061 " id="lastNoteId" />
                                 
                                 <div class="content-body panel-body pull-left">
                                     <div style="margin-left: 5px;">
                                         
+                                            <div class="note-select-indicator note-deselected">
+                                                <i class="fa fa-edit"></i>
+                                            </div>
                                         
-                                            <div class='avatar avatar-medium clearfix '><a href='/user/info/45019' class='avatar-photo'><img src='//www.gravatar.com/avatar/d6ee80eb5a45fd4131a4b75d48df792b?d=identicon&s=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/45019">큭큭푸푸</a> <div class="activity block"><span class="fa fa-flash"></span> 10</div></div></div>
+                                        
+                                            <div class='avatar avatar-medium clearfix '><a href='/user/info/45019' class='avatar-photo'><img src='//www.gravatar.com/avatar/d6ee80eb5a45fd4131a4b75d48df792b?d=identicon&s=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/45019">로그인한 놈 아이디</a> <div class="activity block"><span class="fa fa-flash"></span> 10</div></div></div>
                                         
                                     </div>
                                     <fieldset class="form">
                                         <input type="hidden" name="note.textType" value="HTML" id="note.textType" />
-                                        <textarea name="note.text" id="note-create" placeholder="댓글 쓰기" class="form-control" ></textarea>
+                                        <input type="hidden" name="pnum" value="<%=anum%>" id="pnum" />
+                                        <textarea name="acontent" id="acontent" placeholder="댓글 쓰기" class="form-control" ></textarea>
                                     </fieldset>
                                 </div>
                                 <div class="content-function-cog note-submit-buttons clearfix">
                                     <p><a href="javascript://" id="note-create-cancel-btn" class="btn btn-default btn-wide" style="display: none;">취소</a></p>
-                                    <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide" value=" 등록" disabled="disabled" />
+                                    <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide" value=" 등록"  />
                                 </div>
                             </form>
                         

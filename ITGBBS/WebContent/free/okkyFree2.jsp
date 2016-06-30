@@ -73,7 +73,8 @@
 
         
 		<meta name="layout" content="main">
-		
+
+
 		
 	
 	</head>
@@ -84,7 +85,8 @@
         
 
 
-<div class="sidebar sidebar-category">
+<!-- <div class="test1"> -->
+<div class="sidebar sidebar-category" style="background-color:#5d2c96">
 
     <a href="javascript://" class="sidebar-header">
         <i class="fa fa-bars sidebar-header-icon"></i>
@@ -137,7 +139,8 @@
 </div>
 
 
-<div class="sidebar-category-nav">
+<!-- <div class="test2"> -->
+<div class="sidebar-category-nav" style="background-color:#5d2c96">
 <h3 class="sub-title">커뮤니티</h3>
 <ul class="nav">
     <li><a href="/articles/community" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
