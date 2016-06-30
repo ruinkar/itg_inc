@@ -1,3 +1,6 @@
+<%@page import="model.BoardDTO"%>
+<%@page import="model.BoardDAO"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,11 +14,28 @@
 <!--[if IE 8 ]>    <html lang="ko" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="ko" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="ko" class="no-js"><!--<![endif]-->
+<% 
+	//list.jsp에서 content.jsp로 넘어온 두 값 num, pageNum
+	int anum = Integer.parseInt(request.getParameter("anum"));
+	String pageNum = request.getParameter("pageNum");
+	System.out.println("okkyFree2.jsp의 anum = " + anum + ", pageNum = " + pageNum); //파라미터로 받은 값 디버깅
+		
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");	//날짜 출력 양식 설정 인스턴스(우리나라 양식)
+	BoardDAO dbPro = new BoardDAO();	//메서드 호출
+	BoardDTO article = dbPro.getArticle(anum);	//updateForm.jst와 소스가 거의 같음
+	
+	//답글쓰기 주소 넘길때 코드를 줄이기 위한 것
+/* 	int ref = article.getRef();
+	int re_step = article.getRe_step();
+	int re_level = article.getRe_level(); */
+%>
+
+
 	<head>
         <meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>OKKY - 정보처리기사 실기시험 마치고 나니 살맛나네요.</title>
+		<title>OKKY - <%=article.getTitle() %></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="http://okky.kr/assets/favicon-4ddd8035b72404da5a8c298cbaacad86.ico" type="image/x-icon">
 		<link rel="apple-touch-icon" href="http://okky.kr/assets/icon_57x57-5611bd33d9f2b2d84c22219e248455b6.png">
@@ -171,35 +191,29 @@
 
         <div id="article" class="content" role="main">
             <div class="nav" role="navigation">
-                <a href="/articles/life/create" class="create btn btn-success btn-wide pull-right"><i class="fa fa-pencil"></i> 새 글 쓰기</a>
+                <a href="/ITGBBS/free/okkyFreeWrite.jsp" class="create btn btn-success btn-wide pull-right"><i class="fa fa-pencil"></i> 새 글 쓰기</a>
 
                 <h4>사는얘기</h4>
             </div>
 
             <div class="panel panel-default clearfix">
                 <div class="panel-heading clearfix">
-                    <div class='avatar avatar-medium clearfix pull-left'><a href='/user/info/45019' class='avatar-photo'><img src='//www.gravatar.com/avatar/d6ee80eb5a45fd4131a4b75d48df792b?d=identicon&s=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/45019">큭큭푸푸</a> <div class="activity"><span class="fa fa-flash"></span> 10</div><div class="date-created timeago" title="2016-06-27 17:40:19.0">2016-06-27 17:40:19.0</div></div></div>
+                    <div class='avatar avatar-medium clearfix pull-left'><a href='/user/info/45019' class='avatar-photo'><img src='//www.gravatar.com/avatar/d6ee80eb5a45fd4131a4b75d48df792b?d=identicon&s=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/45019"><%=article.getWriter() %></a> <div class="activity"><span class="fa fa-flash"></span> 10</div><div class="date-created timeago" title="2016-06-27 17:40:19.0"><%=article.getAdate() %></div></div></div>
                     <div class="content-identity pull-right">
                     <div class="content-identity-count"><i class="fa fa-comment"></i> 0</div>
-                        <div class="content-identity-count"><i class="fa fa-eye"></i> 0</div>
+                        <div class="content-identity-count"><i class="fa fa-eye"></i><%=article.getReadcount() %></div>
                     </div>
                 </div>
                 <div class="content-container clearfix">
                     <div class="panel-body content-body pull-left">
                         <div class="content-tags">
-                            <span class="list-group-item-text article-id">#334602</span>
+                            <span class="list-group-item-text article-id"><%=article.getAnum() %></span>
                             <a href="/articles/life" class="list-group-item-text item-tag label label-info"><i class="fa fa-comments"></i> 사는얘기</a>
-                            <a href="/articles/tagged/정보처리기사" class="list-group-item-text item-tag label label-gray">정보처리기사</a> <a href="/articles/tagged/유수" class="list-group-item-text item-tag label label-gray">유수</a> 
+                            <a href="/articles/tagged/정보처리기사" class="list-group-item-text item-tag label label-gray">태그너무</a> <a href="/articles/tagged/유수" class="list-group-item-text item-tag label label-gray">너무어려워</a> 
                         </div>
-                        <h2 class="panel-title">정보처리기사 실기시험 마치고 나니 살맛나네요.</h2>
+                        <h2 class="panel-title"><%=article.getTitle()%></h2>
                         <hr/>
-                        <article class="content-text">
-                        
-                            
-                                <p>okky 유저님들 중에 정보처리기사 없는 분들에게 강추.  <br /><span style="line-height:1.42857">비전공자여서 이론에 대한 배움의 갈증을 해결하고 싶은데 너무 바쁘시다면,<br />이 자격증 준비하면서 없는 시간 쪼개서 약간의 이론을 습득할 수 있습니다.</span></p><p>허나 &#39;전자계산기&#39; 고비와 실기 &#39;주관식 전환&#39;이라는 두 고비가 자리하고 있지만, 자격증을 획득하고 나면 연봉인상에 도움도 된다고 들었거든요. 아직 취준생이라 정확하게는 모르겠습니다.^^;;</p><p> 전 정보처리기사 준비하면서 기본적인 알고리즘을 배웠고, <span style="line-height:1.42857">용어들도 많이 익혔어요. 함께 수업듣는 형이 안드로이드 스도쿠앱을 만들어도 그 알고리즘을 이해하지 못했어요. 열심히 설명은 하는데, 코드 흐름을 못따라가겠더라구요. 그런데 지금은 스도쿠 규칙에 맞게 난수를 찍는지, 정답을 비교하는지 큰 흐름은 이해한 답니다. 정보처리기사로 알고리즘 기본기를 뗀 게 아니라, 알고리즘이 뭔지 감을 잡았다고 생각해요. </span></p><p><span style="line-height:1.42857">지금 학원에서 spring을 배우며 프로젝트로 okky 사이트를 벤치마킹해 it 행사 커뮤니티를 만들고 있는데, DB관련 ERD짜고, 정규화 얘기 나왔을 때도 큰 도움이 됐던 것 같아요. 시험준비하며 공부한 내용을 선생님이 다시 한번 강의해주고, 우리는 직접 SQL on delete 옵션에 cascade도 넣어보니, 그냥 수업만 듣는 것보다 더 몰입되더라구요.</span></p><p><span style="line-height:20px">이제 국비 교육 남은 기간은 CRM 솔루션에 대한 공부와 현 프로젝트를 무사히 끝내기 위해 최선을 다할려고 합니다. 저처럼 정보처리기사 시험을 보신 유저분들께는 모두 수고하셨다고 전하고 싶습니다.<br />오늘 하루 수고 많으셨습니다!</span></p><p><br /></p><p><br /></p>
-                            
-                        
-                        </article>
+                        <article class="content-text"><%=article.getAcontent() %></article>
 
                     </div>
 

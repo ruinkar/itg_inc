@@ -234,7 +234,7 @@
                                 </div>
 
                                 <h5 class="list-group-item-heading ">
-                                    <a href="okkyFreeArticle.jsp?num=<%=article.getAnum()%>&pageNum=<%=currentPage%>"><%=article.getTitle() %></a>
+                                    <a href="okkyFreeArticle.jsp?anum=<%=article.getAnum()%>&pageNum=<%=currentPage%>"><%=article.getTitle() %></a>
                                 </h5>
                             </div>
                             

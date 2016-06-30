@@ -38,6 +38,20 @@
 		
 	
 	</head>
+<%
+	 //1.list.jsp(글쓰기)->신규글 ,2.content.jsp(글상세보기)->답변글
+	 int num=0,ref=1,re_step=0,re_level=0;//writePro.jsp
+	 //답변글
+	 if(request.getParameter("num")!=null){
+		 num=Integer.parseInt(request.getParameter("num"));
+		 ref=Integer.parseInt(request.getParameter("ref"));
+		 re_step=Integer.parseInt(request.getParameter("re_step"));
+		 re_level=Integer.parseInt(request.getParameter("re_level"));
+		 System.out.println("=content.jsp에서 넘어온값 num="+num);
+		 System.out.println("ref="+ref+",re_step=" + re_step +",re_level="+re_level);
+	 }
+ %>
+	
 	<body>
         <div class="layout-container">
             <div class="main ">
@@ -181,7 +195,7 @@
                     
                 </div>
                 <div class="panel-body">
-                    <form action="/articles/community/save" method="post" id="article-form" class="article-form" role="form" onsubmit="return postForm()" >
+                    <form action="writePro.jsp" method="post" id="article-form" class="article-form" role="form" onsubmit="return postForm()" >
 <input type="hidden" name="SYNCHRONIZER_TOKEN" value="d1ce26bf-c69d-4a84-8c6b-7443b058ad46" id="SYNCHRONIZER_TOKEN" />
 <input type="hidden" name="SYNCHRONIZER_URI" value="/articles/community/create" id="SYNCHRONIZER_URI" />
                         <fieldset class="form">
@@ -197,7 +211,8 @@
 
     
         
-        <div class="form-group  has-feedback">
+<!--    자유게시판 카테고리 div     
+		<div class="form-group  has-feedback">
             <div>
                 <select id="category" name="categoryCode" class="form-control">
                     <option value="">게시판을 선택해 주세요.</option>
@@ -239,7 +254,7 @@
                     
                 </select>
             </div>
-        </div>
+        </div> -->
         
     
 
@@ -258,12 +273,13 @@
 
 <div class="form-group  has-feedback">
     
-        <textarea name="content.text" id="summernote" rows="20" class="form-control input-block-level" ></textarea>
+        <textarea name="acontent" id="summernote" rows="20" class="form-control input-block-level" ></textarea>
     
 
 </div>
 
 <input type="hidden" name="content.textType" value="HTML" id="content.textType" />
+<input type="hidden" name="writer" value="hhh" id="writer" />
 
 
 

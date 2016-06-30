@@ -267,7 +267,7 @@ public class BoardDAO {
 		return pgList;
 	}
 	
-	
+*/	
 	// 게시물 쓰기 및 답변 달기 통합
 	public void insertArticle(BoardDTO article) {
 		Connection con = null;
@@ -275,21 +275,21 @@ public class BoardDAO {
 		ResultSet rs = null; // select → 현재 테이블의 num의 최대값 구하기
 		// list.jsp or content.jsp를 통해 값을 전달
 		
-		int num = article.getNum();
-		int ref =  article.getRef();
+		int num = article.getAnum();
+		/*int ref =  article.getRef();
 		int re_step = article.getRe_step();
-		int re_level = article.getRe_level();
+		int re_level = article.getRe_level();*/
 		
-		System.out.printf("insertArticle num: %s%n", num);
-		System.out.printf("ref = %s, re_step = %s%n", ref, re_step);
-		System.out.printf("re_level = %s%n", re_level);
+		System.out.printf("insertArticle anum: %s%n", num);
+		/*System.out.printf("ref = %s, re_step = %s%n", ref, re_step);
+		System.out.printf("re_level = %s%n", re_level);*/
 		int number = 0; // 게시물 번호
 		String sql = ""; 
 		
 		try {
 			con = pool.getConnection();
 			System.out.printf("con = %s%n", con);
-			sql = "select max(num) from board";
+			sql = "select max(anum) from board";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 		
@@ -301,7 +301,7 @@ public class BoardDAO {
 			pstmt.close();
 			
 			// 신규 or 답변
-			if(num != 0) { // 답변
+			/*if(num != 0) { // 답변
 				// 답변글이 달릴 위치부터 순서 밀기(re_step)
 				sql = "update board set re_step=re_step+1 where ref=? and re_step>?";
 				pstmt = con.prepareStatement(sql);
@@ -316,26 +316,29 @@ public class BoardDAO {
 				ref = number; // 1,2,3,4,5
 				re_step = 0;
 				re_level = 0;
-			}
+			}*/
 			//insert 구문
-			sql = "insert into board(writer, email, subject, passwd, reg_date,";
-			sql += "ref, re_step, re_level, content, ip) values(?,?,?,?,?,?,?,?,?,?)";
+			sql = "insert into board(anum, writer, category, adate, ip,";
+			sql += "title, acontent, afile, tag1, tag2, tag3, tag4, tag5) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
+/*			insert into board(anum, writer, category, adate, ip, title, acontent, afile,
+					tag1, tag2, tag3, tag4, tag5) values(11,'hhh',2,sysdate,'192.134.34.2','test',
+					'테스트 중입니다.','','tag1','','','','');*/
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, article.getWriter());
-			pstmt.setString(2, article.getEmail());
-			pstmt.setString(3, article.getSubject());
-			pstmt.setString(4, article.getPasswd());
-			// values(?,?,?,?,now(),?,?,?,?,?)
-			// 사용시 index 6번째 칼럼을 메서드 인덱스 5로 접근
-			pstmt.setTimestamp(5, article.getReg_date());
-			// 신규나 답변에 맞춰 계산한 변수를 대입 ref, re_step, re_level
-			pstmt.setInt(6, ref);
-			pstmt.setInt(7, re_step);
-			pstmt.setInt(8, re_level);
-			pstmt.setString(9, article.getContent());
-			pstmt.setString(10, article.getIp());
+			pstmt.setInt(1, number);
+			pstmt.setString(2, article.getWriter());
+			pstmt.setInt(3, article.getCategory());
+			pstmt.setTimestamp(4, article.getAdate());
+			pstmt.setString(5, article.getIp());	//article.setIp(request.getRemoteAddr());
+			pstmt.setString(6, article.getTitle());
+			pstmt.setString(7, article.getAcontent());
+			pstmt.setString(8, article.getAfile());
+			pstmt.setString(9, article.getTag1());
+			pstmt.setString(10, article.getTag2());
+			pstmt.setString(11, article.getTag3());
+			pstmt.setString(12, article.getTag4());
+			pstmt.setString(13, article.getTag5());
 			
 			int result = pstmt.executeUpdate();
 			System.out.printf("insert result = ", result);
@@ -350,7 +353,7 @@ public class BoardDAO {
 	
 	// 글 상세보기 조회수 증가
 	// select * from board where num=?
-	public BoardDTO getArticle(int num) {
+	public BoardDTO getArticle(int anum) {
 
 		BoardDTO article = null;
 
@@ -361,34 +364,36 @@ public class BoardDAO {
 
 		try {
 			con = pool.getConnection();
-			sql = "update board set readcount = readcount+1 where num=?";
+			sql = "update board set readcount = readcount+1 where anum=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, anum);
 			int result = pstmt.executeUpdate();
 			System.out.println("조회수 증가 유무(update)" + result);
 
 			pstmt.close();
-			sql = "select * from board where num=?";
+			sql = "select * from board where anum=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, anum);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				article = makeArticleFromResult(rs);
-				
+						
 				article = new BoardDTO();
-				article.setNum(rs.getInt("num"));
+				article.setAnum(rs.getInt("anum"));
 				article.setWriter(rs.getString("writer"));
-				article.setSubject(rs.getString("subject"));
-				article.setEmail(rs.getString("email"));
-				article.setContent(rs.getString("content"));
-				article.setPasswd(rs.getString("passwd"));
-				article.setReg_date(rs.getTimestamp("reg_date"));
-				article.setReadcount(rs.getInt("readcount"));
+				article.setCategory(rs.getInt("category"));
+				article.setAdate(rs.getTimestamp("adate"));
 				article.setIp(rs.getString("ip"));
-				article.setRef(rs.getInt("ref"));
-				article.setRe_step(rs.getInt("re_step"));
-				article.setRe_level(rs.getInt("re_level"));
+				article.setTitle(rs.getString("title"));
+				article.setAcontent(rs.getString("acontent"));
+				article.setAfile(rs.getString("afile"));
+				article.setReadcount(rs.getInt("readcount"));
+				article.setTag1(rs.getString("tag1"));
+				article.setTag2(rs.getString("tag2"));
+				article.setTag3(rs.getString("tag3"));
+				article.setTag4(rs.getString("tag4"));
+				article.setTag5(rs.getString("tag5"));
+				article.setPnum(rs.getInt("pnum"));
 			}
 
 		} catch (Exception e) {
@@ -400,6 +405,7 @@ public class BoardDAO {
 		return article;
 	}
 	
+	/*	
 	// 글 수정시 내용 보여주기
 	// select * from board where num=?
 	public BoardDTO updateGetArticle(int num) {
