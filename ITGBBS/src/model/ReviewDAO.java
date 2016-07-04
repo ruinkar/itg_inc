@@ -3,6 +3,7 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,13 +17,13 @@ public class ReviewDAO {
 	
 	final String SQL_COUNT = "select count(*) from review";
 	
-	// select * from (select * from review r, board b where r.anum = b.anum) order by anum desc rownum >=? and rownum <=?;
-	final String SQL_PAGE = "select * from (select * from review r, board b where r.anum = b.anum)";
-	final String SQL_PAGE_END = " order by anum desc rownum >=? and rownum <=?";
+	// select * from ( select rownum as rnum ,b.*, r.rating from review r, board b where r.anum = b.anum order by b.anum desc ) a where a.rnum >= ? and a.rnum <=?;
+	final String SQL_PAGE = "select * from ( select rownum as rnum ,b.*, r.rating from review r, board b where r.anum = b.anum order by b.anum desc ) a";
+	final String SQL_PAGE_END = "where a.rnum >=? and a.rnum <=?";
 	
 	// select rownum, a.* from (select * from (select b.*, r.evnum, r.rating from board b, review r where r.anum = b.anum order by r.anum desc) where writer like 'a%') a where rownum between 1 and 2
 	final String SQL_PAGE_SEARCH = "select rownum, a.* from (select * from (select b.*, r.evnum, r.rating from board b, review r where r.anum = b.anum order by r.anum desc) where";
-	final String SQL_PAGE_SEARCH_END = " like 'a%') a where rownum between 1 and 2";
+	final String SQL_PAGE_SEARCH_END = ") a where rownum between 1 and 2";
 	
 	
 	
@@ -105,9 +106,9 @@ public class ReviewDAO {
 			} else {
 				sql = SQL_PAGE_SEARCH;
 				if (search.equals("subject_content")) { // 제목 + 내용
-					sql = "title like '" + searchtext + "' or acontent like '" + searchtext + "'";
+					sql += " title like '%" + searchtext + "%' or acontent like '%" + searchtext + "%'";
 				} else { // 제목 or 작성자
-					sql = " where " + search + " like '" + searchtext +"'";
+					sql += search + " like '%" + searchtext +"%'";
 				}
 				
 			}
@@ -122,9 +123,9 @@ public class ReviewDAO {
 			if (rs.next()) {
 				list = new ArrayList(end); // new ArrayList(10);
 				do {
-					BoardDTO article = makeArticleFromResult(rs);
+					// BoardDTO article = makeArticleFromResult(rs);
 					
-					list.add(article);
+					// list.add(article);
 				} while (rs.next());
 			}
 			
@@ -168,7 +169,7 @@ public class ReviewDAO {
 		return map;
 	}
 	
-	
+	/*
 	// 게시물 쓰기 및 답변 달기 통합
 	public void insertArticle(BoardDTO article) {
 		Connection con = null;
@@ -276,7 +277,7 @@ public class ReviewDAO {
 
 			if (rs.next()) {
 				article = makeArticleFromResult(rs);
-				/*
+				
 				article = new BoardDTO();
 				article.setNum(rs.getInt("num"));
 				article.setWriter(rs.getString("writer"));
@@ -289,7 +290,7 @@ public class ReviewDAO {
 				article.setIp(rs.getString("ip"));
 				article.setRef(rs.getInt("ref"));
 				article.setRe_step(rs.getInt("re_step"));
-				article.setRe_level(rs.getInt("re_level"));*/
+				article.setRe_level(rs.getInt("re_level"));
 			}
 
 		} catch (Exception e) {
@@ -321,7 +322,7 @@ public class ReviewDAO {
 
 			if (rs.next()) {
 				article = makeArticleFromResult(rs);
-				/*
+				
 				article = new BoardDTO();
 				article.setNum(rs.getInt("num"));
 				article.setWriter(rs.getString("writer"));
@@ -334,7 +335,7 @@ public class ReviewDAO {
 				article.setIp(rs.getString("ip"));
 				article.setRef(rs.getInt("ref"));
 				article.setRe_step(rs.getInt("re_step"));
-				article.setRe_level(rs.getInt("re_level"));*/
+				article.setRe_level(rs.getInt("re_level"));
 			}
 
 		} catch (Exception e) {
@@ -456,7 +457,7 @@ public class ReviewDAO {
 		}
 
 		return check;
-	}
+	}*/
 	
 	/*// 비밀번호 체크
 	public boolean checkPasswd(int num, String passwd) {
@@ -490,26 +491,45 @@ public class ReviewDAO {
 		
 		return check;
 	}*/
-	
+	/*
 	private BoardDTO makeArticleFromResult(ResultSet rs) throws Exception{
+		
+		String[] BOARD = {
+				"anum",		//게시물번호
+				"writer",	//작성자
+				"category",	//카테고리
+				"adate",	//작성날짜
+				"ip",		//ip 
+				"title",	//제목
+				"acontent",	//글내용
+				"afile",	//첨부파일
+				"readcount",//조회수
+				"tag1",		//태그1
+				"tag2", 	//태그2
+				"tag3",		//태그3
+				"tag4",		//태그4
+				"tag5",		//태그5
+				"pnum"		//대상글번호
+		};
+		
+		ResultSetMetaData meta = rs.getMetaData();
+		
 		
 		BoardDTO article = new BoardDTO();
 		
-		article.setNum(rs.getInt("num"));
-		article.setWriter(rs.getString("writer"));
-		article.setSubject(rs.getString("subject"));
-		article.setEmail(rs.getString("email"));
-		article.setContent(rs.getString("content"));
-		article.setPasswd(rs.getString("passwd"));
-		article.setReg_date(rs.getTimestamp("reg_date"));
-		article.setReadcount(rs.getInt("readcount"));
-		article.setIp(rs.getString("ip"));
-		article.setRef(rs.getInt("ref"));
-		article.setRe_step(rs.getInt("re_step"));
-		article.setRe_level(rs.getInt("re_level"));
+		for (int i = 0; i < BOARD.length; i++) {
+			int type = meta.getColumnType(i);
+			if (type == ) {
+				
+			}
+		}
 		
 		return article;
 	}
+	
+	public void set(){
+		
+	}*/
 	
 	
 }

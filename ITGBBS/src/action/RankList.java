@@ -1,11 +1,12 @@
 package action;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.MemberDTO;
+import etc.PagingUtil;
 import model.RankDAO;
 
 public class RankList implements CommandAction, etc.ContentPath {
@@ -17,26 +18,43 @@ public class RankList implements CommandAction, etc.ContentPath {
 		// TODO Auto-generated method stub
 		System.out.println("RankView.requestPro()");
 		
+		PagingUtil page = null;
 		RankDAO dao = new RankDAO();
 		// 현재 페이지 설정
+		
+		int currentPage = 1;
 		int count = 0; // 총 레코드 수
-		int number = 0; // 페이지별 시작하는 게시물 번호
+		int blockCount = 10;
+		int blockPage = 5;
+		String pageUrl = "rank.do";
 		String pageNum = request.getParameter("pageNum"); // 검색 분야, 검색어 처리
+		if (pageNum == null) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt(pageNum);
+		}
+		
 		count = dao.getMemberCount();
 		
+		page = new PagingUtil(currentPage, count, blockCount, blockPage, pageUrl);
+		int start = page.getStartCount();
+		int end = page.getEndCount();
+		String pagingHtml = page.getPagingHtml().toString();
 		
 		List list = dao.getRankTop();
-		List list_others = dao.getRankPage("1", "10");
+		List list_others = dao.getRankPage(start, end);
 		/*
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		*/
+		
 		String json_high = dao.listJSON(list);
 		String json_others = dao.listJSON(list_others);
 		
-		request.setAttribute("count", count);
+		// request.setAttribute("count", count);
 		request.setAttribute("json_high", json_high);
 		request.setAttribute("json_others", json_others);
+		request.setAttribute("pagingHtml", pagingHtml);
 		
 		return RANK + "/rank.jsp";
 	}

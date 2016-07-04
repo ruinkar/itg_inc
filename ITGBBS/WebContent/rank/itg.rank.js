@@ -105,24 +105,18 @@ itg.rank_list.init = function() {
 itg.rank_list.print = function(json_others) {
 	// 나머지 랭크 리스트 표시
 	
-	var $tr = $(".item_rank_list");
-	
 	$(json_others).each(function(){
-		var tr = document.createElement("tr"); 
-		var $tr = $(tr);
-		var td = document.createElement("td");
-		var $td = $(td);
+		var li = document.createElement("li");
+		var $li = $(li);
 		
-		$tr.css({
+		$li.css({
 			height: itg.list_item_height
 		});
 		
-		$tr.addClass("line_rank_list");
-		$td.addClass("item.rank_list");
-		$td.text(this.id);
+		$li.addClass("item_rank_list");
+		$li.text(this.id);
 		
-		$tr.append(td);
-		itg.rank_list.$rank_list.append(tr);
+		itg.rank_list.$rank_list.append(li);
 	});
 } // itg.rank_list.print()
 
@@ -133,7 +127,3 @@ itg.pages.init = function() {
 		height: itg.pages_height
 	});
 } // itg.pages.init()
-
-itg.pages.getPage = function(pageCount) {
-	console.log(pageCount);
-} // itg.pages.getPage()

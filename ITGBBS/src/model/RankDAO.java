@@ -10,9 +10,9 @@ import etc.KeyArchive;
 
 public class RankDAO implements KeyArchive {
 	final String SQL_RANK_LIST_TOP
-		= "select * from (select * from member order by mpoint desc) where rownum <= 10";
+		= "select * from (select m.*, rownum rnum from member m order by mpoint desc) where rnum <= 10";
 	final String SQL_RANK_LIST_PAGE 
-		= "select * from (select * from member order by mpoint desc) where rownum between ? and ?";
+		= "select * from (select m.*, rownum rnum from member m order by mpoint desc) where rnum between ? and ?";
 
 	DBConnectionMgr pool = null;
 
@@ -84,7 +84,7 @@ public class RankDAO implements KeyArchive {
 	}
 
 	// 랭킹 페이지 하단 표시용 하위 랭크(현재 페이지에 따른 목록)
-	public List<MemberDTO> getRankPage(String start, String end) {
+	public List<MemberDTO> getRankPage(int start, int end) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -93,12 +93,13 @@ public class RankDAO implements KeyArchive {
 		try {
 			con = pool.getConnection();
 			pstmt = con.prepareStatement(SQL_RANK_LIST_PAGE);
-			pstmt.setString(1, start);
-			pstmt.setString(2, end);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
-
+			
+			list = new ArrayList(10); // new ArrayList(10);
+			
 			if (rs.next()) {
-				list = new ArrayList(10); // new ArrayList(10);
 				do {
 					MemberDTO member = setMemberDTO(rs);
 					list.add(member);
@@ -109,7 +110,7 @@ public class RankDAO implements KeyArchive {
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
-
+		
 		return list;
 	}
 	
@@ -142,7 +143,9 @@ public class RankDAO implements KeyArchive {
 	}
 	
 	public String listJSON(List<MemberDTO> list){
-		int size = list.size();
+		int size = list.isEmpty() ?
+				0 : list.size();
+		
 		
 		String json = "[";
 		for(int i = 0; i < size; i++){
