@@ -319,7 +319,7 @@ public class BoardDAO {
 			}*/
 			//insert 구문
 			sql = "insert into board(anum, writer, category, adate, ip,";
-			sql += "title, acontent, afile, tag1, tag2, tag3, tag4, tag5, pnum) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql += "title, acontent, afile, tag1, tag2, tag3, tag4, tag5) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 /*			insert into board(anum, writer, category, adate, ip, title, acontent, afile,
 					tag1, tag2, tag3, tag4, tag5) values(11,'hhh',2,sysdate,'192.134.34.2','test',

@@ -27,6 +27,7 @@ public class ControllerAction extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 
 		// 경로에 맞는 CommandPro.properties파일을 불러옴
+//		String props = "C:/Users/increpas03/git/itg_inc/ITGBBS/WebContent/props/commandPro.properties";
 		String props = config.getInitParameter("propertyConfig");
 
 		// 명령어와 처리클래스의 매핑정보를 저장할
