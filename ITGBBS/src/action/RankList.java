@@ -25,6 +25,7 @@ public class RankList implements CommandAction, etc.ContentPath {
 		String typestr = request.getParameter("type");
 		int type = typestr.equals(mpoint_list) ? 
 				0 : 1;
+		System.out.println(typestr);
 		
 		int currentPage = 1;
 		int count = 0; // 총 레코드 수

@@ -47,7 +47,7 @@ $(function() {
 	var json_others = JSON.parse('${json_others}');
 	
 	// 초기화
-	itg.init();
+	itg.init('${type}');
 	itg.print(json_high, json_others); // 출력
 	
 }); // $.ready()

@@ -33,7 +33,7 @@ itg.getSizeBG = function() {
 }
 
 // 초기화
-itg.init = function() {
+itg.init = function(type) {
 	
 	this.getSizeBG();
 	

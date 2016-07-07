@@ -3,19 +3,25 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import etc.KeyArchive;
 
 public class RankDAO implements KeyArchive {
 	final int top = 10;
+	final int TYPE_MPOINT = 0;
+	final int TYPE_RATING = 1;
 	
 	final String SQL_LIST_RANK_MPOINT_COUNT
 		= "select count(*) from member";
 	
 	final String SQL_LIST_RANK_MPOINT_TOP
-		= "select nick, thumbnail, mpoint from ( select * from ( select nick, thumbnail, mpoint, rownum rnum from member m order by mpoint desc ) where rnum <= ?";
+		= "select nick, thumbnail, mpoint from ( select nick, thumbnail, mpoint, rownum rnum from member m order by mpoint desc ) where rnum <= ?";
 	final String SQL_LIST_RANK_MPOINT_PAGE 
 		= "select nick, thumbnail, mpoint from ( select * from ( select nick, thumbnail, mpoint, rownum rnum from member m order by mpoint desc ) where rnum <=? ) where rnum >=?";
 
@@ -65,27 +71,33 @@ public class RankDAO implements KeyArchive {
 	
 
 	// 랭킹 페이지 상단 표시용 상위 랭크
-	public List<MemberDTO> getRankTop(int type) {
+	public List<String> getRankTop(int type) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List list = null;
+		// System.out.println(type);
 
 		try {
 			con = pool.getConnection();
-			pstmt = con.prepareStatement(type == 0 ? 
+			pstmt = con.prepareStatement(type == TYPE_MPOINT ? 
 					SQL_LIST_RANK_MPOINT_TOP : SQL_LIST_RANK_RATING_TOP );
-			pstmt.setInt(1, 10);
-			rs = pstmt.executeQuery();
 			pstmt.setInt(1, top);
+			rs = pstmt.executeQuery();
+			
 
 			if (rs.next()) {
 				list = new ArrayList(10); // new ArrayList(10);
 				do {
-					MemberDTO member = setMemberDTO(rs);
-					list.add(member);
+					String data = setJsonData(rs);
+					list.add(data);
 				} while (rs.next());
 			}
+			
+			if (list.isEmpty()) {
+				list = Collections.emptyList();
+			}
+			
 		} catch (Exception e) {
 			System.out.println("getRankTop() error: " + e);
 		} finally {
@@ -96,7 +108,7 @@ public class RankDAO implements KeyArchive {
 	}
 
 	// 랭킹 페이지 하단 표시용 하위 랭크(현재 페이지에 따른 목록)
-	public List<MemberDTO> getRankPage(int type, int start, int end) {
+	public List<String> getRankPage(int type, int start, int end) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -104,7 +116,7 @@ public class RankDAO implements KeyArchive {
 
 		try {
 			con = pool.getConnection();
-			pstmt = con.prepareStatement(type == 0?
+			pstmt = con.prepareStatement(type == TYPE_MPOINT ?
 					SQL_LIST_RANK_MPOINT_PAGE : SQL_LIST_RANK_RATING_PAGE );
 			pstmt.setInt(1, end);
 			pstmt.setInt(2, start);
@@ -114,9 +126,13 @@ public class RankDAO implements KeyArchive {
 			
 			if (rs.next()) {
 				do {
-					MemberDTO member = setMemberDTO(rs);
-					list.add(member);
+					String data = setJsonData(rs);
+					list.add(data);
 				} while (rs.next());
+			}
+			
+			if (list.isEmpty()) {
+				list = Collections.emptyList();
 			}
 		} catch (Exception e) {
 			System.out.println("getRankPage() error: " + e);
@@ -127,6 +143,38 @@ public class RankDAO implements KeyArchive {
 		return list;
 	}
 	
+	// ResultSet to Json String
+	private String setJsonData(ResultSet rs) throws Exception {
+		ResultSetMetaData meta = rs.getMetaData();
+		int count = meta.getColumnCount();
+		
+		StringBuffer out = new StringBuffer("{");
+		for (int i = 1; i <= count; i++) {
+			out.append("\"" + meta.getColumnLabel(i).toLowerCase() + "\":\"" + rs.getString(i) + "\"" + (i < count ? ",":""));
+		}
+		out.append("}");
+		
+		return out.toString();
+	}
+	
+	// setJsonData로 만든 List를 Json 배열형태로 최종 포장
+	public String listJSON(List<String> list){
+		int size = list.isEmpty() ?
+				0 : list.size();
+		
+		StringBuffer json = new StringBuffer("[");
+		for(int i = 0; i < size; i++){
+			String data = list.get(i);
+			json.append(data + (i < size - 1 ? "," : "") );
+		}
+		json.append("]");
+		
+		// System.out.println(json);
+		return json.toString();
+	}
+	
+	/*
+	// DB결과를 MemberDTO로 저장
 	private MemberDTO setMemberDTO(ResultSet rs) throws Exception {
 
 		MemberDTO member = new MemberDTO();
@@ -154,6 +202,7 @@ public class RankDAO implements KeyArchive {
 		return member;
 	}
 	
+	// MemberDTO List를 Json 배열로 포장
 	public String listJSON(List<MemberDTO> list){
 		int size = list.isEmpty() ?
 				0 : list.size();
@@ -169,5 +218,5 @@ public class RankDAO implements KeyArchive {
 		// System.out.println(json);
 		
 		return json;
-	}
+	}*/
 }
