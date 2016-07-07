@@ -45,39 +45,24 @@
   <c:forEach var="article" items="${articleList}">
     
    <tr height="30">
-    <td align="center"  width="50" ><%--=article.getNum() --%>${article.num}</td>
+    <td align="center"  width="50" ><%--=article.getNum() --%>${article.anum}</td>
     <td  width="250" >
     
-	<c:if test="${article.re_level > 0}"><!-- 답변글 -->
-	  <c:set var="wid" value="${7 * article.re_level}"/> <!-- 7, 14, 21, 28 -->
-	  <img src="images/level.gif" width="<%--=wid --%>${wid}" height="16">
-	  <img src="images/re.gif">
-	</c:if>
-	
-	<c:if test="${article.re_level == 0}">
-	  <img src="images/level.gif" width="${wid}<%--=wid --%>" height="16">
-	</c:if>
-	
-    <a href="content.do?num=${article.num}&pageNum=${currentPage}">
-    ${article.subject}</a>
-    
-    <c:if test="${article.readcount > 20}">
-      <img src="images/hot.gif" border="0"  height="16"> 
-    </c:if>
+    <a href="content.do?anum=${article.anum}&pageNum=${currentPage}">
+    ${article.title}</a>
     </td>
     
-    <td align="center"  width="100">
-      <a href="mailto:${article.email}">${article.writer}</a></td>
+    <td align="center"  width="100">${article.writer}</td>
     <td align="center"  width="150">
-      <fmt:formatDate value="${article.reg_date}" pattern="yyyy-MM-dd HH:mm"/>
+      <fmt:formatDate value="${article.adate}" pattern="yyyy-MM-dd HH:mm"/>
     </td>
     <td align="center"  width="50">${article.readcount}</td>
     <td align="center" width="100" >${article.ip}</td>
    </tr>
   </c:forEach>
 </c:if>
-
 </table>
+
 
 <c:if test="${count > 0}">
   <!-- <c:set var="startPage" value="${(currentPage - 1) / blockSize * blocksize + 1}"/> -->
@@ -87,16 +72,16 @@
   <c:set var="endPage" value="${endPage>pageCount ? pageCount : endPage}"/>
   <!-- 이전 블럭 → 11 → 10 -->
   <c:if test="${startPage>blockSize}">
-	<a href="list.do?pageNum=${startPage - blockSize}">[이전]</a>
-	<!-- [이전] 11 12 13...20 -->
+    <a href="list.do?pageNum=${startPage - blockSize}">[이전]</a>
+    <!-- [이전] 11 12 13...20 -->
   </c:if>
   <!-- 현재 블럭 -->
   <c:forEach var="i" begin="${startPage}" end="${endPage}">
-	<a href="list.do?pageNum=${i}">[${i}]</a>
+    <a href="list.do?pageNum=${i}">[${i}]</a>
   </c:forEach>
-	
+    
   <c:if test="${endPage<pageCount}">
-	<a href="list.do?pageNum=${startPage + blockSize}">[다음]</a>
+    <a href="list.do?pageNum=${startPage + blockSize}">[다음]</a>
   </c:if>
   
 </c:if>
