@@ -77,7 +77,13 @@ public class MemberDTO {
 	public void setGkey(String gkey) {
 		this.gkey = gkey;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "MemberDTO [id=" + id + ", name=" + name + ", nick=" + nick + ", email=" + email + ", thumbnail="
+				+ thumbnail + ", mpoint=" + mpoint + ", fkey=" + fkey + ", gkey=" + gkey + "]";
+	}
+	
+	
+	
 }
