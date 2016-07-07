@@ -49,7 +49,7 @@ td{align:center; width:180px; height:180px;}
 
 	int count = 0; //총 레코드 수
 	int number = 0; //페이지별 시작하는 게시물의 번호
-	
+	   
 	List boardContentList = null; //12개의 레코드들을 담을 변수
 	List eventContentList = null;
 	
@@ -63,7 +63,7 @@ td{align:center; width:180px; height:180px;}
 	
 	if (count > 0) {
 		//테이블의 첫번째 레코드 순번, 화면에 보여줄 레코드 수
-		boardContentList = boardDao.getContents(startRow, pageSize);
+		boardContentList = boardDao.getContents(startRow, pageSize * currentPage);
 		System.out.println(LOG_TAG +", boardContentList = " + boardContentList);
 		
 		/* 
@@ -101,7 +101,9 @@ td{align:center; width:180px; height:180px;}
 				BDTO boardDTO = (BDTO)boardContentList.get(i);
 				EventDTO eventDTO = (EventDTO)eventContentList.get(i);
 			
-		%><div class="box">
+		%>
+		<a href="eventContent.jsp?aNum=<%=boardDTO.getaNum() %>&pageNum=<%=currentPage%>">
+		<div class="box">
 		<div class="box_top">
 				<table >
 					<tr>
@@ -109,13 +111,16 @@ td{align:center; width:180px; height:180px;}
 						</td>
 					</tr>
 				</table>
-			</div><div class="box_bottom">
+			</div>
+			<div class="box_bottom">
 				<table >
 					<tr>
 						<td><%=boardDTO.getaNum() %></td>
 					</tr>
 				</table>
-			</div></div><% } %>
+			</div>
+		</div>
+		</a><% } %>
 			
 			<br>
 			

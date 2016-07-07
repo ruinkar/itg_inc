@@ -47,11 +47,15 @@
 					</dd>
 					<h3>관람료</h3>
 					<dd>무료</dd>
+					<h3>글내용</h3>
+					<dd><%=boardDTO.getaContent()%></dd>
 				</dl>
 			</div>
 		</div>
 		<div class="detail_sec">
-			<%=boardDTO.getaContent()%>
+			
 		</div>
 	</div>
+	<input type="button" value="수정해" OnClick="" >
+	<input type="button" value="목록보기" OnClick="window.location='eventMain.jsp'">
 </body>
