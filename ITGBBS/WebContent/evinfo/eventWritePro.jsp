@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="base.model.*, java.sql.Timestamp"%>
+    pageEncoding="UTF-8" import="model.*, java.sql.Timestamp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
@@ -13,7 +13,7 @@
 <%
 	/* 	System.out.println(article.geteName()); */
 /*일반 게시판 테이블*/
-	BDTO bDTO = new BDTO();
+	EventBoardDTO bDTO = new EventBoardDTO();
 
 	/* int aNum = 888;
 	bDTO.setaNum(aNum); */
@@ -76,7 +76,7 @@
 	"tag5 = " + bDTO.getTag5() + "\n" +
 	"pnum = " + bDTO.getpNum() + "\n");
 	
-	BDAO board = new BDAO();
+	EventBoardDAO board = new EventBoardDAO();
 	board.insertBoard(bDTO);
 	
 /*행사게시판 테이블*/	
@@ -86,13 +86,13 @@
 	eventDTO.setEvNum(evNum); */
 	
 	int epErm = 100;
-	eventDTO.setEpErm(epErm);
+	eventDTO.setEperm(epErm);
 	
 	String host = request.getParameter("host");
 	eventDTO.setHost(host);
 	
 	String eName = request.getParameter("eName");
-	eventDTO.seteName(eName);
+	eventDTO.setEname(eName);
 	
 	Timestamp begin = new Timestamp(System.currentTimeMillis());
 	eventDTO.setBegin(begin);
@@ -104,7 +104,7 @@
 	eventDTO.setLocation(location);
 	
 	String eImg = request.getParameter("eImg");
-	eventDTO.seteImg("test");
+	eventDTO.setEimg("test");
 
 	double lat = 37.444;
 	eventDTO.setLat(lat);
@@ -112,10 +112,10 @@
 	double lng = 41.522;
 	eventDTO.setLng(lng);
 
-	System.out.println("evNum = " + eventDTO.getEvNum() + "\n" + "eperm = " + eventDTO.getEpErm() + "\n"
-			+ "host = " + eventDTO.getHost() + "\n" + "ename = " + eventDTO.geteName() + "\n" + "begin = "
+	System.out.println("evNum = " + eventDTO.getEvnum() + "\n" + "eperm = " + eventDTO.getEperm() + "\n"
+			+ "host = " + eventDTO.getHost() + "\n" + "ename = " + eventDTO.getEname() + "\n" + "begin = "
 			+ eventDTO.getBegin() + "\n" + "end = " + eventDTO.getEnd() + "\n" + "location = "
-			+ eventDTO.getLocation() + "\n" + "eImg = " + eventDTO.geteImg() + "\n" + "lat = "
+			+ eventDTO.getLocation() + "\n" + "eImg = " + eventDTO.getEimg() + "\n" + "lat = "
 			+ eventDTO.getLat() + "\n" + "lng = " + eventDTO.getLng());
 
 	EventDAO event = new EventDAO();

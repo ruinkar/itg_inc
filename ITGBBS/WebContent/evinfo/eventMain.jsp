@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="base.model.*, java.util.*, java.text.SimpleDateFormat"%>
+	pageEncoding="UTF-8" import="model.*, java.util.*, java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -54,7 +54,7 @@ td{align:center; width:180px; height:180px;}
 	List eventContentList = null;
 	
 	//레코드가 몇개인지 가져오자
-	BDAO boardDao = new BDAO();
+	EventBoardDAO boardDao = new EventBoardDAO();
 	count = boardDao.getContentCount();
 	System.out.println(LOG_TAG + ", 현재 board 수 count = " + count);
 	
@@ -98,7 +98,7 @@ td{align:center; width:180px; height:180px;}
 	<%
 			for (int i = 0; i < boardContentList.size(); i++) {
 				
-				BDTO boardDTO = (BDTO)boardContentList.get(i);
+				EventBoardDTO boardDTO = (EventBoardDTO)boardContentList.get(i);
 				EventDTO eventDTO = (EventDTO)eventContentList.get(i);
 			
 		%>
@@ -107,7 +107,7 @@ td{align:center; width:180px; height:180px;}
 		<div class="box_top">
 				<table >
 					<tr>
-						<td><img src="<%=eventDTO.geteImg() %>" width="150px" height="150px"/>
+						<td><img src="<%=eventDTO.getEimg() %>" width="150px" height="150px"/>
 						</td>
 					</tr>
 				</table>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="base.model.*"%>
+	pageEncoding="UTF-8" import="model.*"%>
 
 <html>
 <head>
@@ -9,8 +9,8 @@
 <%
 	int aNum = Integer.parseInt(request.getParameter("aNum"));
 
-	BDAO boardDAO = new BDAO();
-	BDTO boardDTO = boardDAO.getContent(aNum);
+	EventBoardDAO boardDAO = new EventBoardDAO();
+	EventBoardDTO boardDTO = boardDAO.getContent(aNum);
 
 	EventDAO eventDAO = new EventDAO();
 	EventDTO eventDTO = eventDAO.getContent(aNum);

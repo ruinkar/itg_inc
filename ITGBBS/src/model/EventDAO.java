@@ -1,12 +1,10 @@
-package base.model;
+package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import model.DBConnectionMgr;
 
 public class EventDAO {
 	
@@ -31,13 +29,13 @@ public class EventDAO {
 			con = pool.getConnection();
 			sql = "insert into event(evnum, eperm, host, ename, begin, end, location, eimg, lat, lng) values((select max(anum) from board),?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, event.getEpErm());
+			pstmt.setInt(1, event.getEperm());
 			pstmt.setString(2, event.getHost());
-			pstmt.setString(3, event.geteName());
+			pstmt.setString(3, event.getEname());
 			pstmt.setTimestamp(4, event.getBegin());
 			pstmt.setTimestamp(5, event.getEnd());
 			pstmt.setString(6, event.getLocation());
-			pstmt.setString(7, event.geteImg());
+			pstmt.setString(7, event.getEimg());
 			pstmt.setDouble(8, event.getLat());
 			pstmt.setDouble(9, event.getLng());
 			
@@ -114,14 +112,14 @@ public class EventDAO {
 	
 	private EventDTO makeFormResult(ResultSet rs) throws Exception {
 		EventDTO eventDTO = new EventDTO();
-		eventDTO.setEvNum(rs.getInt("evnum"));
-		eventDTO.setEpErm(rs.getInt("eperm"));
+		eventDTO.setEvnum(rs.getInt("evnum"));
+		eventDTO.setEperm(rs.getInt("eperm"));
 		eventDTO.setHost(rs.getString("host"));
-		eventDTO.seteName(rs.getString("ename"));
+		eventDTO.setEname(rs.getString("ename"));
 		eventDTO.setBegin(rs.getTimestamp("begin"));
 		eventDTO.setEnd(rs.getTimestamp("end"));
 		eventDTO.setLocation(rs.getString("location"));
-		eventDTO.seteImg(rs.getString("eimg"));
+		eventDTO.setEimg(rs.getString("eimg"));
 		eventDTO.setLat(rs.getDouble("lat"));
 		eventDTO.setLng(rs.getDouble("lng"));
 		

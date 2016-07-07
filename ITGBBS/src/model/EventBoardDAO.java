@@ -1,4 +1,4 @@
-package base.model;
+package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,12 +9,12 @@ import java.util.List;
 import model.DBConnectionMgr;
 
 //게시판 → 공지사항, 자유게시판, 답변형게시판, 파일첨부형 게시판
-public class BDAO {
+public class EventBoardDAO {
 
 	private final String LOG_TAG = "BDAO";
 	private DBConnectionMgr pool = null;
 
-	public BDAO() {
+	public EventBoardDAO() {
 		try {
 			pool = DBConnectionMgr.getInstance();
 		} catch (Exception e) {
@@ -23,7 +23,7 @@ public class BDAO {
 	}
 
 	//행사글 추가하기
-	public void insertBoard(BDTO board) {
+	public void insertBoard(EventBoardDTO board) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -65,7 +65,7 @@ public class BDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List contentList = null;
-		BDTO boardDTO = null;
+		EventBoardDTO boardDTO = null;
 		
 		try {
 			con = pool.getConnection();
@@ -95,11 +95,11 @@ public class BDAO {
 	}
 	
 	//행사글 하나의 내용 가져오기
-	public BDTO getContent(int aNum) {
+	public EventBoardDTO getContent(int aNum) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		BDTO boardDTO = null;
+		EventBoardDTO boardDTO = null;
 
 		try {
 			con = pool.getConnection();
@@ -153,8 +153,8 @@ public class BDAO {
 		return x;
 	}
 
-	private BDTO makeFormResult(ResultSet rs) throws Exception {
-		BDTO boardDTO = new BDTO();
+	private EventBoardDTO makeFormResult(ResultSet rs) throws Exception {
+		EventBoardDTO boardDTO = new EventBoardDTO();
 		boardDTO.setaNum(rs.getInt("anum"));
 		boardDTO.setWriter(rs.getString("writer"));
 		boardDTO.setCategory(rs.getInt("category"));

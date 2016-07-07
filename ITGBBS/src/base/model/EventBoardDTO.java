@@ -3,7 +3,7 @@ package base.model;
 import java.sql.Timestamp;
 
 //게시판 → 공지사항, 자유게시판, 답변형게시판, 파일첨부형 게시판
-public class BDTO {
+public class EventBoardDTO {
 	
 	// ~ 일반 자유게시판 항목
 	private int aNum;				// 게시물 번호
