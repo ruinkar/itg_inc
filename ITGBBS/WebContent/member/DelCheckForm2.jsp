@@ -11,7 +11,7 @@
 <script language="JavaScript" src="script.js"></script>
 </SCRIPT>
  </HEAD>
- <BODY onload="document.del.password.focus()" bgcolor="#FFFFCC">
+ <BODY onload="document.del.password.focus()" bgcolor="#ffffff">
   <center>
      <TABLE>
     <form name="del" method="post" 

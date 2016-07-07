@@ -6,7 +6,7 @@
 <title>Simple LogIn</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
-<body bgcolor="#996600" topmargin="100">
+<body bgcolor="#5d2c96" topmargin="100">
 <center>
 <c:set var="error" value="로그인에 실패하셨습니다.!"/>
 <b><c:out value="${error}"/><p>

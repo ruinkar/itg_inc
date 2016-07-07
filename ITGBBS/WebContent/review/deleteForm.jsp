@@ -15,7 +15,7 @@
 </script>
 </head>
 
-<body bgcolor="#e0ffff">
+<body bgcolor="#ffffff">
 <center><b>글삭제</b>
 <br>
 <form method="POST" name="delForm"  action="deletePro.do?pageNum=${pageNum}" 

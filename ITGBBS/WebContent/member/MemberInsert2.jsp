@@ -6,7 +6,7 @@
   <TITLE> 회원가입확인 </TITLE>
  </HEAD>
 
- <BODY bgcolor="#FFFFCC">
+ <BODY bgcolor="#ffffff">
   <br><br>
   <center>
   <c:set var="flag" value="${requestScope.flag}"/>
@@ -14,7 +14,7 @@
     <c:when test="${flag==true}">
     <c:set var="register" value="회원가입을 축하드립니다."/>
        <c:out value="${register}"/><br>
-       <a href=Login.do>로그인</a>
+       <a href=Login2.do>로그인</a>
 	</c:when>
 	<c:otherwise>
 	<c:set var="Error" value="다시 확인하고 입력요망!"/>

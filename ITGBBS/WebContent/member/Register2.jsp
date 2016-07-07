@@ -9,7 +9,7 @@
 <script language="JavaScript" src="prototype.js"></script>
 <script language="JavaScript" src="searchWord.js"></script>
 </head>
-<body bgcolor="#996600" onLoad="regForm.id.focus()">
+<body bgcolor="#5d2c96" onLoad="regForm.id.focus()">
 <br><br>
 <table align="center" border="0" cellspacing="0" cellpadding="5" >
   <tr> 

@@ -12,7 +12,7 @@
 <link href="style.css" rel="stylesheet"
          type="text/css">
 </head>
-<body bgcolor="#FFFFCC">
+<body bgcolor="#5d2c96">
   <%
     //xhr객체가 받을 xml형태로 받을 수있도록
     response.setContentType

@@ -99,7 +99,7 @@
 
 					<ul class="nav nav-sidebar">
 						<li data-toggle="tooltip" data-container="body" title="로그인"><a
-							href="/login/auth?redirectUrl=%2Farticles%2Fcommunity"
+							href="/ITGBBS/member/Login2.jsp"
 							class="link"><i class="fa fa-sign-in"></i> <span
 								class="nav-sidebar-label">로그인</span></a></li>
 						<li data-toggle="tooltip" data-container="body" title="회원가입"><a
@@ -155,32 +155,32 @@
 			<div class="sidebar-category-nav" style="background-color: #5d2c96">
 				<h3 class="sub-title">커뮤니티</h3>
 				<ul class="nav">
-					<li><a href="/articles/community" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
+					<li><a href="/ITGBBS/free/list.do" class="link"><span
+							class="nav-sidebar-label nav-sidebar-category-label">tick TALK</span> <span
 							class="nav-indicator nav-selected"><span
 								class="nav-selected-dot"></span></span></a></li>
 
-					<li><a href="/articles/notice" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">공지사항</span>
+					<li><a href="/ITGBBS/evinfo/eventMain.jsp" class="link"><span
+							class="nav-sidebar-label nav-sidebar-category-label">IT Event</span>
 							<span class="nav-indicator "><span
 								class="nav-selected-dot"></span></span></a></li>
 
-					<li><a href="/articles/life" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span>
+					<li><a href="/ITGBBS/index.jsp" class="link"><span
+							class="nav-sidebar-label nav-sidebar-category-label">IT Event Review</span>
 							<span class="nav-indicator "><span
 								class="nav-selected-dot"></span></span></a></li>
 
 					<li><a href="/articles/forum" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span
+							class="nav-sidebar-label nav-sidebar-category-label">TEST1</span> <span
 							class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
 
 					<li><a href="/articles/gathering" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span>
+							class="nav-sidebar-label nav-sidebar-category-label">TEST2</span>
 							<span class="nav-indicator "><span
 								class="nav-selected-dot"></span></span></a></li>
 
 					<li><a href="/articles/promote" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span>
+							class="nav-sidebar-label nav-sidebar-category-label">TEST3</span>
 							<span class="nav-indicator "><span
 								class="nav-selected-dot"></span></span></a></li>
 

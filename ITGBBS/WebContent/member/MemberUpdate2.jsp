@@ -10,7 +10,7 @@
 <script language="JavaScript" src="prototype.js"></script>
 <script language="JavaScript" src="searchWord.js"></script>
 </head>
-<body bgcolor="#996600">
+<body bgcolor="#5d2c96">
 	<br>
 	<br>
 	<table align="center" border="0" cellspacing="0" cellpadding="5">

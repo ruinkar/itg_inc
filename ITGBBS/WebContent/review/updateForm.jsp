@@ -7,7 +7,7 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 <script language="JavaScript" src="script.js"></script>
 </head>
-<body bgcolor="#e0ffff">
+<body bgcolor="#ffffff">
 <center><b>글수정</b>
 <br>
 <form method="post" name="writeForm" action="updatePro.do?pageNum=${pageNum}" onsubmit="return writeSave()">

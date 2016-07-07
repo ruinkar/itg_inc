@@ -9,7 +9,7 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body bgcolor="#e0ffff">  
+<body bgcolor="#ffffff">  
 <center><b>글내용 보기</b>
 <br>
 <table width="500" border="1" cellspacing="0" cellpadding="0"  bgcolor="#e0ffff" align="center">  
