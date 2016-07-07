@@ -38,7 +38,7 @@ public class BoardDAO {
 		try {
 			con = pool.getConnection();
 			System.out.printf("con = %s%n", con);
-			sql = "select count(*) from board";
+			sql = "select count(*) from board where category=0";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -117,7 +117,7 @@ public class BoardDAO {
 		
 		try {
 			con = pool.getConnection();
-			sql = "select * from (select * from board where pnum is null order by anum desc) where rownum between ? and ?";
+			sql = "select * from (select * from board where category=0 order by anum desc) where rownum between ? and ?";
 			pstmt = con.prepareStatement(sql);
 //			System.out.println("sql = " +sql);
 		

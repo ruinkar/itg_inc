@@ -17,7 +17,7 @@ public class FreeListAction implements CommandAction, ContentPath {
 
 		// 모델2 게시판 페이징처리 참조
 		// 선언문
-		int pageSize = 10; // numPerPage : 페이지당 보여주는 레코드 수
+		int pageSize = 10; // numberPage : 페이지당 보여주는 레코드 수
 		int blockSize = 10; // pagePerBlock : 블락당 보여주는 페이지 수
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD HH:mm"); // 한국식
 																			// 날짜양식
@@ -26,6 +26,7 @@ public class FreeListAction implements CommandAction, ContentPath {
 		// 현재페이지 설정
 		String pageNum = request.getParameter("pageNum"); // 클라이언트가 클릭시 자기자신
 															// 호출하면 값 넘어옴
+		System.out.println("페이징처리 pageNum = " + pageNum);
 
 		if (pageNum == null)
 			pageNum = "1"; // 처음 페이지를 열었을 때
@@ -46,7 +47,7 @@ public class FreeListAction implements CommandAction, ContentPath {
 		count = bdPro.getArticleCount();
 		System.out.println("현재 레코드 수 count = " + count); // 디버깅용
 		if (count > 0) {
-			articleList = bdPro.getArticles(startRow, pageSize);
+			articleList = bdPro.getArticles(startRow, endRow);
 			System.out.println("articleList = " + articleList);
 		}
 		number = count - (currentPage - 1) * pageSize;

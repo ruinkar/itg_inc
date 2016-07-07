@@ -189,13 +189,13 @@
 
 			<div id="list-article" class="content scaffold-list" role="main">
 				<div class="nav" role="navigation">
-				<a href="/ITGBBS/free/writeForm.do"
+					<a href="/ITGBBS/free/writeForm.do"
 						class="create btn btn-success btn-wide pull-right"><i
 						class="fa fa-pencil"></i>새 글 쓰기</a>
-				
-<!-- 					<form action="/writeForm.do?writer='hhh'">
+
+					<!-- 					<form action="/writeForm.do?writer='hhh'">
 					<i class="fa fa-pencil"><input type="submit" value="새 글 쓰기"/></i></form> -->
-						
+
 
 
 					<h4>커뮤니티</h4>
@@ -371,32 +371,36 @@
 							<c:set var="endPage" value="${startPage+blockSize-1}" />
 
 							<c:if test="${endPage > pageCount}">
-								<c:set var="endPage" value="${pageCount}" />;
-	</c:if>
+								<c:set var="endPage" value="${pageCount}" />
+							</c:if>
+
 
 
 							<!-- //이전블럭 -->
 							<c:if test="${startPage > blockSize}">
-								<li class="prev disabled"><span>&laquo;</span></li>
+								<li class="prev"><a href="/ITGBBS/free/list.do?pageNum=${startPage-blockSize}" class="step">&laquo;</a></li>
 							</c:if>
 
 							<!-- //현재블럭 [이전] 11 12 13 14 .. 20 -->
 							<c:forEach var="i" begin="${startPage}" end="${endPage}">
-								<li><a href="list.jsp?pageNum=${i}" class="step">${i}</a></li>
+								<li><a href="/ITGBBS/free/list.do?pageNum=${i}"
+									class="step">${i}</a></li>
 							</c:forEach>
 
 							<!-- //다음블럭  ...23일 경우 -->
 							<c:if test="${endPage < pageCount}">
-								<li><a href="list.jsp?pageNum=${startPage+blockSize}"
+								<li><a
+									href="/ITGBBS/free/list.do?pageNum=${startPage+blockSize}"
 									class="step"><span>...</span></li>
+						
+								<li><a href="/ITGBBS/free/list.do?pageNum=${pageCount}" class="step">${pageCount}</a></li>
+							
+								<li class="next"><a href="/ITGBBS/free/list.do?pageNum=${startPage+blockSize}" class="step">&raquo;</a></li>
 							</c:if>
-						</c:if>
-						<li><a
-							href="/articles/community?offset=72020&amp;max=20&amp;sort=id&amp;order=desc"
-							class="step">3602</a></li>
-						<li class="next"><a
+						<!-- 						<li class="next"><a
 							href="/articles/community?offset=20&amp;max=20&amp;sort=id&amp;order=desc"
-							class="step">&raquo;</a></li>
+							class="step">&raquo;</a></li> -->
+						</c:if>	
 					</ul>
 
 				</div>

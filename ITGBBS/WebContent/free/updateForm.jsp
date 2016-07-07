@@ -373,7 +373,7 @@
 
 								<div class="nav" role="navigation">
 									<fieldset class="buttons">
-										<a href="/articles/community" class="btn btn-default btn-wide"
+										<a href="/ITGBBS/free/list.do" class="btn btn-default btn-wide"
 											onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a> <input
 											type="submit" name="create"
 											class="create btn btn-success btn-wide pull-right" value="저장"
