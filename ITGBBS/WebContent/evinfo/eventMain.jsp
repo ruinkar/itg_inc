@@ -39,7 +39,7 @@ td{align:center; width:180px; height:180px;}
 	if (pageNum == null) {
 		pageNum = "1";
 	}
-	
+	  
 	//형변환
 	int currentPage = Integer.parseInt(pageNum);
 	System.out.println(LOG_TAG + ", currentPage = " + currentPage);	
