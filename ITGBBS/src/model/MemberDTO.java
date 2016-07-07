@@ -112,4 +112,28 @@ public class MemberDTO {
 		
 		return result;
 	}
+	
+	
+	public String toItemJSON() {
+		
+		String[] MEMBER = {
+				"nick",		//닉네임
+				"thumbnail",//섬네일(등록사진)
+				"mpoint"	//회원포인트
+		};
+		
+		Object[] values = {
+				nick,
+				thumbnail,
+				mpoint
+		};
+		
+		String result = "{";
+		for(int i = 0; i < MEMBER.length; i++){
+			result += "\"" + MEMBER[i] + "\" : \"" + String.valueOf(values[i]) + "\"" + (i >= MEMBER.length - 1 ? "" : ", ");
+		}
+		result += "}";
+		
+		return result;
+	}
 }
