@@ -17,7 +17,7 @@ div#mainContent {
 	height: 1500px;
 	float: left;
 }
-
+ 
 .box {margin:0 10px 10px 0; display:inline-block; }
 .box_top {width:180px; height:180px; background-color:green; }
 .box_bottom {width:180px; height:180px; background-color:yellow; }
