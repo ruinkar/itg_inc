@@ -73,6 +73,7 @@ itg.stage_top.init = function() {
 				width: itg.back_height,
 				height: $this.height()
 			});
+			
 			$this.append(box);
 		}
 	});
@@ -85,7 +86,28 @@ itg.stage_top.print = function(json_high) {
 	var $box = $(".box_top");
 	
 	$(json_high).each(function(index){
-		$box.eq(index).text(this.id);
+		var thumb = this.thumbnail;
+		if (thumb.indexOf(".jpg") !== -1) {
+			$box.eq(index).css({
+				background: "url('" + thumb + "')"
+			});
+		}
+		
+		var meminfo = [this.nick, this.mpoint];
+		var classname = ["text-nick", "text-mpoint"];
+		
+		for(var i = 0; i < 2; i++) {
+			var span = document.createElement("span");
+			var $span = $(span);
+			$span.text(meminfo[i]);
+			$span.addClass(classname[i]);
+			$box.eq(index).append(span);
+		}
+		
+	});
+	
+	$box.on("click", function(){
+		location.href="http://www.naver.com";
 	});
 }; // itg.stage_top.print()
 
@@ -104,7 +126,7 @@ itg.rank_list.init = function() {
 // 나머지 랭크 json to view
 itg.rank_list.print = function(json_others) {
 	// 나머지 랭크 리스트 표시
-	
+	this.$rank_list.html("");
 	$(json_others).each(function(){
 		var li = document.createElement("li");
 		var $li = $(li);
@@ -126,4 +148,35 @@ itg.pages.init = function() {
 		width: itg.back_width,
 		height: itg.pages_height
 	});
+	
+	$("#pages").on("click", "a", this.flip);
 } // itg.pages.init()
+
+itg.pages.flip = function() {
+	var href = this.href;
+	var p = href.indexOf("pageNum");
+	var pageNum = href.substr(p);
+	p = pageNum.indexOf("&");
+	pageNum = p !== -1 ? pageNum.substring(0, p) : pageNum;
+	p = pageNum.indexOf("=");
+	pageNum = pageNum.substr(p + 1);
+	console.log(pageNum);
+	
+	$.getJSON({
+		method: "post",
+		url: "rank_others.do",
+		data: {pageNum: pageNum},
+		success: function(data) {
+			// alert(data);
+			console.log(data.json_others);
+			itg.rank_list.print(data.json_others);
+			$("#pages").html(data.pagingHtml);
+			document.body.scrollTop = document.body.scrollHeight;
+		},
+		error: function() {
+			alert("error");
+		}
+	});
+	
+	return false;
+}

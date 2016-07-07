@@ -9,10 +9,21 @@ import java.util.List;
 import etc.KeyArchive;
 
 public class RankDAO implements KeyArchive {
-	final String SQL_RANK_LIST_TOP
-		= "select * from (select m.*, rownum rnum from member m order by mpoint desc) where rnum <= 10";
-	final String SQL_RANK_LIST_PAGE 
-		= "select * from (select m.*, rownum rnum from member m order by mpoint desc) where rnum between ? and ?";
+	final int top = 10;
+	
+	final String SQL_LIST_RANK_MPOINT_COUNT
+		= "select count(*) from member";
+	
+	final String SQL_LIST_RANK_MPOINT_TOP
+		= "select nick, thumbnail, mpoint from ( select * from ( select nick, thumbnail, mpoint, rownum rnum from member m order by mpoint desc ) where rnum <= ?";
+	final String SQL_LIST_RANK_MPOINT_PAGE 
+		= "select nick, thumbnail, mpoint from ( select * from ( select nick, thumbnail, mpoint, rownum rnum from member m order by mpoint desc ) where rnum <=? ) where rnum >=?";
+
+	// select nick, avgrat, rnum from (	select nick, avgrat, rownum rnum from member, ( select writer, avg(rating) avgrat from board b, review r where r.evnum = b.anum group by writer) where writer = id order by avgrat ) where rnum <= 10 and rnum >= 1;
+	final String SQL_LIST_RANK_RATING_TOP
+		= "select nick, avgrat from ( select nick, avgrat, rownum rnum from member, ( select writer, avg(rating) avgrat from board b, review r where r.evnum = b.anum group by writer) where writer = id order by avgrat ) where rnum <= ?";
+	final String SQL_LIST_RANK_RATING_PAGE
+		= "select * from (select nick, avgrat, rnum from ( select nick, avgrat, rownum rnum from member, ( select writer, avg(rating) avgrat from board b, review r where r.evnum = b.anum group by writer ) where writer = id order by avgrat ) where rnum <= ? ) where rnum >= ?";
 
 	DBConnectionMgr pool = null;
 
@@ -32,13 +43,11 @@ public class RankDAO implements KeyArchive {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "";
 
 		try {
 			con = pool.getConnection();
 			System.out.printf("con = %s%n", con);
-			sql = "select count(*) from member";
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(SQL_LIST_RANK_MPOINT_COUNT);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -46,7 +55,7 @@ public class RankDAO implements KeyArchive {
 			}
 
 		} catch (Exception e) {
-			System.out.printf("getArticleCount() error: %s%n", e);
+			System.out.printf("getMemberCount() error: %s%n", e);
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
@@ -56,7 +65,7 @@ public class RankDAO implements KeyArchive {
 	
 
 	// 랭킹 페이지 상단 표시용 상위 랭크
-	public List<MemberDTO> getRankTop() {
+	public List<MemberDTO> getRankTop(int type) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -64,8 +73,11 @@ public class RankDAO implements KeyArchive {
 
 		try {
 			con = pool.getConnection();
-			pstmt = con.prepareStatement(SQL_RANK_LIST_TOP);
+			pstmt = con.prepareStatement(type == 0 ? 
+					SQL_LIST_RANK_MPOINT_TOP : SQL_LIST_RANK_RATING_TOP );
+			pstmt.setInt(1, 10);
 			rs = pstmt.executeQuery();
+			pstmt.setInt(1, top);
 
 			if (rs.next()) {
 				list = new ArrayList(10); // new ArrayList(10);
@@ -75,7 +87,7 @@ public class RankDAO implements KeyArchive {
 				} while (rs.next());
 			}
 		} catch (Exception e) {
-			System.out.println("getArticles() error: " + e);
+			System.out.println("getRankTop() error: " + e);
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
@@ -84,7 +96,7 @@ public class RankDAO implements KeyArchive {
 	}
 
 	// 랭킹 페이지 하단 표시용 하위 랭크(현재 페이지에 따른 목록)
-	public List<MemberDTO> getRankPage(int start, int end) {
+	public List<MemberDTO> getRankPage(int type, int start, int end) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -92,9 +104,10 @@ public class RankDAO implements KeyArchive {
 
 		try {
 			con = pool.getConnection();
-			pstmt = con.prepareStatement(SQL_RANK_LIST_PAGE);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
+			pstmt = con.prepareStatement(type == 0?
+					SQL_LIST_RANK_MPOINT_PAGE : SQL_LIST_RANK_RATING_PAGE );
+			pstmt.setInt(1, end);
+			pstmt.setInt(2, start);
 			rs = pstmt.executeQuery();
 			
 			list = new ArrayList(10); // new ArrayList(10);
@@ -106,14 +119,13 @@ public class RankDAO implements KeyArchive {
 				} while (rs.next());
 			}
 		} catch (Exception e) {
-			System.out.println("getArticles() error: " + e);
+			System.out.println("getRankPage() error: " + e);
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
 		
 		return list;
 	}
-	
 	
 	private MemberDTO setMemberDTO(ResultSet rs) throws Exception {
 
@@ -130,14 +142,14 @@ public class RankDAO implements KeyArchive {
 		final int KEY_FKEY = 7;
 		final int KEY_GKEY = 8;
 		
-		member.setId(rs.getString(KEY_ID));
-		member.setName(rs.getString(KEY_NAME));
+		// member.setId(rs.getString(KEY_ID));
+		// member.setName(rs.getString(KEY_NAME));
 		member.setNick(rs.getString(KEY_NICK));
-		member.setEmail(rs.getString(KEY_EMAIL));
+		// member.setEmail(rs.getString(KEY_EMAIL));
 		member.setThumbnail(rs.getString(KEY_THUMBNAIL));
 		member.setMpoint(rs.getInt(KEY_MPOINT));
-		member.setFkey(rs.getString(KEY_FKEY));
-		member.setGkey(rs.getString(KEY_GKEY));
+		// member.setFkey(rs.getString(KEY_FKEY));
+		// member.setGkey(rs.getString(KEY_GKEY));
 
 		return member;
 	}
@@ -150,7 +162,7 @@ public class RankDAO implements KeyArchive {
 		String json = "[";
 		for(int i = 0; i < size; i++){
 			MemberDTO member = list.get(i);
-			json += member.toJSON() + (i >= size - 1 ? "" : ",");
+			json += member.toItemJSON() + (i >= size - 1 ? "" : ",");
 		}
 		json +="]";
 		
