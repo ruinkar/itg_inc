@@ -86,4 +86,37 @@ public class MemberDTO {
 	
 	
 	
+	// json 형태 출력
+	public String toJSON() {
+		
+		String[] MEMBER = {
+				"id",		// 아이디
+				"name",		// 이름
+				"nick",		//닉네임
+				"email",	//이메일
+				"thumbnail",//섬네일(등록사진)
+				"mpoint",	//회원포인트
+				"fkey",		//페이스북 로그인 인증키
+				"gkey"		//구글 로그인 인증키
+		};
+		
+		Object[] values = {
+				id,
+				name,
+				nick,
+				email,
+				thumbnail,
+				mpoint,
+				fkey,
+				gkey
+		};
+		
+		String result = "{";
+		for(int i = 0; i < MEMBER.length; i++){
+			result += "\"" + MEMBER[i] + "\" : \"" + String.valueOf(values[i]) + "\"" + (i >= MEMBER.length - 1 ? "" : ", ");
+		}
+		result += "}";
+		
+		return result;
+	}
 }

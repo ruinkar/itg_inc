@@ -128,5 +128,52 @@ public class BoardDTO {
 	
 	
 	
-
+	
+	// json 형태로 출력
+		public String toJSON() {
+			
+			String[] BOARD = {
+					"anum",		//게시물번호
+					"writer",	//작성자
+					"category",	//카테고리
+					"adate",	//작성날짜
+					"ip",		//ip 
+					"title",	//제목
+					"acontent",	//글내용
+					"afile",	//첨부파일
+					"readcount",//조회수
+					"tag1",		//태그1
+					"tag2", 	//태그2
+					"tag3",		//태그3
+					"tag4",		//태그4
+					"tag5",		//태그5
+					"pnum"		//대상글번호
+			};
+			
+			Object[] values = {
+					anum,		//게시물번호
+					writer,		//작성자
+					category,	//카테고리
+					adate,		//작성날짜
+					ip,			//ip 
+					title,		//제목
+					acontent,	//글내용
+					afile,		//첨부파일
+					readcount,	//조회수
+					tag1,		//태그1
+					tag2, 		//태그2
+					tag3,		//태그3
+					tag4,		//태그4
+					tag5,		//태그5
+					pnum		//대상글번호
+			};
+			
+			String result = "{";
+			for(int i = 0; i < BOARD.length; i++){
+				result += "\"" + BOARD[i] + "\" : \"" + String.valueOf(values[i]) + "\"" + (i >= BOARD.length - 1 ? "" : ", ");
+			}
+			result += "}";
+			
+			return result;
+		}
 }

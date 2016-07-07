@@ -84,6 +84,42 @@ public class EventDTO {
 	public void setLng(int lng) {
 		this.lng = lng;
 	}	
-	 
+	
+	// json 형태 출력
+	public String toJSON() {
 
+		String[] EVENT = {
+				"evnum",	//행사번호
+				"eperm",	//행사승인
+				"host",		//주최자
+				"ename",	//행사명
+				"begin",	//행사시작일
+				"end",		//행사종료일
+				"location",	//행사위치
+				"eimg",		//행사이미지
+				"lat",		//위도
+				"lng"		//경도
+		};
+		
+		Object[] values = {
+				evnum,	//행사번호
+				eperm,	//행사승인
+				host,		//주최자
+				ename,	//행사명
+				begin,	//행사시작일
+				end,		//행사종료일
+				location,	//행사위치
+				eimg,		//행사이미지
+				lat,		//위도
+				lng		//경도
+		};
+		
+		String result = "{";
+		for(int i = 0; i < EVENT.length; i++){
+			result += "\"" + EVENT[i] + "\" : \"" + String.valueOf(values[i]) + "\"" + (i >= EVENT.length - 1 ? "" : ", ");
+		}
+		result += "}";
+		
+		return result;
+	}
 }

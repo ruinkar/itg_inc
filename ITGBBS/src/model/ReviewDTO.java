@@ -44,5 +44,27 @@ public class ReviewDTO {
 	
 	
 	
-	
+	// json 형태로 출력
+	public String toJSON() {
+
+		String[] REVIEW = { 
+				"anum", // 게시물번호
+				"evnum", // 행사번호
+				"rating" // 평가점수
+		};
+		
+		Object[] values = {
+				anum,
+				evnum,
+				rating
+		};
+		
+		String result = "{";
+		for(int i = 0; i < REVIEW.length; i++){
+			result += "\"" + REVIEW[i] + "\" : \"" + String.valueOf(values[i]) + "\"" + (i >= REVIEW.length - 1 ? "" : ", ");
+		}
+		result += "}";
+		
+		return result;
+	}
 }

@@ -9,4 +9,5 @@ public interface ContentPath {
 	String MEMBER = "/member";
 	String REVIEW = "/review";
 	String RANK = "/rank";
+	String RANK_NR = "rank";
 }
