@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Timestamp;
+
 /**
  * review(후기게시판) 테이블의 DTO 클래스
  * @author oh
@@ -32,6 +34,15 @@ public class ReviewDTO {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ReviewDTO [anum=" + anum + ", evnum=" + evnum + ", rating=" + rating + "]";
+	}
+	
+	
 	
 	
 }

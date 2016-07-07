@@ -1,19 +1,18 @@
-﻿package model;
+package model;
 
 import java.sql.Timestamp;
 
-/**
- * board(게시판) 테이블의 DTO 클래스
- * @author oh
- */
+public class ReviewAllDTO {
 
-public class BoardDTO {
-	private int anum; //게시물번호
+	private int anum;	//게시물번호
+	private int evnum;	//행사번호
+	private int rating;	//평가점수
 	private String writer; //작성자
 	private int category;	//카테고리
 	private Timestamp adate; //작성날짜
 	private String ip; //ip 
 	private String title;	//제목
+	private String evtitle;	//title
 	private String acontent;//글내용
 	private String afile;	//첨부파일
 	private int readcount;//조회수
@@ -25,11 +24,17 @@ public class BoardDTO {
 	private int pnum; //대상글번호
 	
 	
-	public int getAnum() {
-		return anum;
+	/**
+	 * @return the evtitle
+	 */
+	public String getEvtitle() {
+		return evtitle;
 	}
-	public void setAnum(int anum) {
-		this.anum = anum;
+	/**
+	 * @param evtitle the evtitle to set
+	 */
+	public void setEvtitle(String evtitle) {
+		this.evtitle = evtitle;
 	}
 	public String getWriter() {
 		return writer;
@@ -115,18 +120,26 @@ public class BoardDTO {
 	public void setPnum(int pnum) {
 		this.pnum = pnum;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "BoardDTO [anum=" + anum + ", writer=" + writer + ", category=" + category + ", adate=" + adate + ", ip="
-				+ ip + ", title=" + title + ", acontent=" + acontent + ", afile=" + afile + ", readcount=" + readcount
-				+ ", tag1=" + tag1 + ", tag2=" + tag2 + ", tag3=" + tag3 + ", tag4=" + tag4 + ", tag5=" + tag5
-				+ ", pnum=" + pnum + "]";
+	
+	public int getAnum() {
+		return anum;
+	}
+	public void setAnum(int anum) {
+		this.anum = anum;
+	}
+	public int getEvnum() {
+		return evnum;
+	}
+	public void setEvnum(int evnum) {
+		this.evnum = evnum;
+	}
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 	
 	
 	
-
 }
