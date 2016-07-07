@@ -13,7 +13,7 @@
 String check=request.
                            getParameter("check");
 String event=request.
-                           getParameter("evdata");
+                           getParameter("evdata"); 
 //검색된 값을 받아옴
 ReviewDAO rvdao=new ReviewDAO();
 Vector<BoardDTO> evList=rvdao.evRead(event);
