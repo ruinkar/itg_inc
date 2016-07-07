@@ -39,16 +39,10 @@
 	<h4>*행사 이미지 첨부</h4>
 		<input id="eImg" type="button" name="eImg" value="행사 이미지 첨부" title="행사 이미지 첨부"/>
 		
-		
-	
 		<input type="submit" value="글쓰기" >
 		<input type="reset" value="다시작성">
   		<input type="button" value="목록보기" OnClick="window.location='eventMain.jsp'">
 	</form>
-	
-	
-	
-	
 
 </body>
 </html>

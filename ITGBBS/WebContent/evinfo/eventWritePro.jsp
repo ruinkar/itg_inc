@@ -11,12 +11,12 @@
 <%-- <jsp:setProperty property="location" name="article" value="aas"/> --%>
 
 <%
-/* 	System.out.println(article.geteName()); */
+	/* 	System.out.println(article.geteName()); */
 /*일반 게시판 테이블*/
 	BDTO bDTO = new BDTO();
 
-	int aNum = 100;
-	bDTO.setaNum(aNum);
+	/* int aNum = 888;
+	bDTO.setaNum(aNum); */
 	
 	String writer = "aaa";
 	bDTO.setWriter(writer);
@@ -34,9 +34,10 @@
 	bDTO.setTitle(title);
 	
 	String aContent = request.getParameter("aContent");
-	bDTO.setTitle(aContent);
+	bDTO.setaContent(aContent);
 	
-	//String aFile = null;
+	String aFile = "test";
+	bDTO.setaFile(aFile);
 	
 	int readCount = 0;
 	bDTO.setReadCount(readCount);
@@ -56,7 +57,8 @@
 	String tag5 = request.getParameter("tag5");
 	bDTO.setTag5(tag5);
 	
-	//int pNum = null;
+	int pNum = 0;
+	bDTO.setpNum(pNum);
 	
 	System.out.println("anum = " + bDTO.getaNum() + "\n" +
 	"writer = " + bDTO.getWriter() + "\n" +
@@ -74,11 +76,14 @@
 	"tag5 = " + bDTO.getTag5() + "\n" +
 	"pnum = " + bDTO.getpNum() + "\n");
 	
+	BDAO board = new BDAO();
+	board.insertBoard(bDTO);
+	
 /*행사게시판 테이블*/	
 	EventDTO eventDTO = new EventDTO();
 
-	int evNum = 100;
-	eventDTO.setEvNum(evNum);
+	/* int evNum = aNum;
+	eventDTO.setEvNum(evNum); */
 	
 	int epErm = 100;
 	eventDTO.setEpErm(epErm);
@@ -99,25 +104,22 @@
 	eventDTO.setLocation(location);
 	
 	String eImg = request.getParameter("eImg");
-	eventDTO.seteImg(eImg);
-	
+	eventDTO.seteImg("test");
+
 	double lat = 37.444;
 	eventDTO.setLat(lat);
-	
+
 	double lng = 41.522;
 	eventDTO.setLng(lng);
-	
-	System.out.println("evNum = " + eventDTO.getEvNum() + "\n" +
-	"eperm = " + eventDTO.getEpErm() + "\n" +
-	"host = " + eventDTO.getHost() + "\n" +
-	"ename = " + eventDTO.geteName() + "\n" +
-	"begin = " + eventDTO.getBegin() + "\n" +
-	"end = " + eventDTO.getEnd() + "\n" +
-	"location = " + eventDTO.getLocation() + "\n" + 
-	"eImg = " + eventDTO.geteImg() + "\n" + 
-	"lat = " + eventDTO.getLat() + "\n" +
-	"lng = " + eventDTO.getLng());
-	
-	
-	
+
+	System.out.println("evNum = " + eventDTO.getEvNum() + "\n" + "eperm = " + eventDTO.getEpErm() + "\n"
+			+ "host = " + eventDTO.getHost() + "\n" + "ename = " + eventDTO.geteName() + "\n" + "begin = "
+			+ eventDTO.getBegin() + "\n" + "end = " + eventDTO.getEnd() + "\n" + "location = "
+			+ eventDTO.getLocation() + "\n" + "eImg = " + eventDTO.geteImg() + "\n" + "lat = "
+			+ eventDTO.getLat() + "\n" + "lng = " + eventDTO.getLng());
+
+	EventDAO event = new EventDAO();
+	event.insertEvent(eventDTO);
+
+	response.sendRedirect("eventMain.jsp");
 %>

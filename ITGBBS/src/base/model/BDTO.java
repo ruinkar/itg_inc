@@ -20,7 +20,7 @@ public class BDTO {
 	private String tag3;			// 태그3
 	private String tag4;			// 태그4
 	private String tag5;			// 태그5
-	private String pNum;			// 대상글번호
+	private int pNum;				// 대상글번호
 	
 	
 	public int getaNum() {
@@ -107,10 +107,10 @@ public class BDTO {
 	public void setTag5(String tag5) {
 		this.tag5 = tag5;
 	}
-	public String getpNum() {
+	public int getpNum() {
 		return pNum;
 	}
-	public void setpNum(String pNum) {
+	public void setpNum(int pNum) {
 		this.pNum = pNum;
 	}
 

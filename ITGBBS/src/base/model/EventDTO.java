@@ -12,8 +12,8 @@ public class EventDTO {
 	private Timestamp end;		//행사종료일
 	private String location;		//행사위치
 	private String eImg;			//행사이미지
-	private double lat;					//위도
-	private double lng;					//경도
+	private double lat;				//위도
+	private double lng;			//경도
 	
 	public int getEvNum() {
 		return evNum;
