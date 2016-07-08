@@ -136,7 +136,7 @@ itg.rank_list.print = function(json_others) {
 		});
 		
 		$li.addClass("item_rank_list");
-		$li.text(this.id);
+		$li.text(this.nick + " " + this.thumbnail + " " + this.mpoint);
 		
 		itg.rank_list.$rank_list.append(li);
 	});

@@ -14,10 +14,11 @@
 
 div {text_align:center; }
 
-#left {width:10%; background:purple;}
+#left, #right {display:inline-block; }
+#left {margin:0; top:0; left:0; width:10%; background:purple; }
 #right {}
 
-#left li {margin:auto; width:40%; background:#541F14; }
+#left li {margin:auto; width:40%; background:#541F14; list-style:none; }
 #left li:nth-child(even) {background:#020304; }
 
 .stage_top {margin:auto; }
@@ -25,7 +26,7 @@ div {text_align:center; }
 .stage_high_rank:nth-child(odd) {background-color:#938172; }
 .stage_high_rank:nth-child(even) {background-color:#CC9E61; } */
 
-.box_top {display:inline-block; border-radius:50%; background:url("/img/korail.jpg"); position:relative; }
+.box_top {display:inline-block; border-radius:50%; background:url("/img/noimage.jpg") no-repeat center; position:relative; }
 .box_top:nth-child(odd) {background-color:#541F14; }
 .box_top:nth-child(even) {background-color:#020304; }
 .box_top span {margin:auto; position:absolute; }
@@ -57,22 +58,24 @@ $(function() {
 <body>
 	<div id="left">
 		<ul>
-			<a href="rank.do?type=mpoint">활동왕</a>
-			<a href="rank.do?type=rating">평점왕</a>
+			<li><a href="rank.do">활동</a></li>
+			<li><a href="rank.do?type=rating">평점</a></li>
 		</ul>
-	</div><div id="right">
-		<c:forEach var="index" begin="1" end="4">
-			<div class="stage_top">
+	</div>
+	<div id="right">
+		<div>
+			<c:forEach var="index" begin="1" end="4">
+				<div class="stage_top"></div>
+			</c:forEach>
+			<hr />
+			<div class="list-group">
+				<ul id="rank_list">
+				</ul>
 			</div>
-		</c:forEach>
-		<hr/>
-		<div class="list-group">
-			<ul id="rank_list">
-			</ul>
-		</div>
-		<div id="paging_block_out">
-			<div id="paging_block_mid">
-				<div id="pages">${pagingHtml}</div>
+			<div id="paging_block_out">
+				<div id="paging_block_mid">
+					<div id="pages">${pagingHtml}</div>
+				</div>
 			</div>
 		</div>
 	</div>

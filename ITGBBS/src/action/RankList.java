@@ -21,11 +21,12 @@ public class RankList implements CommandAction, etc.ContentPath {
 		RankDAO dao = new RankDAO();
 		// 현재 페이지 설정
 		
-		final String mpoint_list = "mpoint";
+		final String rating = "rating";
 		String typestr = request.getParameter("type");
-		int type = typestr.equals(mpoint_list) ? 
-				0 : 1;
-		System.out.println(typestr);
+		if (typestr == null) typestr = "";
+		int type = typestr.equals(rating) ? 
+				1 : 0;
+		// System.out.println(typestr);
 		
 		int currentPage = 1;
 		int count = 0; // 총 레코드 수
