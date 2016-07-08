@@ -11,7 +11,7 @@ import model.DBConnectionMgr;
 //게시판 → 공지사항, 자유게시판, 답변형게시판, 파일첨부형 게시판
 public class EventBoardDAO {
 
-	private final String LOG_TAG = "BDAO";
+	private final String LOG_TAG = "EventBoardDAO";
 	private DBConnectionMgr pool = null;
 
 	public EventBoardDAO() {
@@ -151,6 +151,63 @@ public class EventBoardDAO {
 			pool.freeConnection(con, pstmt, rs);
 		}
 		return x;
+	}
+	
+	//행사글 수정하기
+	public void modifyContent(EventBoardDTO boardDTO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		try {
+			con = pool.getConnection();
+			sql = "update board set adate=?, ip=?, title=?, acontent=?, afile=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? where anum=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setTimestamp(1, boardDTO.getaDate());
+			pstmt.setString(2, boardDTO.getIp());
+			pstmt.setString(3, boardDTO.getTitle());
+			pstmt.setString(4, boardDTO.getaContent());
+			pstmt.setString(5, boardDTO.getaFile());
+			pstmt.setString(6, boardDTO.getTag1());
+			pstmt.setString(7, boardDTO.getTag2());
+			pstmt.setString(8, boardDTO.getTag3());
+			pstmt.setString(9, boardDTO.getTag4());
+			pstmt.setString(10, boardDTO.getTag5());
+			pstmt.setInt(11, boardDTO.getaNum());
+			
+			int update = pstmt.executeUpdate();
+			System.out.println(LOG_TAG +", modifyContent의 성공 유무 체크 : " + update);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+	}
+	
+	//행사글 삭제하기
+	public void deleteContent(int aNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		try {
+			con = pool.getConnection();
+			sql = "delete from board where anum=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, aNum);
+			
+			int delete = pstmt.executeUpdate();
+			System.out.println(LOG_TAG + ", deleteContent 성공여부 = " + delete);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+		
 	}
 
 	private EventBoardDTO makeFormResult(ResultSet rs) throws Exception {

@@ -14,6 +14,8 @@
 
 	EventDAO eventDAO = new EventDAO();
 	EventDTO eventDTO = eventDAO.getContent(aNum);
+	
+	String pageNum = request.getParameter("pageNum");
 %>
 <body>
 	<div class="view_wrap">
@@ -56,6 +58,7 @@
 			
 		</div>
 	</div>
-	<input type="button" value="수정해" OnClick="" >
+	<input type="button" value="수정해" OnClick="document.location.href='eventModify.jsp?num=<%=boardDTO.getaNum() %>&pageNum=<%=pageNum %>'" >
+	<input type="button" value="삭제해" OnClick="document.location.href='eventDeletePro.jsp?num=<%=boardDTO.getaNum() %>&pageNum=<%=pageNum %>'" >
 	<input type="button" value="목록보기" OnClick="window.location='eventMain.jsp'">
 </body>

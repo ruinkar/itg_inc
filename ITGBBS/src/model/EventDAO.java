@@ -109,6 +109,60 @@ public class EventDAO {
 		
 	}
 	
+	// 행사글 삭제하기
+	public void deleteContent(int aNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+
+		try {
+			con = pool.getConnection();
+			sql = "delete from event where evnum=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, aNum);
+
+			int delete = pstmt.executeUpdate();
+			System.out.println(LOG_TAG + ", deleteContent 성공여부 = " + delete);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+
+	}
+	
+	//행사글 수정하기
+		public void modifyContent(EventDTO eventDTO) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "";
+			
+			try {
+				con = pool.getConnection();
+				sql = "update event set host=?, ename=?, begin=?, end=?, location=?, eimg=?, lat=?, lng=? where evnum=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, eventDTO.getHost());
+				pstmt.setString(2, eventDTO.getEname());
+				pstmt.setTimestamp(3, eventDTO.getBegin());
+				pstmt.setTimestamp(4, eventDTO.getEnd());
+				pstmt.setString(5, eventDTO.getLocation());
+				pstmt.setString(6, eventDTO.getEimg());
+				pstmt.setDouble(7, eventDTO.getLat());
+				pstmt.setDouble(8, eventDTO.getLng());
+				pstmt.setInt(9, eventDTO.getEvnum());
+				
+				int update = pstmt.executeUpdate();
+				System.out.println(LOG_TAG +", modifyContent의 성공 유무 체크 : " + update);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt, rs);
+			}
+			
+		}
+	
 	
 	private EventDTO makeFormResult(ResultSet rs) throws Exception {
 		EventDTO eventDTO = new EventDTO();
