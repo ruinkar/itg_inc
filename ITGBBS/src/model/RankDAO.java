@@ -21,15 +21,15 @@ public class RankDAO implements KeyArchive {
 		= "select count(*) from member";
 	
 	final String SQL_LIST_RANK_MPOINT_TOP
-		= "select nick, thumbnail, mpoint from ( select nick, thumbnail, mpoint, rownum rnum from member m order by mpoint desc ) where rnum <= ?";
+		= "select nick, thumbnail, mpoint from ( select nick, thumbnail, mpoint from member m order by mpoint desc ) where rownum <= ?";
 	final String SQL_LIST_RANK_MPOINT_PAGE 
-		= "select nick, thumbnail, mpoint from ( select * from ( select nick, thumbnail, mpoint, rownum rnum from member m order by mpoint desc ) where rnum <=? ) where rnum >=?";
+		= "select nick, thumbnail, mpoint from ( select m.*, rownum rnum from ( select nick, thumbnail, mpoint from member order by mpoint desc ) m where rownum <=? ) where rnum >=?";
 
 	// select nick, avgrat, rnum from (	select nick, avgrat, rownum rnum from member, ( select writer, avg(rating) avgrat from board b, review r where r.evnum = b.anum group by writer) where writer = id order by avgrat ) where rnum <= 10 and rnum >= 1;
 	final String SQL_LIST_RANK_RATING_TOP
-		= "select nick, avgrat from ( select nick, avgrat, rownum rnum from member, ( select writer, avg(rating) avgrat from board b, review r where r.evnum = b.anum group by writer) where writer = id order by avgrat ) where rnum <= ?";
+		= "select nick, thumbnail, avgrat from ( select nick, thumbnail, avgrat, rownum rnum from member, ( select writer, avg(rating) avgrat from board b, review r where r.evnum = b.anum group by writer) where writer = id order by avgrat ) where rnum <= ?";
 	final String SQL_LIST_RANK_RATING_PAGE
-		= "select * from (select nick, avgrat, rnum from ( select nick, avgrat, rownum rnum from member, ( select writer, avg(rating) avgrat from board b, review r where r.evnum = b.anum group by writer ) where writer = id order by avgrat ) where rnum <= ? ) where rnum >= ?";
+		= "select * from (select * from ( select nick, thumbnail, avgrat, rownum rnum from member, ( select writer, avg(rating) avgrat from board b, review r where r.evnum = b.anum group by writer ) where writer = id order by avgrat ) where rnum <= ? ) where rnum >= ?";
 
 	DBConnectionMgr pool = null;
 
@@ -139,6 +139,8 @@ public class RankDAO implements KeyArchive {
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
+		
+		System.out.println(list);
 		
 		return list;
 	}

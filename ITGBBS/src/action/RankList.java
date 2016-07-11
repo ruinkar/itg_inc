@@ -20,11 +20,11 @@ public class RankList implements CommandAction, etc.ContentPath {
 		PagingUtil page = null;
 		RankDAO dao = new RankDAO();
 		// 현재 페이지 설정
-		
 		final String rating = "rating";
-		String typestr = request.getParameter("type");
-		if (typestr == null) typestr = "";
-		int type = typestr.equals(rating) ? 
+		
+		String rtypestr = request.getParameter("rtype");
+		if (rtypestr == null) rtypestr = "";
+		int rtype = rtypestr.equals(rating) ? 
 				1 : 0;
 		// System.out.println(typestr);
 		
@@ -47,8 +47,8 @@ public class RankList implements CommandAction, etc.ContentPath {
 		int end = page.getEndCount();
 		String pagingHtml = page.getPagingHtml().toString();
 		
-		List list = dao.getRankTop(type);
-		List list_others = dao.getRankPage(type, start, end);
+		List list = dao.getRankTop(rtype);
+		List list_others = dao.getRankPage(rtype, start, end);
 		/*
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
@@ -61,7 +61,7 @@ public class RankList implements CommandAction, etc.ContentPath {
 		request.setAttribute("json_high", json_high);
 		request.setAttribute("json_others", json_others);
 		request.setAttribute("pagingHtml", pagingHtml);
-		request.setAttribute("type", typestr);
+		request.setAttribute("rtype", rtypestr);
 		
 		return RANK + "/rank.jsp";
 	}

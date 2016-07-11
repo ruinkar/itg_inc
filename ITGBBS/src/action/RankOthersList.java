@@ -22,8 +22,9 @@ public class RankOthersList implements CommandAction, etc.ContentPath {
 		// 현재 페이지 설정
 		
 		final String mpoint_list = "mpoint";
-		String typestr = request.getParameter("type");
-		int type = typestr.equals(mpoint_list) ? 
+		String rtypestr = request.getParameter("rtype");
+		if (rtypestr == null) rtypestr = "";
+		int rtype = rtypestr.equals(mpoint_list) ? 
 				0 : 1;
 		
 		int currentPage = 1;
@@ -45,12 +46,13 @@ public class RankOthersList implements CommandAction, etc.ContentPath {
 		int end = page.getEndCount();
 		String pagingHtml = page.getPagingHtml().toString();
 		
-		List list_others = dao.getRankPage(type, start, end);
+		List list_others = dao.getRankPage(rtype, start, end);
 		String json_others = dao.listJSON(list_others);
 		
 		// request.setAttribute("count", count);
 		String json = "{ \"json_others\": " + json_others
 				+ ", \"pagingHtml\": \"" + pagingHtml + "\"}";
+		System.out.println(json);
 		request.setAttribute("json", json);
 		
 		return RANK + "/rank_others.jsp";

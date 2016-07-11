@@ -11,6 +11,7 @@ var itg = {
 	back_height: 150,
 	list_item_height: 50,
 	pages_height: 0,
+	rtype: "mpoint",
 	stage_top: {}, // 상위 랭크
 	rank_list: {}, // 나머지 랭크 페이지
 	pages: {}
@@ -33,9 +34,18 @@ itg.getSizeBG = function() {
 }
 
 // 초기화
-itg.init = function(type) {
+itg.init = function(rtype) {
 	
 	this.getSizeBG();
+	
+	this.rtype = rtype;
+	
+	$("#left").css({
+		height: $(window).height()
+	});
+	$("#right").css({
+		height: $(window).height()
+	});
 	
 	this.stage_top.init();
 	this.rank_list.init();
@@ -68,7 +78,7 @@ itg.stage_top.init = function() {
 			var box = document.createElement("div");
 			var $box = $(box);
 			
-			$box.addClass("box_top");
+			$box.addClass("box_top cdiv");
 			$box.css({
 				width: itg.back_height,
 				height: $this.height()
@@ -86,15 +96,12 @@ itg.stage_top.print = function(json_high) {
 	var $box = $(".box_top");
 	
 	$(json_high).each(function(index){
-		var thumb = this.thumbnail;
-		if (thumb.indexOf(".jpg") !== -1) {
-			$box.eq(index).css({
-				background: "url('" + thumb + "')"
-			});
-		}
+		$box.eq(index).css({
+			background: itgUtil.thumbCheck(this.thumbnail)
+		});
 		
-		var meminfo = [this.nick, this.mpoint];
-		var classname = ["text-nick", "text-mpoint"];
+		var meminfo = [this.nick, itg.rtype == "rating" ? this.avgrat : this.mpoint ];
+		var classname = ["text-nick", "text-point"];
 		
 		for(var i = 0; i < 2; i++) {
 			var span = document.createElement("span");
@@ -103,7 +110,6 @@ itg.stage_top.print = function(json_high) {
 			$span.addClass(classname[i]);
 			$box.eq(index).append(span);
 		}
-		
 	});
 	
 	$box.on("click", function(){
@@ -130,13 +136,29 @@ itg.rank_list.print = function(json_others) {
 	$(json_others).each(function(){
 		var li = document.createElement("li");
 		var $li = $(li);
+		var div = document.createElement("div");
+		var $div = $(div);
+		var span = document.createElement("span");
+		var $span = $(span);
+		$div.addClass("cdiv");
+		$div.css({
+			width: itg.list_item_height,
+			height: itg.list_item_height,
+			background: itgUtil.thumbCheck(this.thumbnail),
+		});
+		
+		$span.text(this.nick + " " + this.mpoint);
 		
 		$li.css({
 			height: itg.list_item_height
 		});
 		
 		$li.addClass("item_rank_list");
-		$li.text(this.nick + " " + this.thumbnail + " " + this.mpoint);
+		$li.append(div);
+		$li.append(span);
+		$li.children().css({
+			display:"inline-block"
+		});
 		
 		itg.rank_list.$rank_list.append(li);
 	});
@@ -153,19 +175,16 @@ itg.pages.init = function() {
 } // itg.pages.init()
 
 itg.pages.flip = function() {
-	var href = this.href;
-	var p = href.indexOf("pageNum");
-	var pageNum = href.substr(p);
-	p = pageNum.indexOf("&");
-	pageNum = p !== -1 ? pageNum.substring(0, p) : pageNum;
-	p = pageNum.indexOf("=");
-	pageNum = pageNum.substr(p + 1);
-	console.log(pageNum);
+	var pageNum = itgUtil.paramFromGet(this.href, "pageNum");
+	var type = itgUtil.paramFromGet(this.href, "type");
 	
 	$.getJSON({
 		method: "post",
 		url: "rank_others.do",
-		data: {pageNum: pageNum},
+		data: {
+			pageNum: pageNum,
+			type: type
+			},
 		success: function(data) {
 			// alert(data);
 			console.log(data.json_others);
@@ -179,4 +198,31 @@ itg.pages.flip = function() {
 	});
 	
 	return false;
+}
+
+var itgUtil = {
+		
+};
+
+itgUtil.paramFromGet = function(href, param) {
+	var p = href.indexOf(param);
+	var value = href.substr(p);
+	p = value.indexOf("&");
+	value = p !== -1 ? value.substring(0, p) : value;
+	p = value.indexOf("=");
+	value = value.substr(p + 1);
+	console.log(value);
+	
+	return value;
+}
+
+itgUtil.thumbCheck = function(thumb) {
+	var result = "url('/img/noimage.jpg')";
+	var suffix = " no-repeat center";
+	
+	if (thumb.indexOf(".jpg") !== -1) {
+		result = "url('" + thumb + "')";
+	}
+	
+	return result + suffix;
 }

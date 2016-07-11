@@ -12,11 +12,9 @@
 <style>
 * {margin:0; padding:0; border-style:none; border:0; text-decoration:none; text-align:center; }
 
-div {text_align:center; }
+div {text_align:center;  }
 
-#left, #right {display:inline-block; }
-#left {margin:0; top:0; left:0; width:10%; background:purple; }
-#right {}
+#left {top:0; left:0; width:10%; background:purple; position:fixed;}
 
 #left li {margin:auto; width:40%; background:#541F14; list-style:none; }
 #left li:nth-child(even) {background:#020304; }
@@ -25,19 +23,29 @@ div {text_align:center; }
 /*
 .stage_high_rank:nth-child(odd) {background-color:#938172; }
 .stage_high_rank:nth-child(even) {background-color:#CC9E61; } */
+.cdiv {border-radius:50%; background-size:contain !important;}
 
-.box_top {display:inline-block; border-radius:50%; background:url("/img/noimage.jpg") no-repeat center; position:relative; }
+.box_top {display:inline-block; position:relative; }
+
 .box_top:nth-child(odd) {background-color:#541F14; }
 .box_top:nth-child(even) {background-color:#020304; }
-.box_top span {margin:auto; position:absolute; }
-.box_top span:first-child {color:gold; top:0; }
-.box_top span:last-child {color:silver; bottom:0; font-size:20px; }
+.box_top span {margin:auto; padding:auto; position:absolute; }
+.box_top span:first-child {top:0; left:30%; color:gold; text-shadow: 1px 1px white; font-size:25px; }
+.box_top span:last-child {bottom:0; color:red; text-shadow: 1px 1px white; font-size:50px; }
 
 #rank_list {margin:auto; background-color:cyan; }
 .item_rank_list {color:blue; list-style:none; }
+/* 
+.item_rank_list .container {width:70%; height:70%; margin:40px auto; background:red; }
+.item_rank_list .outer {display: table; width: 100%; height: 100%; }
+.item_rank_list .inner {display: table-cell; vertical-align: middle; text-align: center; }
+.item_rank_list .centered {position:relative; display:inline-block; width:50%; padding:1em; background:orange; color:white; } */
+
 #pages {margin:auto; background-color:gray; }
 #pages a,font {top:10px; padding:10px; border:3px solid white; }
 #pages a:hover {color:white; background-color:black; }
+
+
 </style>
 <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="itg.rank.js"></script>
@@ -48,7 +56,7 @@ $(function() {
 	var json_others = JSON.parse('${json_others}');
 	
 	// 초기화
-	itg.init('${type}');
+	itg.init('${rtype}');
 	itg.print(json_high, json_others); // 출력
 	
 }); // $.ready()
@@ -58,11 +66,11 @@ $(function() {
 <body>
 	<div id="left">
 		<ul>
-			<li><a href="rank.do">활동</a></li>
-			<li><a href="rank.do?type=rating">평점</a></li>
+			<!----><li><a href="rank.do">활동</a></li><!--
+			  ----><li><a href="rank.do?rtype=rating">평점</a></li>
 		</ul>
-	</div>
-	<div id="right">
+	</div><!-- 
+	 --><div id="right">
 		<div>
 			<c:forEach var="index" begin="1" end="4">
 				<div class="stage_top"></div>
