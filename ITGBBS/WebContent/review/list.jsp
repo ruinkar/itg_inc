@@ -9,11 +9,108 @@
 %>
 <html>
 <head>
-<title>게시판</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<title>후기 게시판</title>
+
+    <style>
+    /* * { margin:0px; padding:0px; } */
+        /* Animation Canvas */
+        .animation_canvas  {
+            overflow:hidden;
+            position:relative;           
+            width:900px; height:400px;
+        }
+        .top1st{width : 900px;height:400px;}
+        /* Slider Panel */
+        .slider_panel { width:2700px; position:relative; }
+        .slider_image { float:left; width:300px; height:200px; }
+    
+        /* Slider Text Panel */
+        .slider_text_panel { position:absolute; top:200px; left:50px; }
+        .slider_text { position:absolute; width:250px; height:150px; }
+    
+        /* Control Panel */
+        .control_panel  {
+            position:absolute; top:350px; 
+            left:427px; height:13px; 
+            overflow:hidden; 
+        }
+
+        .control_button {
+            width:15px; height:46px;
+            position:relative; 
+    
+            float:left; cursor:pointer;  
+            background:url('point_button.png');
+        }
+        .control_button:hover { top:-16px; }
+        .control_button.active { top:-31px; }
+    
+    </style>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 슬라이더를 움직여주는 함수
+            function moveSlider(index) {
+                // 슬라이더를 이동합니다.
+                var willMoveLeft = -(index * 900);
+                $('.slider_panel').animate({ left: willMoveLeft }, 'slow');
+                $('.slider_text_panel').animate({ left: willMoveLeft }, 'slow');
+                // control_button에 active클래스를 부여/제거합니다.
+                $('.control_button[data-index=' + index + ']').addClass('active');
+                $('.control_button[data-index!=' + index + ']').removeClass('active');
+            }
+
+            // 초기 텍스트 위치 지정 및 data-index 할당
+            $('.slider_text').each(function (index) {
+                $(this).attr('data-index', index).css('left', index*300);
+            });
+
+            // 컨트롤 버튼의 클릭 핸들러 지정 및 data-index 할당
+            $('.control_button').each(function (index) {
+                $(this).attr('data-index', index);
+            }).click(function () {
+                var index = $(this).attr('data-index');
+                moveSlider(index);
+            });
+
+            // 초기 슬라이더 위치 지정
+            var randomNumber = Math.round(Math.random() * 2);
+            moveSlider(randomNumber);
+        });
+    </script>
 </head>
 <body bgcolor="#e0ffff">
 <center>
+        <img src="${firstRank.afile}"  class="top1st"/>
+        <div class="animation_canvas">
+            <div class="slider_panel">
+                <c:forEach var="ranklist" items="${otherRank}">
+		         <a href="content.do?anum=${ranklist.anum}&pageNum=${currentPage}">
+                <img src="${ranklist.afile}" class="slider_image"/>
+                </a>
+                </c:forEach>
+            </div>
+            <div class="slider_text_panel">
+            <c:forEach var="ranklist" items="${otherRank}">
+            
+            <a href="content.do?anum=${ranklist.anum}&pageNum=${currentPage}">
+            <div class="slider_text">    
+                    <h1>${ranklist.title}</h1>
+                    <p>${ranklist.acontent}</p>
+            </div>    
+            </a>
+              
+            </c:forEach>
+              
+            </div>
+            
+            <div class="control_panel">
+            <c:forEach var="i" begin="${1}" end="${otherRank.size()/3}">
+                <div class="control_button"></div>
+                </c:forEach>
+            </div>
+        </div>
 <b>글목록(전체 글:${count})</b>
 <table width="700">
 <tr>
@@ -63,29 +160,34 @@
 </c:if>
 </table>
 
-
-<c:if test="${count > 0}">
-  <!-- <c:set var="startPage" value="${(currentPage - 1) / blockSize * blocksize + 1}"/> -->
-  <fmt:parseNumber var="result" value="${(currentPage - 1) / blockSize}" integerOnly="true"/>
-  <c:set var="startPage" value="${result * blockSize + 1}"/>
-  <c:set var="endPage" value="${startPage + blockSize - 1}"/>
-  <c:set var="endPage" value="${endPage>pageCount ? pageCount : endPage}"/>
-  <!-- 이전 블럭 → 11 → 10 -->
-  <c:if test="${startPage>blockSize}">
-    <a href="list.do?pageNum=${startPage - blockSize}">[이전]</a>
-    <!-- [이전] 11 12 13...20 -->
-  </c:if>
-  <!-- 현재 블럭 -->
-  <c:forEach var="i" begin="${startPage}" end="${endPage}">
-    <a href="list.do?pageNum=${i}">[${i}]</a>
-  </c:forEach>
-    
-  <c:if test="${endPage<pageCount}">
-    <a href="list.do?pageNum=${startPage + blockSize}">[다음]</a>
-  </c:if>
-  
-</c:if>
-
+    <c:if test="${startPage>blockSize}">
+    <a href="list.do?pageNum=${startPage-blockSize}&search=${search}&searchtext=${searchtext}">[이전]</a>
+    </c:if>
+    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+     <a href="list.do?pageNum=${i}&search=${search}&searchtext=${searchtext}">
+     <c:if test="${currentPage==i}">
+     <font color="red"><b> [${i}]</b></font>
+     </c:if>
+     <c:if test="${currentPage!=i}">
+     <b>[${i}]</b>
+     </c:if></a>
+     
+    </c:forEach>
+    <c:if test="${endPage<pageCount}">
+    <a href="list.do?pageNum=${startPage+blockSize}&search=${search}&searchtext=${searchtext}">[다음]</a>
+    </c:if>
+<!-- 검색어를 추가 -->
+<p>
+<form action="list.do" name="search">
+   <select name="search">
+       <option value="title">제목</option>
+       <option value="content">내용</option>
+       <option value="subject_content">제목+내용</option>
+       <option value="writer">작성자</option>
+   </select>
+   <input type="text" name="searchtext" size="15">&nbsp;
+   <input type="submit" value="검색">
+</form>
 </center>
 </body>
 </html>
