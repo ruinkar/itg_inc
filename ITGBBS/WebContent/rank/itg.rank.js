@@ -152,6 +152,7 @@ itg.rank_list.print = function(json_others) {
 		
 		var span = document.createElement("span");
 		var $span = $(span);
+		$span.addClass("centered");
 		$span.text(this.nick + " " + this.mpoint);
 		
 		$div[3].css({
@@ -167,7 +168,7 @@ itg.rank_list.print = function(json_others) {
 		$li.children().css({
 			display:"inline-block"
 		});
-		div[2].append(span);
+		div[1].append(span);
 		$li.append(div[0]);
 		
 		itg.rank_list.$rank_list.append(li);

@@ -38,7 +38,7 @@ div {text_align:center;  }
 
 .item_rank_list .outer {display: table; width: 100%; height: 100%; }
 .item_rank_list .inner {display: table-cell; vertical-align: middle; text-align: center; }
-.item_rank_list .centered {position:relative; display:inline-block; width:50%; padding:1em; background:orange; color:white; }
+.item_rank_list .centered {position:relative; display:inline-block; background:orange; color:white; }
 
 #pages {margin:auto; background-color:gray; }
 #pages a,font {top:10px; padding:10px; border:3px solid white; }
