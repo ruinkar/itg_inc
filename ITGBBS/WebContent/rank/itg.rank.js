@@ -133,32 +133,42 @@ itg.rank_list.init = function() {
 itg.rank_list.print = function(json_others) {
 	// 나머지 랭크 리스트 표시
 	this.$rank_list.html("");
+	
+	var cname = ["outer", "inner", "centered", "cdiv"];
+	var div = [];
+	var $div = [];
 	$(json_others).each(function(){
 		var li = document.createElement("li");
 		var $li = $(li);
-		var div = document.createElement("div");
-		var $div = $(div);
+		
+		for(var i = 0; i < cname.length; i++) {
+			div[i] = document.createElement("div");
+			$div[i] = $(div);
+			$div[i].addClass(cname[i]);
+			if(i > 0){
+				$div[i - 1].append(div[i]);
+			}
+		}
+		
 		var span = document.createElement("span");
 		var $span = $(span);
-		$div.addClass("cdiv");
-		$div.css({
+		$span.text(this.nick + " " + this.mpoint);
+		
+		$div[3].css({
 			width: itg.list_item_height,
 			height: itg.list_item_height,
-			background: itgUtil.thumbCheck(this.thumbnail),
+			background: itgUtil.thumbCheck(this.thumbnail)
 		});
-		
-		$span.text(this.nick + " " + this.mpoint);
 		
 		$li.css({
 			height: itg.list_item_height
 		});
-		
 		$li.addClass("item_rank_list");
-		$li.append(div);
-		$li.append(span);
 		$li.children().css({
 			display:"inline-block"
 		});
+		div[2].append(span);
+		$li.append(div[0]);
 		
 		itg.rank_list.$rank_list.append(li);
 	});

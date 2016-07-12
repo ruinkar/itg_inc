@@ -34,12 +34,11 @@ div {text_align:center;  }
 .box_top span:last-child {bottom:0; color:red; text-shadow: 1px 1px white; font-size:50px; }
 
 #rank_list {margin:auto; background-color:cyan; }
-.item_rank_list {color:blue; list-style:none; }
-/* 
-.item_rank_list .container {width:70%; height:70%; margin:40px auto; background:red; }
+.item_rank_list {color:blue; list-style:none; width:100%; height:100%; background:red; }
+
 .item_rank_list .outer {display: table; width: 100%; height: 100%; }
 .item_rank_list .inner {display: table-cell; vertical-align: middle; text-align: center; }
-.item_rank_list .centered {position:relative; display:inline-block; width:50%; padding:1em; background:orange; color:white; } */
+.item_rank_list .centered {position:relative; display:inline-block; width:50%; padding:1em; background:orange; color:white; }
 
 #pages {margin:auto; background-color:gray; }
 #pages a,font {top:10px; padding:10px; border:3px solid white; }
