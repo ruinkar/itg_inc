@@ -13,7 +13,7 @@
 			<param-value>/props/commandPro.properties</param-value>
 		</init-param>
 	</servlet>
-
+ 
 	<servlet-mapping>
 		<servlet-name>ControllerAction</servlet-name>
 		<url-pattern>*.do</url-pattern>

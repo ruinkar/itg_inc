@@ -78,10 +78,10 @@ public class ReviewDAO implements KeyArchive {
 			} else { // 검색했다면
 
 				if (search.equals("subject_content")) { // 제목 + 내용
-					sql = "select count(*) from board where category=2 and (title like '" + searchtext
-							+ "' or acontent like '" + searchtext + " ' )";
+					sql = "select count(*) from board where category=2 and (title like '%" + searchtext
+							+ "%' or acontent like '%" + searchtext + "%' )";
 				} else { // 제목 또는 작성자
-					sql = "select count(*) from board where category=2 and " + search + " like '" + searchtext + "'";
+					sql = "select count(*) from board where category=2 and " + search + " like '%" + searchtext + "%'";
 				}
 
 				System.out.printf("sql레코드 수 검색어 = %s%n", sql);
@@ -105,7 +105,7 @@ public class ReviewDAO implements KeyArchive {
 
 	// 2. 페이지별로 n개의 레코드를 출력하는 메서드
 	// 레코드의 첫 번째 순번, 화면에 출력시켜줄 레코드 수
-	public List getArticles(int start, int end) {
+	public List getArticlesRank(int start, int end) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -115,12 +115,16 @@ public class ReviewDAO implements KeyArchive {
 
 		try {
 			con = pool.getConnection();
-			sql = "select * from board where category = 2 order by anum desc";
+			sql = "select * from board where category = 2 order by readcount desc";
+			
+			sql =	"select * from";
+			sql+="(select rownum as rnum , c.*  from ( select * from board  where category = 2 order by readcount desc ) c  where rownum <= ?)";
+			sql+="where rnum >= ?";
 			pstmt = con.prepareStatement(sql);
 			// mysql에서는 start를 0부터 계산
-			/*
-			 * pstmt.setInt(1, start); pstmt.setInt(2, end);
-			 */
+			pstmt.setInt(1, end);
+			pstmt.setInt(2, start);
+			
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -519,56 +523,53 @@ public class ReviewDAO implements KeyArchive {
 	}
 
 	
-	public Hashtable <String, Integer> pageList(String pageNum, int count) {
-		  // 최종 페이징처리한 계산 결과값을 저장할 변수 선언 
-		Hashtable<String, Integer> pgList = new Hashtable<String, Integer>();
-		  
-		  int pageSize = 2; // numPerPage → 페이지 당 보여주는 레코드 수 
-		  int blockSize = 1;//pagePerBlock → 블럭 당 보여주는 페이지 수
-		  
-		  // 현재 페이지 설정 
-		  if (pageNum == null) { 
-			  pageNum = "1"; // default → "1" → 1 
-		  }
-		  int currentPage = Integer.parseInt(pageNum); // 현재 페이지 = nowPage
-		  
-		  // 총 레코드 수 구하기 
-		  ReviewDAO bdPro = new ReviewDAO(); 
-		  count = bdPro.getArticleCount(); 
-		  
-		  System.out.printf("현재 레코드 수: %d%n", count);
-		  
-		  int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		  if (currentPage > pageCount) 
-		  { currentPage = pageCount; }
-		  System.out.printf("현재 pageCount 수: %d%n", pageCount);
-		  System.out.printf("현재 currentPage : %d%n", currentPage);
-		  // 시작 레코드 번호 ex (1- 1) * 10 + 1 = 1, (2 - 1) * 10 + 1 = 11 
-		  int startRow = (currentPage - 1) * pageSize + 1; 
-		  int endRow = currentPage * pageSize; // 1
-		  
-		  int number = 0; // 페이지별 시작하는 게시물 번호 
-		  
-		  number = count - (currentPage - 1) * pageSize; // ex) 122 - (1 - 1) * 10
-		  System.out.printf("number: %s%n", number);
-		  
-		  int startPage = (currentPage - 1) / blockSize * blockSize + 1; 
-		  int endPage = startPage + blockSize - 1;
-		  
-		  if (endPage > pageCount) endPage = pageCount;
-		  
-		  pgList.put("pageSize", pageSize); 
-		  pgList.put("blockSize", blockSize);
-		  pgList.put("currentPage", currentPage); 
-		  pgList.put("pageCount",pageCount); 
-		  pgList.put("startRow", startRow); 
-		  pgList.put("endRow",endRow); 
-		  pgList.put("number", number); 
-		  pgList.put("startPage", startPage); 
-		  pgList.put("endPage", endPage); 
-		  pgList.put("count", count);
-		  
-		  return pgList; }
+	
+	// 페이징 처리를 해주는 매서드
+	   // 화면에 출력할 페이지 번호 . 출력할 레코드 수
+		public Hashtable pageList ( String pageNum , int count)
+		{
+			Hashtable <String,Integer> pgList = new Hashtable<String , Integer>();
+			
+			   int pageSize=10; // 페이지당 보여주는 레코드수
+			   int blockSize = 10; // 한블럭당 보여주는 페이지수
+			  //현재페이지를 설정
+			    if(pageNum == null)  pageNum = "1"; // default "1" -> 1 
+			    int currentPage = Integer.parseInt(pageNum); // 현재 페이지 = now Page
+			    
+			    //1. 총 페이지 수 구하기
+			    int pageCount = count/pageSize+(count%pageSize==0?0:1);
+			    // 마지막 페이지에서 데이터를 삭제시 오류가 나기때문에 페이지 카운트 이상 페이지를 불러올때 최대값으로 변경한다.
+			    if (currentPage > pageCount) currentPage = pageCount;
+			    
+			  // 시작 레코드 번호
+			    int startRow = (currentPage -1) * pageSize +1;
+			    int endRow = (currentPage * pageSize);
+			    
+			    int number=0;// 페이지별 시작하는 게시물의 번호 ( =beginPerPage)
+			    number=count-(currentPage-1)*pageSize;
+			  	  //2. 시작페이지(1) , 끝페이지 (10) ( 현재 블럭)
+			  	int startPage = (currentPage-1)/blockSize*blockSize+1;
+			  	int endPage = startPage+ blockSize-1;
+			  	System.out.println("startPage="+startPage);
+			  	System.out.println("endPage="+endPage);
+			  	System.out.println("pageCount="+pageCount);
+			  	if (endPage>pageCount) endPage = pageCount;
+			  	
+			  	pgList.put("pageSize", pageSize);
+			  	pgList.put("blockSize", blockSize);
+			  	pgList.put("currentPage", currentPage);
+			  	pgList.put("startRow", startRow);
+			  	pgList.put("endRow", endRow);
+			  	pgList.put("count", count);
+			  	pgList.put("number", number);
+			  	pgList.put("startPage", startPage);
+			  	pgList.put("endPage", endPage);
+			  	pgList.put("pageCount", pageCount);
+			  	
+			  	  
+			return pgList;
+		}
+	
 	
 	// 2-1) 검색에 대한 메서드 → 4개의 매개변수
 	public List getSearchArticles(int start, int end, String search, String searchtext) {
@@ -584,29 +585,23 @@ public class ReviewDAO implements KeyArchive {
 			/*sql = "select * from ";
 			sql+="( select rownum as rnum , b.* from board b  where b.category = 2 order by b.anum desc ) ";
 			sql+="where rnum between ? and ? ";*/
-			sql ="select * from";
-			sql +="(select rownum as rnum , c.*  from ( select * from board  where category = 2 order by anum desc ) c  where rownum <= ?)";
-			sql +="where rnum >= ?";
 			if (search == null || search.equals("")) {
 				
-
-			/*} else {
-
+				sql ="select * from";
+				sql +="(select rownum as rnum , c.*  from ( select * from board  where category = 2 order by anum desc ) c  where rownum <= ?)";
+				sql +="where rnum >= ?";
+				
+			} else {
 				if (search.equals("subject_content")) { // 제목 + 내용
-					sql = "select count(*) from board where category=2 and (title like '" + searchtext
-							+ "' or acontent like '" + searchtext + " ' )";
-				} else { // 제목또는 작성자
-					sql = "select count(*) from board where category=2 and " + search + " like '" + searchtext + "'";
+				sql ="select * from";
+				sql +="(select rownum as rnum , c.*  from ( select * from board  where category = 2 and (title like '%"+searchtext+"%' or acontent like '%"+searchtext+"%') order by anum desc  ) c  where rownum <= ?)";
+				sql +="where rnum >= ?";
+				}else{
+				
+					sql ="select * from";
+					sql +="(select rownum as rnum , c.*  from ( select * from board  where category = 2 and  "+search+" like '%"+searchtext+"%' order by anum desc  ) c  where rownum <= ?)";
+					sql +="where rnum >= ?";
 				}
-
-				if (search.equals("subject_content")) { // 제목 + 내용
-					sql = "select * from board where  category=2 and ( subject like '" + searchtext
-							+ "' or content like '" + searchtext + "') order by  anum desc limit ?,?";
-				} else { // 제목 or 작성자
-					sql = "select * from board where  category=2 and  " + search + " like '" + searchtext
-							+ "' order by anum desc limit ?,?";
-				}*/
-
 			}
 			pstmt = con.prepareStatement(sql); // mysql에서는 start를 0부터 계산
 			pstmt.setInt(1, end);
@@ -634,7 +629,7 @@ public class ReviewDAO implements KeyArchive {
 		return list;
 	}
 
-	public Vector<BoardDTO> evRead(String title) {
+	public Vector<BoardDTO> evRead(int start , int end ,String title ) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -643,14 +638,14 @@ public class ReviewDAO implements KeyArchive {
 
 		try {
 			con = pool.getConnection();
-			/*sql ="select * from";
+			sql ="select * from";
 			sql +="(select rownum as rnum , c.*  from ( select * from board  where category = 1 and title like '%" + title + "%' order by anum desc ) c  where rownum <= ?)";
 			sql +="where rnum >= ?";
-			*/
-			sql = "select * from board where category=1 and title like '%" + title + "%'";
+			
+			//sql = "select * from board where category=1 and title like '%" + title + "%'";
 			pstmt = con.prepareStatement(sql);
-			//pstmt.setInt(1, end);
-			//pstmt.setInt(2, start);
+			pstmt.setInt(1, end);
+			pstmt.setInt(2, start);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -693,58 +688,6 @@ public class ReviewDAO implements KeyArchive {
 		}
 		return count;
 	}
-	
-	public Hashtable <String, Integer> eventpageList(String pageNum, int count , String title) {
-		  // 최종 페이징처리한 계산 결과값을 저장할 변수 선언 
-		Hashtable<String, Integer> pgList = new Hashtable<String, Integer>();
-		  
-		  int pageSize = 2; // numPerPage → 페이지 당 보여주는 레코드 수 
-		  int blockSize = 1;//pagePerBlock → 블럭 당 보여주는 페이지 수
-		  
-		  // 현재 페이지 설정 
-		  if (pageNum == null) { 
-			  pageNum = "1"; // default → "1" → 1 
-		  }
-		  int currentPage = Integer.parseInt(pageNum); // 현재 페이지 = nowPage
-		  
-		  // 총 레코드 수 구하기 
-		  ReviewDAO bdPro = new ReviewDAO(); 
-		  count = bdPro.eventCount(title); 
-		  
-		  System.out.printf("현재 레코드 수: %d%n", count);
-		  
-		  int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		  if (currentPage > pageCount) 
-		  { currentPage = pageCount; }
-		  System.out.printf("현재 pageCount 수: %d%n", pageCount);
-		  System.out.printf("현재 currentPage : %d%n", currentPage);
-		  // 시작 레코드 번호 ex (1- 1) * 10 + 1 = 1, (2 - 1) * 10 + 1 = 11 
-		  int startRow = (currentPage - 1) * pageSize + 1; 
-		  int endRow = currentPage * pageSize; // 1
-		  
-		  int number = 0; // 페이지별 시작하는 게시물 번호 
-		  
-		  number = count - (currentPage - 1) * pageSize; // ex) 122 - (1 - 1) * 10
-		  System.out.printf("number: %s%n", number);
-		  
-		  int startPage = (currentPage - 1) / blockSize * blockSize + 1; 
-		  int endPage = startPage + blockSize - 1;
-		  
-		  if (endPage > pageCount) endPage = pageCount;
-		  
-		  pgList.put("pageSize", pageSize); 
-		  pgList.put("blockSize", blockSize);
-		  pgList.put("currentPage", currentPage); 
-		  pgList.put("pageCount",pageCount); 
-		  pgList.put("startRow", startRow); 
-		  pgList.put("endRow",endRow); 
-		  pgList.put("number", number); 
-		  pgList.put("startPage", startPage); 
-		  pgList.put("endPage", endPage); 
-		  pgList.put("count", count);
-		  
-		  return pgList; }
-	
 	 /*
 	 * // 3. 페이징 처리해주는 메서드 → ListAction의 소스 복잡 → 단순화하는 메서드 // 1) 화면에 출력할 페이지번호,
 	 * 2) 화면에 출력할 레코드 수 public Hashtable pageList(String pageNum, int count) {

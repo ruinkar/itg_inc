@@ -2,17 +2,17 @@ function writeSave(){
 	
 	if(document.writeForm.title.value==""){
 	  alert("제목을 입력하십시요.");
-	  document.writeform.title.focus();
+	  document.writeForm.title.focus();
 	  return false;
 	}
 	if(document.writeForm.evtitle.value==""){
 		  alert("행사를 입력하십시요.");
-		  document.writeform.evtitle.focus();
+		  document.writeForm.evtitle.focus();
 		  return false;
 		}
 	if(document.writeForm.content.value==""){
 	  alert("내용을 입력하십시요.");
-	  document.writeform.content.focus();
+	  document.writeForm.content.focus();
 	  return false;
 	}
 	if(document.writeForm.rating.value==""){
@@ -25,14 +25,13 @@ function writeSave(){
 function eventCheck(){
 	//check->검색어를 입력하기전의 창의
 	//모습으로 띄우기위해서 매개변수를 전달
-    url="eventCheck.jsp?check=y";
+    url="eventList.do?check=y";
     window.open
 	 (url,"post","width=500,height=300," +
 	 		"status=yes,scrollbars=yes,menubar=no");
 }
 
 function evCheck(){
-	  
 	  document.evForm.submit();
 }
 
