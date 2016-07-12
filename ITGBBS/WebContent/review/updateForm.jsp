@@ -8,6 +8,7 @@
 <script language="JavaScript" src="script.js"></script>
 </head>
 <body bgcolor="#e0ffff">
+<jsp:include page="/template/slideMenu.html" flush="false" />
 <center><b>글수정</b>
 <br>
 <form method="post" name="writeForm" action="updatePro.do?pageNum=${pageNum}" onsubmit="return writeSave()">

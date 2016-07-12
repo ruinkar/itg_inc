@@ -76,7 +76,7 @@ function sendevent(evTitle , evNum){
 								</td>
 							</tr>
 						</c:forEach>
-
+                        <tr><td  align="center">
 						<fmt:parseNumber var="result"
 							value="${(currentPage - 1) / blockSize}" integerOnly="true" />
 						<c:set var="startPage" value="${result * blockSize + 1}" />
@@ -96,6 +96,7 @@ function sendevent(evTitle , evNum){
 						<c:if test="${endPage<pageCount}">
 							<a href="eventList.do?pageNum=${startPage + blockSize}&check=${check}&search=${search}">[다음]</a>
 						</c:if>
+						</td></tr>
 					</c:if>
 				</c:if>
 				<tr>

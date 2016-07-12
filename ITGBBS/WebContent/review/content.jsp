@@ -7,10 +7,15 @@
 <head>
 <title>게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
+
+
+
 </head>
 
-<body bgcolor="#e0ffff">  
-<center><b>글내용 보기</b>
+<body bgcolor="#e0ffff">
+<jsp:include page="/template/slideMenu.html" flush="false" />
+<center>      
+<b>글내용 보기</b>
 <br>
 <table width="500" border="1" cellspacing="0" cellpadding="0"  bgcolor="#e0ffff" align="center">  
   <tr height="30">
@@ -89,5 +94,6 @@
   </table>
   
 </form>
+</center>
 </body>
 </html>
