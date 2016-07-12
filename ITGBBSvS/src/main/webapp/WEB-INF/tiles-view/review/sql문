@@ -1,0 +1,12 @@
+select b.* , re.* , b2.title as etitle from board b , review re ,board b2  
+where b.anum = re.anum and b2.anum = re.evnum;
+
+select * from ( 
+select rownum as listnum , b.* , b2.title as etitle , re.rating as rating   from board b , review re , board b2
+where  b.anum = re.anum and b2.anum = re.evnum )
+where anum = 889;
+
+ 
+select * from board where category = 2;
+
+select * from board where category = 2 order by anum desc limit 1,10;
