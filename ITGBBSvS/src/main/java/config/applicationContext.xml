@@ -14,7 +14,7 @@
 		<property name="locations">
 			<list>
 				<!-- <value>classpath:config/jdbc.properties</value> -->
-				<value>z:/config/jdbc.properties</value>
+				<value>classpath:config/jdbc.properties</value>
 			</list>
 		</property>
 	</bean>
