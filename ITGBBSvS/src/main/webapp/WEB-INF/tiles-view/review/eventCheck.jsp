@@ -2,29 +2,11 @@
 	pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%-- <%
-//Register.jsp->ZipCheck()->
-//ZipCheck.jsp?check=y
-request.setCharacterEncoding("utf-8");
-
-String check=request.
-                           getParameter("check");
-String event=request.
-                           getParameter("evdata"); 
-//검색된 값을 받아옴
-ReviewDAO rvdao=new ReviewDAO();
-Vector<BoardDTO> evList=rvdao.evRead(event);
-int totalList=evList.size();
-System.out.println("검색된수="+totalList);
- %> --%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>이벤트 검색</title>
-<link href="style.css" rel="stylesheet" type="text/css">
-<script language="JavaScript" src="script.js"></script>
 <script>
 function sendevent(evTitle , evNum){
 	//우편번호에 대입
@@ -37,7 +19,9 @@ function sendevent(evTitle , evNum){
 	//자식창(우편번호검색창)
 	self.close();
 	}
-
+function evCheck(){
+    document.evForm.submit();
+}
 </script>
 </head>
 <body bgcolor="#FFFFCC">
@@ -45,11 +29,12 @@ function sendevent(evTitle , evNum){
 		<b>행사 찾기</b>
 		<form name="evForm" method="post" action="eventList.do">
 			<input type="hidden" name="check" value="n">
+			<input type="hidden" name="keyField" value="title">
 			<table>
 				<!--ZipCheck.jsp?area3='미아2동'&check=n  -->
 				<!-- 특정jsp에 매개변수를 전달 -->
 				<tr>
-					<td><br> 행사이름 입력:<input type="text" name="search">
+					<td><br> 행사이름 입력:<input type="text" name="keyWord">
 						<input type="button" value="검색" onclick="evCheck()"></td>
 				</tr>
 
@@ -74,27 +59,8 @@ function sendevent(evTitle , evNum){
 								</td>
 							</tr>
 						</c:forEach>
-                        <tr><td  align="center">
-						<fmt:parseNumber var="result"
-							value="${(currentPage - 1) / blockSize}" integerOnly="true" />
-						<c:set var="startPage" value="${result * blockSize + 1}" />
-						<c:set var="endPage" value="${startPage + blockSize - 1}" />
-						<c:set var="endPage"
-							value="${endPage>pageCount ? pageCount : endPage}" />
-						<!-- 이전 블럭 → 11 → 10 -->
-						<c:if test="${startPage>blockSize}">
-							<a href="eventList.do?pageNum=${startPage - blockSize}&check=${check}&search=${search}">[이전]</a>
-							<!-- [이전] 11 12 13...20 -->
-						</c:if>
-						<!-- 현재 블럭 -->
-						<c:forEach var="i" begin="${startPage}" end="${endPage}">
-							<a href="eventList.do?pageNum=${i}&check=${check}&search=${search}">[${i}]</a>
-						</c:forEach>
-
-						<c:if test="${endPage<pageCount}">
-							<a href="eventList.do?pageNum=${startPage + blockSize}&check=${check}&search=${search}">[다음]</a>
-						</c:if>
-						</td></tr>
+						
+                        ${pagingHtml }
 					</c:if>
 				</c:if>
 				<tr>

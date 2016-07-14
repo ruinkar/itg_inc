@@ -76,7 +76,7 @@
 	position: relative;
 	float: left;
 	cursor: pointer;
-	background: url('/ITGBBS/images/point_button.png');
+	background: url('/ITGBBSvS/resources/img/point_button.png');
 }
 
 .control_button:hover {
@@ -87,10 +87,9 @@
 	top: -31px;
 }
 </style>
-<link href="style.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-        $(document).ready(function () {
+         $(document).ready(function () {
             // 슬라이더를 움직여주는 함수
             function moveSlider(index) {
                 // 슬라이더를 이동합니다.
@@ -117,12 +116,11 @@
             // 초기 슬라이더 위치 지정
             var randomNumber = Math.round(Math.random() * 1);
             moveSlider(randomNumber);
-        });
+        }); 
     </script>
         
 </head>
 <body bgcolor="#e0ffff">
-<jsp:include page="/template/slideMenu.html" flush="false" />
 	<center>
 		<c:if test="${count > 0}">
 			<div class="top_pannel">
@@ -164,7 +162,7 @@
 					</c:forEach>
 				</div>
 			</div>
-		</c:if>
+		</c:if> 
 		<b>글목록(전체 글:${count})</b>
 		<table width="700">
 			<tr>
@@ -209,7 +207,9 @@
 				</c:forEach>
 			</c:if>
 		</table>
-
+		<!-- 페이징 처리 -->
+		${pagingHtml }
+<%-- 
 		<c:if test="${startPage>blockSize}">
 			<a
 				href="list.do?pageNum=${startPage-blockSize}&search=${search}&searchtext=${searchtext}">[이전]</a>
@@ -228,18 +228,20 @@
 		<c:if test="${endPage<pageCount}">
 			<a
 				href="list.do?pageNum=${startPage+blockSize}&search=${search}&searchtext=${searchtext}">[다음]</a>
-		</c:if>
+		</c:if> --%>
 		<!-- 검색어를 추가 -->
 		<p>
 		<form action="list.do" name="search">
-			<select name="search">
+			<select name="keyField">
 				<option value="title">제목</option>
 				<option value="content">내용</option>
-				<option value="subject_content">제목+내용</option>
+				<option value="all">제목+내용</option>
 				<option value="writer">작성자</option>
-			</select> <input type="text" name="searchtext" size="15">&nbsp; <input
-				type="submit" value="검색">
+			</select> 
+			<input type="text" name="keyWord" size="15">&nbsp; 
+			<input type="submit" value="검색">
 		</form>
+		<p>
 	</center>
 </body>
 </html>

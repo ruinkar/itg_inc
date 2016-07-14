@@ -13,7 +13,6 @@
 </head>
 
 <body bgcolor="#e0ffff">
-<jsp:include page="/template/slideMenu.html" flush="false" />
 <center>      
 <b>글내용 보기</b>
 <br>
@@ -48,13 +47,22 @@
                 </tr>
                 <tr>
 <td align="center" width="125" align="center">점수</td>
-    <td align="center" width="125" align="center">${article.rating}</td>
+    <td align="center" width="375" align="center" colspan="5">${article.rating}</td>
                 </tr>
   <tr>
+<td align="center" width="125" align="center">이미지</td>
+    <td align="center" width="125" colspan="5" align="center"><img alt="" src="${article.afile}"></td>
+  </tr>
+  <tr>
+  
   	<!-- <pre>태그 사용 : 웹 상에 불러올 때, 줄바꿈을 만나면 <br>태그로 변환해서 불러오던 메서드 대신  -->
     <td align="center" width="125" bgcolor="#b0e0e6">글내용</td>
     <td align="left" width="375" colspan="5"><pre>${article.acontent}</pre></td>
   </tr>
+  <tr>
+  <td>첨부파일</td>
+        <td align="left" width="375" colspan="5"><a href="file.do?filename=${article.afile}">${article.afile.substring(5)}</a></td>
+   </tr>     
   <tr height="30">      
     <td colspan="6" bgcolor="#b0e0e6" align="center" > 
 	  <input type="button" value="글수정" 
@@ -69,10 +77,12 @@
   </tr>
 </table>
 <br><br><br><br>
-<form method="post" name="replyform" action="replyPro.do"
+<form method="post" name="replyform" action="replyWrite.do"
             onsubmit="return writeSave()">
 <input type="hidden" name="writer" value="aaa">
   <input type="hidden" name="anum" value="${article.anum}">
+  <input type="hidden" name="title" value="덧글">
+  <input type="hidden" name="pageNum" value="${pageNum}">
 <table width="500" border="1" cellspacing="0" cellpadding="0"  bgcolor="#e0ffff" align="center">
 <c:if test="${replyNum == 0}">
 <tr height="30">
@@ -92,7 +102,6 @@
     <td align="center" width="125" bgcolor="#b0e0e6"><input type="submit" value="덧글달기"></td>
   </tr>
   </table>
-  
 </form>
 </center>
 </body>

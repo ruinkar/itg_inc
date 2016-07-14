@@ -28,7 +28,6 @@ public class DeleteController {
 	}
 
 	@RequestMapping(value = "/board/delete.do", method = RequestMethod.GET)
-
 	public String form() {
 		return "boardDelete";
 	}
