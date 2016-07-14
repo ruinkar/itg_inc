@@ -9,17 +9,11 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
        
-<!-- @Autowired 사용을 위해 -->
-    <context:annotation-config/> 
+	<!-- @Autowired 사용을 위해 -->
+    <context:annotation-config/>
     
-    <bean class="com.board.dao.BoardDaoImpl" />
-    <bean class="com.board.controller.ListController" />
-    <bean class="com.board.controller.WriteController" />
-    <bean class="com.board.controller.DetailController" />
-    <bean class="com.board.controller.UpdateController" />
-    <bean class="com.board.controller.DeleteController" />
-    
-    <bean id="downloadView" class="com.board.view.DownloadView" />
+    <bean class="inc.itgbbs.dao.RankDao"/>
+    <bean class="inc.itgbbs.controller.RankController"/>
     
     <!-- tiles (ViewResolver)설정 -->
     <bean id="tilesConfigurer" 

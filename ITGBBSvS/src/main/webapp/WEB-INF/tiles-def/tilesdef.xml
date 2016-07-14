@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
@@ -7,55 +6,30 @@
 <tiles-definitions>
 	<definition name="boardList" template="/WEB-INF/tiles-view/template/layout.jsp">
 		<put-attribute name="title" value="메인 페이지" />
-		<put-attribute name="css"
-			value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
-		<put-attribute name="js"
-			value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
-
 		<put-attribute name="menu"
 			value="/WEB-INF/tiles-view/template/menu.jsp" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles-view/template/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles-view/boardList.jsp" />
-		<put-attribute name="footer"
-			value="/WEB-INF/tiles-view/template/footer.jsp" />
-	</definition>
-
-	<!--글쓰기 -->
-	<definition name="boardWrite" extends="boardList">
-		<put-attribute name="title" value="글쓰기" />
-		<put-attribute name="js" value="" />
-		<put-attribute name="body" value="/WEB-INF/tiles-view/boardWrite.jsp" />
-	</definition>
-
-	<!-- error 페이지 처리 -->
-	<definition name="pageError" extends="boardList">
-		<put-attribute name="title" value="에러페이지" />
-		<put-attribute name="js" value="" />
-		<put-attribute name="body" value="/WEB-INF/tiles-view/pageError.jsp" />
-	</definition>
-
-	<!-- 상세 페이지(name="boardView") -->
-	<definition name="boardView" extends="boardList">
-		<put-attribute name="title" value="글 상세보기" />
-		<put-attribute name="js" value="" />
-		<put-attribute name="body" value="/WEB-INF/tiles-view/boardView.jsp" />
-	</definition>
-	
-	<!-- 글 삭제 페이지 -->
-	<definition name="boardDelete" extends="boardList">
-		<put-attribute name="title" value="글 삭제하기" />
-		<put-attribute name="js" value="" />
+		<!-- <put-attribute name="header"
+			value="/WEB-INF/tiles-view/template/header.jsp" /> -->
 		<put-attribute name="body"
-			value="/WEB-INF/tiles-view/boardDelete.jsp" />
+			value="/WEB-INF/tiles-view/base/boardList.jsp" />
+		<!-- <put-attribute name="footer"
+			value="/WEB-INF/tiles-view/template/footer.jsp" /> -->
+		<put-list-attribute name="javascripts">
+			<add-attribute value="/scripts/itg.rank.js" />
+			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
+		</put-list-attribute>
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="/styles/rank.css" />
+		</put-list-attribute>
 	</definition>
 
-	<!-- 글 수정 페이지 -->
-	<definition name="boardModify" extends="boardList">
-		<put-attribute name="title" value="글 수정하기" />
+	<definition name="rankList" extends="boardList">
+		<put-attribute name="title" value="" />
 		<put-attribute name="js" value="" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles-view/boardModify.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="/styles/rank.css" />
+		</put-list-attribute>
 	</definition>
 
 </tiles-definitions>

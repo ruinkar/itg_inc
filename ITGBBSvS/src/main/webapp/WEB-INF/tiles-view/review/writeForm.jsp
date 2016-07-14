@@ -31,7 +31,7 @@
 <body bgcolor="#e0ffff">
 	<div class="layout-container">
 		<div class="main ">
-			<jsp:include page="/template/slideMenu.html" flush="false" />
+			<jsp:include page="../template/slideMenu.html" flush="false" />
 			<center>
 				<b> 글쓰기 </b><br>
 				<!-- onSubmit → submit 버튼 클릭 -->

@@ -13,7 +13,7 @@
 </head>
 
 <body bgcolor="#e0ffff">
-<jsp:include page="/template/slideMenu.html" flush="false" />
+<jsp:include page="../template/slideMenu.html" flush="false" />
 <center>      
 <b>글내용 보기</b>
 <br>

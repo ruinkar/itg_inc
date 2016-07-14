@@ -122,7 +122,7 @@
         
 </head>
 <body bgcolor="#e0ffff">
-<jsp:include page="/template/slideMenu.html" flush="false" />
+<jsp:include page="../template/slideMenu.html" flush="false" />
 	<center>
 		<c:if test="${count > 0}">
 			<div class="top_pannel">
