@@ -1,3 +1,3 @@
 <%
- response.sendRedirect(request.getContextPath()+"/review/review.do");
+ response.sendRedirect(request.getContextPath()+"/free/list.do");
 %>

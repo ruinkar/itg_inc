@@ -11,15 +11,11 @@
        
 <!-- @Autowired 사용을 위해 -->
     <context:annotation-config/> 
-    
-    <bean class="com.board.dao.BoardDaoImpl" />
-    <bean class="com.board.controller.ListController" />
-    <bean class="com.board.controller.WriteController" />
-    <bean class="com.board.controller.DetailController" />
-    <bean class="com.board.controller.UpdateController" />
-    <bean class="com.board.controller.DeleteController" />
-    
-    <bean id="downloadView" class="com.board.view.DownloadView" />
+    <bean class="inc.itgbbs.dao.FreeBoardDaoImpl" />
+    <bean class="inc.itgbbs.controller.FreeListController" />
+	<bean class="inc.itgbbs.controller.FreeWriteController" />
+
+
     
     <!-- tiles (ViewResolver)설정 -->
     <bean id="tilesConfigurer" 
@@ -50,25 +46,7 @@
         </property>
     </bean>
     
-    <!-- 예외페이지 작성 -->
-    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
-            <props>
-                <prop key="java.lang.Exception">pageError</prop>
-            </props>
-        </property>
-    </bean>
-    
-    <!-- 다운로드 설정하기 대화상자 -->
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
-              p:order="0" />
-    
-    <!--파일업로드 설정(용량,한글지원유무설정)  -->
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-          <property name="maxUploadSize" value="52428800" />
-          <property name="defaultEncoding" value="UTF-8" />
-    </bean>
+
  
 </beans>
 
