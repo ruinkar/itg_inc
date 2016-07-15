@@ -48,6 +48,9 @@ public interface ReviewDao {
   
   // 댓글달기
   public void insertReply (BoardDTO board);
+  
+  // 댓글 삭제
+  public void deleteReply(Integer anum);
 /*   
    
    //4.게시판의 글쓰기

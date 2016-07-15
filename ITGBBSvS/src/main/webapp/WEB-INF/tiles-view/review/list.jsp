@@ -122,6 +122,7 @@
 </head>
 <body bgcolor="#e0ffff">
 	<center>
+
 		<c:if test="${count > 0}">
 			<div class="top_pannel">
 				<a class="top1st"
@@ -165,9 +166,18 @@
 		</c:if> 
 		<b>글목록(전체 글:${count})</b>
 		<table width="700">
-			<tr>
-				<td align="right" bgcolor="#b0e0e6"><a href="writeForm.do">글쓰기</a>
-				</td>
+		<tr>
+                
+		    <c:choose>
+                <c:when test="${not empty sessionScope.userLoginInfo}">
+                <td align="right" bgcolor="#b0e0e6"><a href="writeForm.do">글쓰기</a>
+                </td>
+            </c:when>
+            <c:otherwise>
+            <td align="right" bgcolor="#b0e0e6">로그인 하시면 글 작성이 가능합니다.</a>
+            </c:otherwise>
+            </c:choose>
+			
 		</table>
 		<table border="1" width="700" cellpadding="0" cellspacing="0"
 			align="center">

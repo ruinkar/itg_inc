@@ -117,6 +117,11 @@ public class ReviewDaoImpl extends SqlSessionDaoSupport
 		// TODO Auto-generated method stub
 		getSqlSession().insert("Review.insertReply", board);
 	}
+	@Override
+	public void deleteReply(Integer anum) {
+		// TODO Auto-generated method stub
+		getSqlSession().delete("Review.deleteBoard",anum);
+	}
 	
 	
 	

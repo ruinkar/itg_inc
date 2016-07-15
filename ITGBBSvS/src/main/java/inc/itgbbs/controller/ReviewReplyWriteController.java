@@ -71,4 +71,16 @@ public class ReviewReplyWriteController {
 		    ///실질적인 업로드가 될 수있도록
 		return "redirect:/review/content.do?anum="+command.getPnum()+"&pageNum="+pageNum;//redirect:/요청명령어
 	}
+	
+	
+	@RequestMapping(value="/review/replyDelete.do",method=RequestMethod.POST)
+	public String replydelete(@ModelAttribute("command") BoardDTO command,
+			@RequestParam(value="pageNum",defaultValue="1")
+								int pageNum
+			                        ){
+		reviewDao.deleteReply(command.getAnum());
+		return "redirect:/review/content.do?anum="+command.getPnum()+"&pageNum="+pageNum;//redirect:/요청명령어
+	}
+	
+	
 }

@@ -37,7 +37,7 @@
 				<tr>
 					<td width="70" bgcolor="#b0e0e6" align="center">이 름</td>
 					<td width="330"><input type="text" size="10" maxlength="10"
-						name="writer" value="${writer}"></td>
+						name="writer" value="${sessionScope.userLoginInfo.id}"></td>
 				</tr>
 				<tr>
 					<td width="70" bgcolor="#b0e0e6" align="center">제 목</td>

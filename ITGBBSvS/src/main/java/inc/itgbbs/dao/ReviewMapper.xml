@@ -207,6 +207,7 @@
  <select id="getBoard" parameterType="Integer" resultType="BoardDTO">
   select * from board where anum=#{anum}
  </select>
+ 
  <delete id="deletereply" parameterType="Integer">
     delete from board where pnum=#{anum}
  </delete>
@@ -219,6 +220,7 @@
     INSERT INTO BOARD (ANUM, WRITER, CATEGORY, ADATE, IP, TITLE, ACONTENT, PNUM ) 
             VALUES  ( #{anum},#{writer}, #{category},sysdate, '192.168.0.2', #{title}, #{acontent}, #{pnum} )
  </insert>
+ 
  </mapper>
 
 

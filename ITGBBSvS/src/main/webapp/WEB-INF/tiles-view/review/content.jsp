@@ -65,22 +65,27 @@
    </tr>     
   <tr height="30">      
     <td colspan="6" bgcolor="#b0e0e6" align="center" > 
-	  <input type="button" value="글수정" 
+    <c:choose>
+<c:when test="${not empty sessionScope.userLoginInfo}">
+        <c:if test="${article.writer == sessionScope.userLoginInfo.id}"> 
+        <input type="button" value="글수정" 
        onclick="document.location.href='updateForm.do?anum=${article.anum}&pageNum=${pageNum}'">
-	   &nbsp;&nbsp;&nbsp;&nbsp;
-	  <input type="button" value="글삭제" 
+       &nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="button" value="글삭제" 
        onclick="document.location.href='deleteForm.do?anum=${article.anum}&pageNum=${pageNum}'">
-	   &nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;  
+        </c:if>
+    </c:when>
+</c:choose>
        <input type="button" value="글목록" 
        onclick="document.location.href='list.do?pageNum=${pageNum}'">
     </td>
   </tr>
 </table>
 <br><br><br><br>
-<form method="post" name="replyform" action="replyWrite.do"
-            onsubmit="return writeSave()">
-<input type="hidden" name="writer" value="aaa">
-  <input type="hidden" name="anum" value="${article.anum}">
+<form method="post" name="replyform" action="replyDelete.do">
+
+  <input type="hidden" name="pnum" value="${article.anum}">
   <input type="hidden" name="title" value="덧글">
   <input type="hidden" name="pageNum" value="${pageNum}">
 <table width="500" border="1" cellspacing="0" cellpadding="0"  bgcolor="#e0ffff" align="center">
@@ -93,14 +98,44 @@
 <tr height="30">
     <td align="center" width="125" bgcolor="#b0e0e6">${reply.writer}</td>
     <td align="left" width="250" colspan="2">${reply.acontent}</td>
+    <c:choose>
+        <c:when test="${not empty sessionScope.userLoginInfo}">
+        <td align="center" width="125" >
+        <c:if test="${reply.writer == sessionScope.userLoginInfo.id}">
+        
+        <input type="hidden" name="anum" value="${reply.anum}">
+        <input type="submit" value="덧글삭제" >
+        </c:if>
+        </td>
+        </c:when>
+    </c:choose>
   </tr>
 </c:forEach>
+</table>
+</form>
 
+<form method="post" name="replyform" action="replyWrite.do"
+            onsubmit="return writeSave()">
+  <input type="hidden" name="anum" value="${article.anum}">
+  <input type="hidden" name="title" value="덧글">
+  <input type="hidden" name="pageNum" value="${pageNum}">
+
+<table width="500" border="1" cellspacing="0" cellpadding="0"  bgcolor="#e0ffff" align="center"> 
+    <c:choose>
+<c:when test="${not empty sessionScope.userLoginInfo}">
+<input type="hidden" name="writer" value="${sessionScope.userLoginInfo.id}">
 <tr height="30">
-    <td align="center" width="125" bgcolor="#b0e0e6">작성자</td>
+    <td align="center" width="125" bgcolor="#b0e0e6">${sessionScope.userLoginInfo.id}</td>
     <td align="left" width="250" colspan="2"><textarea name="acontent" rows="13" cols="40"></textarea></td>
     <td align="center" width="125" bgcolor="#b0e0e6"><input type="submit" value="덧글달기"></td>
   </tr>
+    </c:when>
+<c:otherwise>
+<tr height="30">
+    <td align="center" width="125" bgcolor="#b0e0e6"colspan="7">로그인을 하셔야 덧글을 달 수 있습니다.</td>
+
+</c:otherwise>
+</c:choose>
   </table>
 </form>
 </center>
