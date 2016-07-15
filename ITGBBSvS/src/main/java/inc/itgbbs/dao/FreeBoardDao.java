@@ -3,7 +3,6 @@ package inc.itgbbs.dao;
 import java.util.List;
 import java.util.Map;
 
-
 import inc.itgbbs.domain.FreeBoardDTO;
 
 public interface FreeBoardDao {
@@ -18,4 +17,11 @@ public interface FreeBoardDao {
 
 	// 4.게시판의 글쓰기
 	public void insert(FreeBoardDTO board);
+
+	// 5. 글상세보기
+	public FreeBoardDTO selectBoard(int anum);
+	public void update(int anum);
+	
+	// 6. 글수정하기
+	public void updateBoard(FreeBoardDTO board);
 }

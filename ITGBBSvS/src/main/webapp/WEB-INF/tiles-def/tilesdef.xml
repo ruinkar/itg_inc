@@ -26,6 +26,19 @@
 		<put-attribute name="title" value="글쓰기" />
 		<put-attribute name="body" value="/WEB-INF/tiles-view/free/okkyFreeWrite.jsp" />
 	</definition>
+	
+	<!--글 상세보기 -->
+	<definition name="boardView" extends="boardList">
+		<put-attribute name="title" value="글 상세보기" />
+		<put-attribute name="body" value="/WEB-INF/tiles-view/free/okkyFreeArticle.jsp" />
+	</definition>
+
+	<!--글 수정하기 -->
+	<definition name="boardModify" extends="boardList">
+		<put-attribute name="title" value="글 수정하기" />
+		<put-attribute name="body" value="/WEB-INF/tiles-view/free/okkyFreeWrite.jsp" />
+	</definition>
+	
 
 
 

@@ -14,6 +14,8 @@
     <bean class="inc.itgbbs.dao.FreeBoardDaoImpl" />
     <bean class="inc.itgbbs.controller.FreeListController" />
 	<bean class="inc.itgbbs.controller.FreeWriteController" />
+	<bean class="inc.itgbbs.controller.FreeDetailController" />
+	<bean class="inc.itgbbs.controller.FreeUpdateController" />
 
 
     

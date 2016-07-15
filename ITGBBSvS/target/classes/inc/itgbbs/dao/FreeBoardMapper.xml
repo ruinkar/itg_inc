@@ -35,6 +35,22 @@
 		insert into board(anum,writer,category,adate,ip,title,acontent)
 		values(#{anum},#{writer},#{category},#{adate},#{ip},#{title},#{acontent})
 	</insert>
+	
+	<!--글상세보기  -->
+	<select id="selectBoard" parameterType="int" resultType="FreeBoardDTO" >
+		select * from board where anum=#{anum}
+	</select>
+	
+	<!--조회수 증가  -->
+	<update id="updateHit" parameterType="int">
+		update board set readcount=readcount+1 where anum=#{anum}
+	</update> 
+	
+	<!--글수정하기  -->
+	<update id="updateBoard" parameterType="FreeBoardDTO">
+		update board set writer=#{writer}, title=#{title}, content=#{content} where anum=#{anum}
+	</update>
+
 
 </mapper>
 

@@ -314,7 +314,7 @@
 
 										<h5 class="list-group-item-heading ">
 											<a
-												href="/ITGBBS/free/content.do?anum=${article.anum}">${article.title}</a>
+												href="content.do?anum=${article.anum}">${article.title}</a>
 										</h5>
 									</div>
 
