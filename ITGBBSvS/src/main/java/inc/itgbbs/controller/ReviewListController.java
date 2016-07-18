@@ -64,7 +64,7 @@ public class ReviewListController implements ContentPath {
 		if (!keyField.equals("") ) 
 		{
 			System.out.println("keyField는 널이 아님");
-			page=new PagingUtil (keyField,keyWord,currentPage,count,3,3,"list.do",null);
+			page=new PagingUtil (keyField,keyWord,currentPage,count,10,10,"list.do",null);
 		}
 		//페이징처리(1.현재페이지,2.총갯수,3.페이지당 레코드수,4.블럭당 페이지수,5.요청명령어
 		else  page=new PagingUtil(currentPage,count,10,10,"list.do");

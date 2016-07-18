@@ -9,6 +9,7 @@
 <ul>
 	<li><a href="<%=contextPath%>/review/list.do">리뷰보기</a></li>
 	<li><a href="<%=contextPath%>/review/writeForm.do">리뷰 쓰기</a></li>
+	<li><a href="<%=contextPath%>/evinfo/list.do">행사보기</a></li>
 </ul>
 
 <c:choose>
@@ -16,13 +17,13 @@
           <center>
          이름 : ${sessionScope.userLoginInfo.id}
          <br>
-        <a href="login/deleteSession.do">로그아웃</a>
+        <a href="../login/deleteSession.do">로그아웃</a>
         </center>
     </c:when>
 
 <c:otherwise>
         <form name="loginForm" method="post"
-		action="login/makeSession.do">
+		action="../login/makeSession.do">
 		        
 		<table>
 			<tr height="40px">

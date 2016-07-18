@@ -57,5 +57,27 @@
         <put-attribute name="title" value="글쓰기" />
         <put-attribute name="body" value="/WEB-INF/tiles-view/review/deleteForm.jsp" />
     </definition>
+    
+    
+    <definition name="eventList" template="/WEB-INF/tiles-view/template/reviewLayout.jsp">
+        <put-attribute name="title" value="후기 페이지" />
+        <put-attribute name="css"
+            value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
+        <put-attribute name="js"
+            value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
+        <put-attribute name="menu"
+            value="/WEB-INF/tiles-view/template/menu.jsp" />
+        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventMain.jsp" />
+    </definition>
+
+    <definition name="eventWriteForm" extends="reviewList">
+        <put-attribute name="title" value="행사 쓰기" />
+        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventWrite.jsp" />
+    </definition>
+
+<definition name="eventContentForm" extends="reviewList">
+        <put-attribute name="title" value="행사 보기" />
+        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventContent.jsp" />
+    </definition>
 
 </tiles-definitions>

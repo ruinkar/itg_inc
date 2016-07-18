@@ -7,7 +7,13 @@
 <head>
 <title>게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
-
+<script>
+function  delreply (idx)
+{
+	document.replydelform.anum.value=idx;
+	document.replydelform.submit();
+}
+</script>
 
 
 </head>
@@ -83,11 +89,12 @@
   </tr>
 </table>
 <br><br><br><br>
-<form method="post" name="replyform" action="replyDelete.do">
+<form method="post" name="replydelform" action="replyDelete.do">
 
   <input type="hidden" name="pnum" value="${article.anum}">
   <input type="hidden" name="title" value="덧글">
   <input type="hidden" name="pageNum" value="${pageNum}">
+  <input type="hidden" name="anum" value="">
 <table width="500" border="1" cellspacing="0" cellpadding="0"  bgcolor="#e0ffff" align="center">
 <c:if test="${replyNum == 0}">
 <tr height="30">
@@ -103,8 +110,8 @@
         <td align="center" width="125" >
         <c:if test="${reply.writer == sessionScope.userLoginInfo.id}">
         
-        <input type="hidden" name="anum" value="${reply.anum}">
-        <input type="submit" value="덧글삭제" >
+        
+        <input type="button" name="${reply.anum}" value="덧글삭제" onclick="delreply(${reply.anum})">
         </c:if>
         </td>
         </c:when>

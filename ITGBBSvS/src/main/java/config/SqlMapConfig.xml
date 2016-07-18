@@ -14,12 +14,15 @@
                         type="inc.itgbbs.domain.ReviewAllDTO"/>
         <typeAlias alias="LoginInfoDTO" 
                         type="inc.itgbbs.domain.LoginInfoDTO"/>
+        <typeAlias alias="EventDTO" 
+                        type="inc.itgbbs.domain.EventDTO"/>
 	</typeAliases>
 	
 	<mappers>
 	    <!-- <mapper resource="com/board/dao/BoardMapper.xml" /> -->
 	    <mapper resource="inc/itgbbs/dao/ReviewMapper.xml" />
 	    <mapper resource="inc/itgbbs/dao/LoginMapper.xml" />
+	    <mapper resource="inc/itgbbs/dao/EventMapper.xml" />
 	</mappers>
     
 </configuration>

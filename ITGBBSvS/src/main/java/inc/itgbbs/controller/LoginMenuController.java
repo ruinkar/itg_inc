@@ -1,5 +1,7 @@
 package inc.itgbbs.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -20,10 +22,11 @@ public class LoginMenuController {
 	private LoginDao loginDao;//메서드호출
 
 	
-	@RequestMapping("/review/login/makeSession.do")
+	@RequestMapping("login/makeSession.do")
 	public String process(@RequestParam("id") String id,
 			@RequestParam("password") String password,
-			HttpSession session
+			HttpSession session,
+			HttpServletRequest request
 			) {
 		
 		LoginInfoDTO login = new LoginInfoDTO();
@@ -31,19 +34,26 @@ public class LoginMenuController {
 		login.setPassword(password);
 		System.out.println(login);
 		int result = loginDao.findUser(login); 
-		
+		System.out.println();
 		if (result != 0 )
 		{
 			session.setAttribute("userLoginInfo", login);
 		}
-		return "redirect:/review/list.do";
+		String referer = request.getHeader("REFERER");
+		referer = referer.substring(referer.compareTo("ITGBBSvS"));
+		
+		return "redirect:/"+referer;
 	}
 	
-	@RequestMapping("/review/login/deleteSession.do")
-	public String process( HttpSession session) {
+	@RequestMapping("login/deleteSession.do")
+	public String process( HttpSession session, HttpServletRequest request) {
 		
 		session.invalidate();
-		return "redirect:/review/list.do";
+		String referer = request.getHeader("REFERER");
+		referer = referer.substring(referer.compareTo("ITGBBSvS"));
+		
+		return "redirect:/"+referer;
+		
 	}
 	
 }

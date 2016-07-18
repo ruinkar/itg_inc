@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" name="writeform" action="eventWritePro.jsp">
+	<form method="post" name="writeform" action="eventWrite.do">
 	<h4>*글 제목 입력</h4>
 		<input id="title" type="text" name="title" size="100" title="글 제목 입력" maxlength="50" class="text" />
 	
 	<h4>*글 내용 입력</h4>
-		<input id="aContent" type="text" name="aContent" size="100" title="글 내용 입력" maxlength="2000" class="text"/>
+		<input id="acontent" type="text" name="aContent" size="100" title="글 내용 입력" maxlength="2000" class="text"/>
 	
 	<h4>*태그 입력 (필수입력x)</h4>
 		<input id="tag1" type="text" name="tag1" size="20" title="태그1 입력" maxlength="10" class="text"/>
@@ -25,7 +25,7 @@
 		<input id="host" type="text" name="host" size="20" title="행사주최자 입력" maxlength="10" class="text"/>
 		
 	<h4>*행사명 입력</h4>
-		<input id="eName" type="text" name="eName" size="100" title="행사명 입력" maxlength="50" class="text"/>
+		<input id="ename" type="text" name="eName" size="100" title="행사명 입력" maxlength="50" class="text"/>
 		
 	<h4>*행사 시작일 입력</h4>
 		<input id="begin" type="text" name="begin" size="20" title="행사 시작일 입력" maxlength="20" class="text"/>
@@ -37,7 +37,7 @@
 		<input id="location" type="text" name="location" size="20" title="행사 위치 입력" maxlength="20" class="text"/>
 		
 	<h4>*행사 이미지 첨부</h4>
-		<input id="eImg" type="button" name="eImg" value="행사 이미지 첨부" title="행사 이미지 첨부"/>
+		<input id="eimg" type="button" name="eImg" value="행사 이미지 첨부" title="행사 이미지 첨부"/>
 		
 		<input type="submit" value="글쓰기" >
 		<input type="reset" value="다시작성">

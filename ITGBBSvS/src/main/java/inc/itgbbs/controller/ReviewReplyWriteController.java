@@ -78,6 +78,8 @@ public class ReviewReplyWriteController {
 			@RequestParam(value="pageNum",defaultValue="1")
 								int pageNum
 			                        ){
+		System.out.println("덧글삭제 기능 : "+command);
+		System.out.println("pageNum : "+pageNum);
 		reviewDao.deleteReply(command.getAnum());
 		return "redirect:/review/content.do?anum="+command.getPnum()+"&pageNum="+pageNum;//redirect:/요청명령어
 	}

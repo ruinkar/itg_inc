@@ -30,6 +30,10 @@
     <bean class="inc.itgbbs.dao.LoginDaoImpl" />
     <bean class="inc.itgbbs.controller.LoginMenuController" />
         
+    <bean class="inc.itgbbs.dao.EventDaoImpl" />    
+    <bean class="inc.itgbbs.controller.EventListController" />
+    <bean class="inc.itgbbs.controller.EventWriteController" />
+    <bean class="inc.itgbbs.controller.EventContentController" />
     <bean id="downloadView" class="com.board.view.DownloadView" />
 
     <!-- tiles (ViewResolver)설정 -->
