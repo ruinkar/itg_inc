@@ -7,7 +7,21 @@
 		select * from member where id = #{id}
 	</select>
 	
-	<select id="list_article" parameterType="PagingUtil" resultType="BoardDTO">
+	<select id="count" parameterType="string" resultType="int">
+		select count(*) from board where writer = #{id}
+	</select>
 	
+	<select id="list" parameterType="PageCommand" resultType="BoardDTO">
+		select * 
+		from (
+			select * 
+			from (
+				select row_number() over(order by adate desc) rnum, anum, pnum, adate, category, title 
+				from board 
+				where writer = #{id}
+		<![CDATA[
+			) where rnum <= #{endCount}
+		) where rnum >= #{startCount}
+		]]>
 	</select>
 </mapper>

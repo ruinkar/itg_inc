@@ -5,10 +5,12 @@
 	<typeAliases>
 		<typeAlias alias="RankCommand" type="inc.itgbbs.domain.RankCommand" />
 		<typeAlias alias="PagingUtil" type="inc.itgbbs.util.PagingUtil" />
+		<typeAlias alias="PageCommand" type="inc.itgbbs.domain.PageCommand" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="inc/itgbbs/dao/RankMapper.xml" />
+		<mapper resource="inc/itgbbs/dao/MPageMapper.xml" />
 	</mappers>
 
 </configuration>

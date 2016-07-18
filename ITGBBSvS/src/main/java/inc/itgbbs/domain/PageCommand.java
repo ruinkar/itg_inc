@@ -1,8 +1,17 @@
 package inc.itgbbs.domain;
 
 public class PageCommand {
+	private String id;
 	private int start;
 	private int end;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public int getStart() {
 		return start;

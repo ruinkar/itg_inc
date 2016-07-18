@@ -31,5 +31,14 @@
 			<add-attribute value="/styles/rank.css" />
 		</put-list-attribute>
 	</definition>
+	
+	<definition name="mpage" extends="boardList">
+		<put-attribute name="title" value="" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/memberInfo.jsp" />
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="/styles/rank.css" />
+		</put-list-attribute>
+	</definition>
 
 </tiles-definitions>
