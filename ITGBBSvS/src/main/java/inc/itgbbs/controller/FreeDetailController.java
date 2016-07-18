@@ -1,6 +1,7 @@
 package inc.itgbbs.controller;
 
 import java.io.File;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,17 @@ public class FreeDetailController {
 		FreeBoardDTO freeBoardDTO = freeBoardDao.selectBoard(anum);
 		System.out.println("가져온 article 값 = " + freeBoardDTO.getAnum());
 		//selectDetail.jsp에 전달(1.이동할 페이지, 2.key값 3.value값)
+		List<FreeBoardDTO> repliesList = null;
+		int replyNum = freeBoardDao.getReplyCount(anum); //댓글 갯수 파악
+		if(replyNum > 0) {
+			repliesList = freeBoardDao.repliesList(anum);
+		}
+		System.out.println("replyNum = "+replyNum+", repliesList = " +repliesList);
+		
 		ModelAndView mav = new ModelAndView("boardView", "article", freeBoardDTO);
+		mav.addObject("replyNum", replyNum);
+		mav.addObject("repliesList", repliesList);
+		
 		return mav;
 		
 	}

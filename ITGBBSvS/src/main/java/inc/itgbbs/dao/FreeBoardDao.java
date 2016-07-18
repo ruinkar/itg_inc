@@ -24,4 +24,15 @@ public interface FreeBoardDao {
 	
 	// 6. 글수정하기
 	public void updateBoard(FreeBoardDTO board);
+	
+	// 7. 글삭제하기
+	public void deleteBoard(int anum);
+	
+	// 8. 답글달기
+	public void insertReply(FreeBoardDTO board);
+	
+	// 9. 답글목록
+	public List<FreeBoardDTO> repliesList(int anum);
+	public int getReplyCount(int pnum);
+	
 }

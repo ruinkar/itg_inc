@@ -16,7 +16,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>OKKY - Article 등록</title>
+<title>OKKY - Article 수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon"
 	href="http://okky.kr/assets/favicon-4ddd8035b72404da5a8c298cbaacad86.ico"
@@ -270,7 +270,7 @@
 
 					</div>
 					<div class="panel-body">
-						<form action="updatePro.do?pageNum=${pageNum}" method="post"
+						<form action="updatePro.do" method="post"
 							id="article-form" class="article-form" role="form"
 							onsubmit="return postForm()">
 							<input type="hidden" name="SYNCHRONIZER_TOKEN"
@@ -366,14 +366,13 @@
 								<input type="hidden" name="content.textType" value="HTML"
 									id="content.textType" /> <input type="hidden" name="writer"
 									value="${article.writer}" id="writer" /> <input
-									type="hidden" name="anum" value="${anum}" id="anum" /> <input
-									type="hidden" name="pageNum" value="${pageNum}" id="pageNum" />
+									type="hidden" name="anum" value="${article.anum}" id="anum" /> 
 
 
 
 								<div class="nav" role="navigation">
 									<fieldset class="buttons">
-										<a href="/ITGBBS/free/list.do" class="btn btn-default btn-wide"
+										<a href="list.do" class="btn btn-default btn-wide"
 											onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a> <input
 											type="submit" name="create"
 											class="create btn btn-success btn-wide pull-right" value="저장"

@@ -27,7 +27,7 @@
 		<put-attribute name="body" value="/WEB-INF/tiles-view/free/okkyFreeWrite.jsp" />
 	</definition>
 	
-	<!--글 상세보기 -->
+	<!--글 상세보기/답글 결과 확인 -->
 	<definition name="boardView" extends="boardList">
 		<put-attribute name="title" value="글 상세보기" />
 		<put-attribute name="body" value="/WEB-INF/tiles-view/free/okkyFreeArticle.jsp" />
@@ -36,8 +36,10 @@
 	<!--글 수정하기 -->
 	<definition name="boardModify" extends="boardList">
 		<put-attribute name="title" value="글 수정하기" />
-		<put-attribute name="body" value="/WEB-INF/tiles-view/free/okkyFreeWrite.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles-view/free/updateForm.jsp" />
 	</definition>
+	
+	
 	
 
 

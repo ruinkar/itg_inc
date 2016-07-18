@@ -16,6 +16,8 @@
 	<bean class="inc.itgbbs.controller.FreeWriteController" />
 	<bean class="inc.itgbbs.controller.FreeDetailController" />
 	<bean class="inc.itgbbs.controller.FreeUpdateController" />
+	<bean class="inc.itgbbs.controller.FreeDeleteController" />
+	<bean class="inc.itgbbs.controller.FreeReplyController" />
 
 
     

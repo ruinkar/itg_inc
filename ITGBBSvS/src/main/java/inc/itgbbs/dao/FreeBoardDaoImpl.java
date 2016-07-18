@@ -57,6 +57,31 @@ public class FreeBoardDaoImpl extends SqlSessionDaoSupport
 		getSqlSession().update("updateBoard", board);
 	}
 	
+	@Override
+	public void deleteBoard(int anum) {
+		// TODO Auto-generated method stub
+		getSqlSession().delete("deleteBoard", anum);
+		System.out.println("deleteBoard() 메서드 호출");
+	}
+	
+	@Override
+	public void insertReply(FreeBoardDTO board) {
+		// TODO Auto-generated method stub
+		getSqlSession().insert("insertReply", board);
+		System.out.println("insertReply() 메서드 호출");
+	}
+	@Override
+	public List<FreeBoardDTO> repliesList(int anum) {
+		// TODO Auto-generated method stub
+		List<FreeBoardDTO> list=getSqlSession().selectList("repliesList",anum);
+		return list;
+	}
+	@Override
+	public int getReplyCount(int pnum) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("getReplyCount", pnum);
+	}
+	
 	
 }
 

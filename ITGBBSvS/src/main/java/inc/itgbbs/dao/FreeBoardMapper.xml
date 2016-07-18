@@ -48,10 +48,31 @@
 	
 	<!--글수정하기  -->
 	<update id="updateBoard" parameterType="FreeBoardDTO">
-		update board set writer=#{writer}, title=#{title}, content=#{content} where anum=#{anum}
+		update board set writer=#{writer}, title=#{title}, acontent=#{acontent} where anum=#{anum}
 	</update>
 
-
+	<!--글삭제하기  -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where anum=#{anum}
+	</delete>
+	
+	<!--답글달기  -->
+	<insert id="insertReply" parameterType="FreeBoardDTO">
+		insert into board(anum,writer,category,adate,ip,title,acontent,pnum)
+		values(#{anum},#{writer},#{category},#{adate},#{ip},#{title},#{acontent},#{pnum})
+	</insert>
+	
+	<!--답글출력  -->
+	<select id="repliesList" parameterType="int" resultType="FreeBoardDTO" >
+		select * from board where pnum=#{anum} order by anum asc
+	</select>
+	
+	<!--답글 갯수확인  -->
+	<select id="getReplyCount" parameterType="int" resultType="int">
+		select count(*) from board where pnum=#{pnum}
+	</select>
+	
+	
 </mapper>
 
 
