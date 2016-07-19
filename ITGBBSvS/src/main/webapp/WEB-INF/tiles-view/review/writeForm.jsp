@@ -84,10 +84,10 @@
 						<p></td>
 				</tr>
 				<tr>
-					<td colspan=2 bgcolor="#b0e0e6" align="center"><input
-						type="submit" value="글쓰기"> <input type="reset"
-						value="다시작성"> <input type="button" value="목록보기"
-						OnClick="window.location='list.do'"></td>
+					<td colspan=2 bgcolor="#b0e0e6" align="center">
+					<input type="submit" value="글쓰기"> 
+					<input type="reset" value="다시작성"> 
+					<input type="button" value="목록보기" OnClick="window.location='list.do'"></td>
 				</tr>
 			</table>
 		</form>

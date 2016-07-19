@@ -22,6 +22,35 @@ public class EventDTO {
 	private String eimg; // 행사이미지
 	private double lat; // 위도
 	private double lng; // 경도
+	private String beginStr;
+	private String endStr;
+	/**
+	 * @return the beginStr
+	 */
+	public String getBeginStr() {
+		return beginStr;
+	}
+
+	/**
+	 * @return the endStr
+	 */
+	public String getEndStr() {
+		return endStr;
+	}
+
+	/**
+	 * @param beginStr the beginStr to set
+	 */
+	public void setBeginStr(String beginStr) {
+		this.beginStr = beginStr;
+	}
+
+	/**
+	 * @param endStr the endStr to set
+	 */
+	public void setEndStr(String endStr) {
+		this.endStr = endStr;
+	}
 
 	public int getEvnum() {
 		return evnum;
@@ -147,8 +176,9 @@ public class EventDTO {
 	public String toString() {
 		return "EventDTO [evnum=" + evnum + ", eperm=" + eperm + ", host=" + host + ", ename=" + ename + ", begin="
 				+ begin + ", end=" + end + ", location=" + location + ", eimg=" + eimg + ", lat=" + lat + ", lng=" + lng
-				+ "]";
+				+ ", beginStr=" + beginStr + ", endStr=" + endStr + "]";
 	}
-	
+
+
 	
 }

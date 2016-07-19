@@ -27,6 +27,7 @@
     <bean class="inc.itgbbs.controller.ReviewUpdateController" />
     <bean class="inc.itgbbs.controller.ReviewDeleteController" />
     <bean class="inc.itgbbs.controller.ReviewReplyWriteController" />
+    
     <bean class="inc.itgbbs.dao.LoginDaoImpl" />
     <bean class="inc.itgbbs.controller.LoginMenuController" />
         
@@ -34,6 +35,11 @@
     <bean class="inc.itgbbs.controller.EventListController" />
     <bean class="inc.itgbbs.controller.EventWriteController" />
     <bean class="inc.itgbbs.controller.EventContentController" />
+    <bean class="inc.itgbbs.controller.EventUpdateController" />
+    <bean class="inc.itgbbs.controller.EventDeleteController" />
+    
+    <bean class="inc.itgbbs.controller.LocSearchController" />
+    
     <bean id="downloadView" class="com.board.view.DownloadView" />
 
     <!-- tiles (ViewResolver)설정 -->

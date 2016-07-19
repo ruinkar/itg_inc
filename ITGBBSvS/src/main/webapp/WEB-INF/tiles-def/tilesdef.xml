@@ -70,14 +70,29 @@
         <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventMain.jsp" />
     </definition>
 
-    <definition name="eventWriteForm" extends="reviewList">
+    <definition name="eventWriteForm" extends="eventList">
         <put-attribute name="title" value="행사 쓰기" />
         <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventWrite.jsp" />
     </definition>
 
-<definition name="eventContentForm" extends="reviewList">
+<definition name="eventContentForm" extends="eventList">
         <put-attribute name="title" value="행사 보기" />
         <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventContent.jsp" />
     </definition>
 
+<definition name="eventUpdateForm" extends="eventList">
+        <put-attribute name="title" value="글쓰기" />
+        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventModify.jsp" />
+    </definition>
+
+<definition name="eventDeleteForm" extends="eventList">
+        <put-attribute name="title" value="글삭제" />
+        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/deleteForm.jsp" />
+    </definition>
+    
+
+<definition name="LocSearchForm" template="/WEB-INF/tiles-view/evinfo/mapsearch.jsp">
+    <put-attribute name="title" value="위치 검색" />
+    </definition>
+    
 </tiles-definitions>

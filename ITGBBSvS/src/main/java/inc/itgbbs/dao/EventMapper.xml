@@ -96,14 +96,14 @@
     </select>
     
     <!-- 글쓰기 -->
- <insert id="insertReview" parameterType="BoardDTO">
+ <insert id="insertBoard" parameterType="BoardDTO">
      INSERT INTO BOARD (ANUM, WRITER, CATEGORY, ADATE, IP, TITLE, ACONTENT, TAG1, TAG2, TAG3, TAG4,TAG5 , AFILE )
             VALUES  ( #{anum},#{writer},#{category},sysdate, #{ip},#{title},#{acontent} ,#{tag1},#{tag2},#{tag3},#{tag4},#{tag5} ,#{afile})
  </insert>
  
- <insert id="insertRating" parameterType="ReviewDTO">
-     INSERT INTO REVIEW (ANUM, EVNUM, RATING ) 
-     VALUES  (#{anum},#{evnum}, #{rating})
+ <insert id="insertEvent" parameterType="EventDTO">
+     INSERT INTO EVENT (EVNUM, EPERM, HOST, ENAME, "BEGIN", "END", LOCATION, EIMG, LAT, LNG ) 
+     VALUES  ( #{evnum},#{eperm}, #{host},#{ename},#{begin},#{end},#{location},#{eimg},#{lat},#{lng} )
  </insert>   
  
  
@@ -149,12 +149,13 @@
             ]]>  
     </select>
  <!-- 업데이트 리뷰 -->
- <update id="updateReview" parameterType="BoardDTO">
+ <update id="updateboard" parameterType="BoardDTO">
     UPDATE BOARD SET TITLE = #{title}, ACONTENT = #{acontent}, AFILE = #{afile:VARCHAR}, TAG1 = #{tag1}, TAG2 = #{tag2}, TAG3 = #{tag3}, TAG4 = #{tag4}, TAG5 = #{tag5} WHERE (ANUM = #{anum})
  </update>
  
- <update id="updateRating" parameterType="ReviewDTO">
-    UPDATE REVIEW SET EVNUM = #{evnum}, RATING = #{rating} WHERE (ANUM = #{anum})
+ <update id="updateevent" parameterType="EventDTO">
+    UPDATE EVENT SET HOST = #{host}, ENAME = #{name}, 
+    "BEGIN" = #{begin}, "END" = #{end}, LOCATION = #{location}, EIMG = #{eimg}, LAT = #{lat}, LNG = #{lng} WHERE (EVNUM = ${evnum})
  </update>
  
 

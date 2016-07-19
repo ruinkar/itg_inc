@@ -11,13 +11,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import inc.itgbbs.dao.ReviewDao;
+import inc.itgbbs.dao.EventDao;
 import inc.itgbbs.domain.BoardDTO;
-import inc.itgbbs.domain.ReviewDTO;
+import inc.itgbbs.domain.EventDTO;
 import inc.itgbbs.util.FileUtil;
+import inc.itgbbs.util.TimeConvert;
 
 @Controller
 public class EventWriteController {
@@ -25,7 +24,7 @@ public class EventWriteController {
 	private Logger log=Logger.getLogger(this.getClass());
 	
 	@Autowired
-	private ReviewDao reviewDao;//메서드호출
+	private EventDao eventDao;//메서드호출
 
 	/*
 	  public void setMemberDao(MemberDao memberDao) {
@@ -44,17 +43,20 @@ public class EventWriteController {
 	//커맨드 객체 초기화->사용자로부터 값을 입력받은 부분(객체)->Model
 	@ModelAttribute("command")
 	//public MemberCommand test(){
-	public BoardDTO formBacking(){
-		System.out.println("formBacking()호출됨");
+	public BoardDTO makeBoardDTO(){
+		System.out.println("makeBoardDTO()호출됨");
 		return new BoardDTO();
 	}
+	
+	
 	
 	//2.Post방식
 	@RequestMapping(value="/evinfo/eventWrite.do",method=RequestMethod.POST)
 	public String submit(@ModelAttribute("command") BoardDTO command,
-									@ModelAttribute("review") ReviewDTO review,
-			                        BindingResult result){
-		System.out.println("writeForm post="+command +"review="+ review);
+									@ModelAttribute("event") EventDTO event,
+									BindingResult result,
+									HttpServletRequest request){
+		System.out.println("writeForm post="+command +"event=" + event);
 //		ReviewDTO review = null;
 		//전달되는 입력값들,유효성검사 결과값
 		if(log.isDebugEnabled()){
@@ -76,23 +78,32 @@ public class EventWriteController {
 						             (command.getUpload().getOriginalFilename());
 				System.out.println("newName="+newName);
 				command.setAfile("/img/"+newName);//DB에 저장하기 직전에 저장(변경파일명)
+				event.setEimg("/img/"+newName);//DB에 저장하기 직전에 저장(변경파일명)
+			}
+			else
+			{
+				command.setAfile(" ");//DB에 저장하기 직전에 저장(변경파일명)
+				event.setEimg(" ");//DB에 저장하기 직전에 저장(변경파일명)
 			}
 			//최대값을 구하기->+1
-			int newSeq=reviewDao.getNewAnum()+1;
-			System.out.println("boardDao.getNewSeq()="+reviewDao.getNewAnum());
+			int newSeq=eventDao.getNewAnum()+1;
+			System.out.println("eventDao.getNewSeq()="+eventDao.getNewAnum());
 			System.out.println("newSeq="+newSeq);
 			
 			command.setAnum(newSeq);
-			HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-			String ip = req.getHeader("X-FORWARDED-FOR");
-			if (ip == null)
-			ip = req.getRemoteAddr();
+			String ip = request.getRemoteAddr();
 			command.setIp(ip);
+			command.setCategory(1); // 이벤트
+			TimeConvert tc = new TimeConvert();
+			event.setBegin(tc.strToTimeStamp(event.getBeginStr()));
+			event.setEnd(tc.strToTimeStamp(event.getEndStr()));
+			eventDao.insertBoard(command);
+			System.out.println("writeForm post="+command +"event="+event);
+			event.setEvnum(command.getAnum());
+			eventDao.insertEvent(event);
 			
-			review.setAnum(command.getAnum());
 			
-			reviewDao.insertReview(command);//파일업로드인 경우만 따로 처리->DB에 저장
-			reviewDao.insertRating(review);
+			
 			
 		    ///실질적인 업로드가 될 수있도록
 		    if(!command.getUpload().isEmpty()){ //탐색기의 파일=>업로드위치 복사
@@ -103,6 +114,6 @@ public class EventWriteController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return "redirect:/review/list.do";//redirect:/요청명령어
+		return "redirect:/evinfo/list.do";//redirect:/요청명령어
 	}
 }

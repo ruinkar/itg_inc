@@ -51,21 +51,6 @@ public interface ReviewDao {
   
   // 댓글 삭제
   public void deleteReply(Integer anum);
-/*   
-   
-   //4.게시판의 글쓰기
-   public void insert(BoardCommand board);
-   
-   //5.글 상세보기
-   public BoardCommand selectBoard(int seq);
-  
-   //6.조회수 증가
-   public void updateHit(int seq);
-   
-   //7.글 수정하기
-   public void update(BoardCommand board);
-   
-   //8.글 삭제하기
-   public void delete(Integer seq);*/
+
 }
 

@@ -38,7 +38,13 @@ td{align:center; width:180px; height:50px;}
 			name="calendarButton" value="달력형" onclick="" /> <input type="button"
 			style="width: 120px; height: 120px; background-color: cyan"
 			name="mapButton" value="지도형" onclick="" />
-			<input type="button" value="행사글올리기" OnClick="window.location='eventWrite.do'"/>
+			<c:choose>
+                <c:when test="${not empty sessionScope.userLoginInfo}">
+                <input type="button" value="행사글올리기" OnClick="window.location='eventWrite.do'"/>
+            </c:when>
+            </c:choose>
+            
+			
 	</div>
 	<div id="mainContent">
 		<!-- <img src="../images/fonz2.png" style="width: 560px; height: 400px"></img>

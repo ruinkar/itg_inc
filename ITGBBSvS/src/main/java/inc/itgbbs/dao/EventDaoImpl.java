@@ -50,7 +50,31 @@ public class EventDaoImpl extends SqlSessionDaoSupport
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("Event.selectevent",anum);
 	}
-	
+	@Override
+	public int getNewAnum() {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("Event.getNewAnum");
+	}
+	@Override
+	public void insertBoard(BoardDTO board) {
+		// TODO Auto-generated method stub
+		getSqlSession().insert("Event.insertBoard", board);
+	}
+	@Override
+	public void insertEvent(EventDTO event) {
+		// TODO Auto-generated method stub
+		getSqlSession().insert("Event.insertEvent", event);
+	}
+	@Override
+	public void updateboard(BoardDTO board) {
+		// TODO Auto-generated method stub
+		getSqlSession().update("Event.updateboard" , board);
+	}
+	@Override
+	public void updateevent(EventDTO event) {
+		// TODO Auto-generated method stub
+		getSqlSession().update("Event.updateevent" , event);
+	}
 	
 	/*public List<BoardDTO> rankList() {
 		// TODO Auto-generated method stub
@@ -88,21 +112,7 @@ public class EventDaoImpl extends SqlSessionDaoSupport
 		List<BoardDTO> list=getSqlSession().selectList("Review.getReplies" , anum);
 		return list;
 	}
-	@Override
-	public int getNewAnum() {
-		// TODO Auto-generated method stub
-		return getSqlSession().selectOne("Review.getNewAnum");
-	}
-	@Override
-	public void insertReview(BoardDTO board) {
-		// TODO Auto-generated method stub
-		getSqlSession().insert("Review.insertReview", board);
-	}
-	@Override
-	public void insertRating(ReviewDTO review) {
-		// TODO Auto-generated method stub
-		getSqlSession().insert("Review.insertRating", review);
-	}
+	
 	@Override
 	public Integer getEventCount(Map<String, Object> map) {
 		// TODO Auto-generated method stub
