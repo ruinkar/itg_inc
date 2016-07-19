@@ -3,15 +3,15 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MPage">
-	<select id="meminfo" parameterType="int" resultType="MemberDTO">
-		select * from member where id = #{id}
+	<select id="meminfo" parameterType="string" resultType="MemberCommand">
+		select nick, mpoint from member where id = #{id}
 	</select>
 	
 	<select id="count" parameterType="string" resultType="int">
 		select count(*) from board where writer = #{id}
 	</select>
 	
-	<select id="list" parameterType="PageCommand" resultType="BoardDTO">
+	<select id="list" parameterType="PageCommand" resultType="BoardCommand">
 		select * 
 		from (
 			select * 
@@ -20,8 +20,8 @@
 				from board 
 				where writer = #{id}
 		<![CDATA[
-			) where rnum <= #{endCount}
-		) where rnum >= #{startCount}
+			) where rnum <= #{end}
+		) where rnum >= #{start}
 		]]>
 	</select>
 </mapper>

@@ -8,27 +8,25 @@
 <title></title>
 <style>
 *{margin:0; padding:0; border-style:none; }
-
+#wrapper-list {margin:auto; }
+#list {};
 
 </style>
 <script>
 $(function() {
-	var json = 
+	itg.mpage.init();
+	itg.mpage.print('${json_list}');
 });
 </script>
 </head>
 <body>
-<div>
-	<div>
+	<div><!-- 
+	--><div>${mem.nick}</div><!-- 
+	--><div>${mem.mpoint}</div>
 	</div>
-	<div>
-	</div>
-</div>
-
-	<div>
-		<ul id="list">
-		
-		</ul>
-	</div>
+	<div id="wrapper-list">
+		<ul id="list"></ul>
+	</div><!-- 
+	--><div>${pagingHTML}</div>
 </body>
 </html>

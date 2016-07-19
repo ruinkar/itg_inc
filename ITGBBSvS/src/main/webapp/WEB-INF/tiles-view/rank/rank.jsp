@@ -17,7 +17,7 @@ $(function() {
 	var json_page = JSON.parse('${json_page}');
 	
 	// 초기화
-	itg.init('${rtype}');
+	itg.initRank('${rtype}');
 	itg.print(json_top, json_page); // 출력
 	
 }); // $.ready()

@@ -4,6 +4,7 @@
  * stage_top 상단 랭크용 작업 객체
  * rank_list 하단 랭크용 작업 객체
  * pages 페이징 작업 객체
+ * mpage 회원 활동정보 페이지
  */
 
 var itg = {
@@ -14,9 +15,13 @@ var itg = {
 	rtype: 0,
 	stage_top: {}, // 상위 랭크
 	rank_list: {}, // 나머지 랭크 페이지
-	pages: {}
+	pages: {},
+	mpage: {}
 };
 
+
+// rank..
+// 사이즈 초기화
 itg.getSizeBG = function() {
 	var h = $(window).height();
 	
@@ -34,7 +39,7 @@ itg.getSizeBG = function() {
 }
 
 // 초기화
-itg.init = function(rtype) {
+itg.initRank = function(rtype) {
 	
 	this.getSizeBG();
 	
@@ -100,6 +105,13 @@ itg.stage_top.print = function(json_high) {
 			background: itgUtil.thumbCheck(this.thumbnail)
 		});
 		
+		var mid = this.mid
+		
+		$box.eq(index).on("click", function() {
+			
+			location.href = "memberInfo.do?id=" + mid;
+		});
+		
 		console.log(+itg.rtype === 0);
 		var meminfo = [this.nick, (+itg.rtype === 0? this.mpoint : Math.floor(this.avgrat * 10)/10 ) ];
 		var classname = ["text-nick", "text-point"];
@@ -111,10 +123,7 @@ itg.stage_top.print = function(json_high) {
 			$span.addClass(classname[i]);
 			$box.eq(index).append(span);
 		}
-	});
-	
-	$box.on("click", function(){
-		location.href="http://www.naver.com";
+		
 	});
 }; // itg.stage_top.print()
 
@@ -213,6 +222,52 @@ itg.pages.flip = function() {
 
 	return false;
 }
+
+
+//mpage..
+
+itg.mpage.init = function () {
+	
+	itg.mpage.initSize();
+}
+
+itg.mpage.initSize = function () {
+	
+}
+
+itg.mpage.print = function (str) {
+	var json = JSON.parse(str);
+	
+	var pageType = ["Board.do","EvInfo.do","Review.do","Reply.do"];
+	var param1 = "?anum=";
+	
+	var eh = "에 ";
+	var boardType = ["게시물을", "행사 정보를", "행사 후기를", "댓글을"];
+	var suffix = "작성하였습니다."
+	
+	$(json).each(function(){
+		var cat = this.category;
+		
+		var li = document.createElement("li");
+		var a = document.createElement("a");
+		var div = document.createElement("div");
+		
+		var $li = $(li);
+		var $a = $(a);
+		var $div = $(div);
+		
+		$div.text(this.adate + eh + boardType[cat] + suffix);
+		
+		$a.attr("href", pageType[cat] + param1 + this.anum);
+		$a.text(this.title);
+		
+		$li.append(div);
+		$li.append(a);
+		$("#list").append(li);
+	});
+	
+}
+
 
 var itgUtil = {
 		

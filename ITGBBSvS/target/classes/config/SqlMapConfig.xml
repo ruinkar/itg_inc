@@ -3,9 +3,11 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias alias="RankCommand" type="inc.itgbbs.domain.RankCommand" />
 		<typeAlias alias="PagingUtil" type="inc.itgbbs.util.PagingUtil" />
+		<typeAlias alias="RankCommand" type="inc.itgbbs.domain.RankCommand" />
 		<typeAlias alias="PageCommand" type="inc.itgbbs.domain.PageCommand" />
+		<typeAlias alias="MemberCommand" type="inc.itgbbs.domain.MemberCommand" />
+		<typeAlias alias="BoardCommand" type="inc.itgbbs.domain.BoardCommand" />
 	</typeAliases>
 
 	<mappers>

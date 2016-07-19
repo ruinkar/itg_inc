@@ -53,7 +53,7 @@ public class RankCommand {
 	public String toString() {
 
 		String[] MEMBER = { 
-				"id", 		// 아이디
+				"mid", 		// 아이디
 				"nick", 	// 닉네임
 				"thumbnail",// 섬네일(등록사진)
 				"mpoint",	// 회원포인트
