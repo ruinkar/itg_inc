@@ -95,4 +95,11 @@
     <put-attribute name="title" value="위치 검색" />
     </definition>
     
+<definition name="eventMap" extends="eventList">
+
+<!-- <definition name="eventMap" template="/WEB-INF/tiles-view/evinfo/eventMap.jsp"> -->
+    <put-attribute name="title" value="이벤트 맵 리스트" />
+    <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventMap.jsp" />
+    </definition>    
+    
 </tiles-definitions>

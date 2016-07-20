@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import inc.itgbbs.dao.EventDao;
+import inc.itgbbs.dao.EventDaoImpl;
 import inc.itgbbs.domain.EventDTO;
 import inc.itgbbs.util.ContentPath;
 import inc.itgbbs.util.PagingUtil;
@@ -29,7 +30,7 @@ public class EventListController implements ContentPath {
 		this.memberDao = memberDao;
 		System.out.println("setMemberDao()호출됨");
 	}*/
-	
+	 
 	//요청받아 처리해주는 메서드 작성
 	@RequestMapping(EVINFO+"/list.do")
 	public ModelAndView process
@@ -88,5 +89,39 @@ public class EventListController implements ContentPath {
 		
 		return mav;
 	}
+	
+	
+		
+	@RequestMapping(EVINFO+"/eventMap.do")
+	public ModelAndView process (){
+		
+		List<EventDTO> list=null;//레코드들을 담을 객체변수선언
+		list=eventDao.listmap();
+		StringBuffer json = new StringBuffer("{"); 
+		 		json.append("\"MapJson\":"+ list2Json(list) ); 
+		 		json.append("}");
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("eventMap");
+		mav.addObject("listmap",json);
+		
+			return mav;
+		}
+	
+	// setJsonData로 만든 List를 Json 배열형태로 최종 포장 
+	public String list2Json(List<EventDTO> list) { 
+		int size = list.isEmpty() ? 0 : list.size(); 
+	
+	 
+			StringBuffer json = new StringBuffer("["); 
+			for (int i = 0; i < size; i++) { 
+				String data = list.get(i).toMapJSON(); 
+				json.append(data + (i < size - 1 ? "," : "") ); 
+			} 
+			json.append("]"); 
+	
+			// System.out.println(json); 
+			return json.toString(); 
+		} 
+
 }
 

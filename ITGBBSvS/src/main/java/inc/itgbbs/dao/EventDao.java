@@ -12,8 +12,8 @@ public interface EventDao {
    public List<EventDTO> list(Map<String,Object> map);
    //2.총레코드수
    public int getRowCount(Map<String,Object>map);
-
-   
+   //1.지도에 갯수 표시
+   public List<EventDTO> listmap();
    //6.조회수 증가
    public void updateReadCount(Integer anum);
   // 이벤트 정보 가져오기

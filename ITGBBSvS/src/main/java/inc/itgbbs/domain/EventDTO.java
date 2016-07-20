@@ -169,6 +169,41 @@ public class EventDTO {
 		return result;
 	}
 
+	
+	// json 형태 출력
+		public String toMapJSON() {
+
+			String[] EVENT = { 
+					"host", // 주최자
+					"ename", // 행사명
+					"begin", // 행사시작일
+					"end", // 행사종료일
+					"location", // 행사위치
+					"eimg", // 행사이미지
+					"lat", // 위도
+					"lng" // 경도
+			};
+
+			Object[] values = { 
+					host, // 주최자
+					ename, // 행사명
+					begin, // 행사시작일
+					end, // 행사종료일
+					location, // 행사위치
+					eimg, // 행사이미지
+					lat, // 위도
+					lng // 경도
+			};
+
+			String result = "{";
+			for (int i = 0; i < EVENT.length; i++) {
+				result += "\"" + EVENT[i] + "\" : \"" + String.valueOf(values[i]) + "\""
+						+ (i >= EVENT.length - 1 ? "" : ", ");
+			}
+			result += "}";
+
+			return result;
+		}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

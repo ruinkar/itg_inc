@@ -1,1 +1,7 @@
 /inc/
+/base/
+/com/
+/config/
+/legacy/
+/log4j.xml
+/messages/

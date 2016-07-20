@@ -32,12 +32,11 @@ td{align:center; width:180px; height:50px;}
 <body>
     <div id="leftMenu">
 		<input type="button"
-			style="width: 120px; height: 120px; background-color: hotpink"
-			name="postButton" value="포스트형" onclick="" /> <input type="button"
-			style="width: 120px; height: 120px; background-color: lime"
-			name="calendarButton" value="달력형" onclick="" /> <input type="button"
-			style="width: 120px; height: 120px; background-color: cyan"
-			name="mapButton" value="지도형" onclick="" />
+			style="width: 120px; height: 120px; background-color: hotpink" name="postButton" value="포스트형" onclick="" />
+			 <input type="button"
+			style="width: 120px; height: 120px; background-color: lime" name="calendarButton" value="달력형" onclick="" /> 
+			<input type="button"
+			style="width: 120px; height: 120px; background-color: cyan" name="mapButton" value="지도형" onclick="window.location='eventMap.do'" />
 			<c:choose>
                 <c:when test="${not empty sessionScope.userLoginInfo}">
                 <input type="button" value="행사글올리기" OnClick="window.location='eventWrite.do'"/>

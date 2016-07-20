@@ -75,6 +75,11 @@ public class EventDaoImpl extends SqlSessionDaoSupport
 		// TODO Auto-generated method stub
 		getSqlSession().update("Event.updateevent" , event);
 	}
+	@Override
+	public List<EventDTO> listmap() {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectList("Event.selectmap");
+	}
 	
 	/*public List<BoardDTO> rankList() {
 		// TODO Auto-generated method stub

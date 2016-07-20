@@ -172,6 +172,9 @@
             VALUES  ( #{anum},#{writer}, #{category},sysdate, '192.168.0.2', #{title}, #{acontent}, #{pnum} )
  </insert>
  
+ <select id="selectmap" resultType="EventDTO">
+ select * from event
+ </select>
  </mapper>
 
 
