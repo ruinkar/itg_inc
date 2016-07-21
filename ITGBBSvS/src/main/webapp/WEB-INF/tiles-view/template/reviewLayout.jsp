@@ -11,6 +11,9 @@
 <title><tiles:getAsString name="title" /></title>
 <tiles:insertAttribute name="css" />
 <tiles:insertAttribute name="js" />
+<style>
+{ margin:0px; padding:0px; }
+</style>
 </head>
 <body>
 

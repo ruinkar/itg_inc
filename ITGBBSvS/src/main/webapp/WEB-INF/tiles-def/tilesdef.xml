@@ -60,7 +60,7 @@
     
     
     <definition name="eventList" template="/WEB-INF/tiles-view/template/eventmenuTemplate.jsp">
-        <put-attribute name="title" value="후기 페이지" />
+        <put-attribute name="title" value="행사 페이지" />
         <put-attribute name="css"
             value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
         <put-attribute name="js"

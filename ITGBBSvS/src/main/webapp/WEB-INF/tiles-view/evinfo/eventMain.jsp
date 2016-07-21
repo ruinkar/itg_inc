@@ -6,20 +6,13 @@
 
 <style type="text/css">
 div#mainContent {
- 	width: 800px;
-	height: 1500px;
-	float: left; 
+ 	/* width: 800px;
+	height: 1500px;*/
+	float: left;  
 }
  
-.box {margin:0 10px 10px 0; display:inline-block; }
-.box_top {width:180px; height:180px; background-color:green; }
-.box_bottom {width:180px; height:180px; background-color:yellow; }
-td{align:center; width:180px; height:50px;}
-
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<div id="mainContent">
-<!-- Container (Portfolio Section) -->
 <div class="container-fluid text-center bg-grey">
 	<div class="row text-center">
 		<c:forEach var="article" items="${articleList}">
@@ -38,7 +31,6 @@ td{align:center; width:180px; height:50px;}
 	</div>
 </div>
 <center>${pagingHtml }</center>
-</div>
 
 <%-- <div id="mainContent">
 		<br/>

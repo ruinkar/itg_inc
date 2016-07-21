@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <style>
-/* * { margin:0px; padding:0px; } */
 /* Animation Canvas */
 .animation_canvas {
 	overflow: hidden;

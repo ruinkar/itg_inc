@@ -11,6 +11,7 @@
 <title><tiles:getAsString name="title" /></title>
 <tiles:insertAttribute name="css" />
 <tiles:insertAttribute name="js" />
+
 </head>
 <body>
 
@@ -26,7 +27,6 @@
     </tr>
     
 </table>
-
 
 </body>
 </html>
