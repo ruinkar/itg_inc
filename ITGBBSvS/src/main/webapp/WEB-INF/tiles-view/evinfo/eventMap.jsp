@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!doctype html>
-<html>
-  <head>
+
     <meta charset="utf-8">
-    <title>이벤트 맵</title>
     <style >
       body {
         margin: 0;
@@ -99,10 +96,9 @@
       }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-  </head>
-  <body>
-    <div id="map-container"><div id="map"></div></div>
-    <div id="map-info">
+
+    <div id="map-container" class="col-xs-8"><div id="map"></div></div>
+    <div id="map-info" class="col-xs-4">
 			<dl>
 				<h3>제목</h3>
                 <dd id="ename"></dd>
@@ -115,6 +111,6 @@
 				<h3>장소</h3>
 				<dd id="loc"></dd>
 				</dl>
-		</div></body>
-</html>
+		</div>
+
 
