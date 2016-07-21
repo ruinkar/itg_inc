@@ -22,7 +22,7 @@ public class MPageDao extends SqlSessionDaoSupport implements IMPageDao {
 	
 	@Override
 	public List list(PageCommand pageCommand) {
-		System.out.println(pageCommand.getStart() + " " + pageCommand.getEnd());
+		// System.out.println(pageCommand.getStart() + " " + pageCommand.getEnd());
 		return getSqlSession().selectList("MPage.list", pageCommand);
 	}
 

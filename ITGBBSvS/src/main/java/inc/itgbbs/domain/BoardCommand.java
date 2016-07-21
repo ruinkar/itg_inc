@@ -1,6 +1,7 @@
 ﻿package inc.itgbbs.domain;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  * board(게시판) 테이블의 DTO 클래스
@@ -13,6 +14,16 @@ public class BoardCommand {
 	private Timestamp adate; // 작성날짜
 	private String title; // 제목\
 	private int pnum; // 대상글번호
+	
+	private String time; // 경과시간
+	
+	public String getTime() {
+		long result = Timestamp.from(Instant.now()).getTime() - adate.getTime();
+		
+		
+		
+		return time;
+	}
 
 	public int getAnum() {
 		return anum;

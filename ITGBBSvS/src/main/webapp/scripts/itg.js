@@ -249,6 +249,7 @@ itg.mpage.init = function (id) {
 }
 
 itg.mpage.print = function (json) {
+	$("#list").html("");
 	
 	var pageType = ["Board.do","EvInfo.do","Review.do","Reply.do"];
 	var param1 = "?anum=";

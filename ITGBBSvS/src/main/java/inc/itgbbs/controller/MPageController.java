@@ -94,7 +94,7 @@ public class MPageController {
 		}
 		json.append(']');
 
-		// System.out.println(json);
+		System.out.println(json);
 		return json.toString();
 	}
 	
