@@ -6,12 +6,13 @@
 <%
 	String contextPath = request.getContextPath();
 %>
+
+
 <ul>
 	<li><a href="<%=contextPath%>/review/list.do">리뷰보기</a></li>
 	<li><a href="<%=contextPath%>/review/writeForm.do">리뷰 쓰기</a></li>
 	<li><a href="<%=contextPath%>/evinfo/list.do">행사보기</a></li>
 </ul>
-
 <c:choose>
 <c:when test="${not empty sessionScope.userLoginInfo}">
           <center>
@@ -29,17 +30,19 @@
 			<tr height="40px">
 				                
 				<td>유저ID</td>                 
+				</tr>
+				<tr height="40px">
 				<td><input type="text" name="id"></td>             
 			</tr>
 			<tr height="40px">
 				<td>패스워드</td>                 
-				<td><input type="password" name="password"></td>	            
+			</tr>
+            <tr height="40px">
+            	<td><input type="password" name="password"></td>	            
 			</tr>
 		</table>
-		        
 		<table>    
 			<tr>
-				                
 				<td align="center"><input type="submit" value="로그인"></td>
 				                
 				<td align="center"><input type="reset" value="리셋"></td>

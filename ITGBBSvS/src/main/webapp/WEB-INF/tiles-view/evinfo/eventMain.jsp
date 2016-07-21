@@ -3,20 +3,12 @@
 	pageEncoding="UTF-8" import="legacy.model.*, java.util.*, java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<style type="text/css">
-div#leftMenu {
-	width: 200px;
-	height: 700px;
-	float: left;
-}
 
+<style type="text/css">
 div#mainContent {
-	width: 800px;
+ 	width: 800px;
 	height: 1500px;
-	float: left;
+	float: left; 
 }
  
 .box {margin:0 10px 10px 0; display:inline-block; }
@@ -26,28 +18,29 @@ td{align:center; width:180px; height:50px;}
 
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>EventMain</title>
-</head>
-
-<body>
-    <div id="leftMenu">
-		<input type="button"
-			style="width: 120px; height: 120px; background-color: hotpink" name="postButton" value="포스트형" onclick="" />
-			 <input type="button"
-			style="width: 120px; height: 120px; background-color: lime" name="calendarButton" value="달력형" onclick="" /> 
-			<input type="button"
-			style="width: 120px; height: 120px; background-color: cyan" name="mapButton" value="지도형" onclick="window.location='eventMap.do'" />
-			<c:choose>
-                <c:when test="${not empty sessionScope.userLoginInfo}">
-                <input type="button" value="행사글올리기" OnClick="window.location='eventWrite.do'"/>
-            </c:when>
-            </c:choose>
-            
-			
+<div id="mainContent">
+<!-- Container (Portfolio Section) -->
+<div class="container-fluid text-center bg-grey">
+	<div class="row text-center">
+		<c:forEach var="article" items="${articleList}">
+			<div class="col-sm-3">
+				<div class="thumbnail">
+					<a href="eventContent.do?anum=${article.evnum}&pageNum=${currentPage}">
+						<img src="${article.eimg}" alt="Paris" width="400" height="300">
+							<p>
+								<strong>${article.ename}</strong>
+							</p>
+							<p>${article.host}</p> </img>
+							</a>
+				</div>
+			</div>
+		</c:forEach>
 	</div>
-	<div id="mainContent">
-		<!-- <img src="../images/fonz2.png" style="width: 560px; height: 400px"></img>
-		 -->
+</div>
+<center>${pagingHtml }</center>
+</div>
+
+<%-- <div id="mainContent">
 		<br/>
 		
 	   <c:if test="${count > 0}">
@@ -85,7 +78,6 @@ td{align:center; width:180px; height:50px;}
 			<center>
 			 ${pagingHtml }
 			 </center>
-	</div>
-	
-</body>
-</html>
+	</div> --%>
+
+

@@ -59,15 +59,17 @@
     </definition>
     
     
-    <definition name="eventList" template="/WEB-INF/tiles-view/template/reviewLayout.jsp">
+    <definition name="eventList" template="/WEB-INF/tiles-view/template/eventmenuTemplate.jsp">
         <put-attribute name="title" value="후기 페이지" />
         <put-attribute name="css"
             value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
         <put-attribute name="js"
             value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
+            
         <put-attribute name="menu"
             value="/WEB-INF/tiles-view/template/menu.jsp" />
         <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventMain.jsp" />
+        <put-attribute name="top" value="/WEB-INF/tiles-view/template/top.jsp" />
     </definition>
 
     <definition name="eventWriteForm" extends="eventList">
@@ -81,12 +83,12 @@
     </definition>
 
 <definition name="eventUpdateForm" extends="eventList">
-        <put-attribute name="title" value="글쓰기" />
+        <put-attribute name="title" value="행사 수정하기" />
         <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventModify.jsp" />
     </definition>
 
 <definition name="eventDeleteForm" extends="eventList">
-        <put-attribute name="title" value="글삭제" />
+        <put-attribute name="title" value="행사 삭제" />
         <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/deleteForm.jsp" />
     </definition>
     

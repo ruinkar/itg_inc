@@ -3,13 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
-// int count = (Integer)request.getAttribute("count");
-// → ${count}
-%>
-<html>
-<head>
-<title>후기 게시판</title>
 
 <style>
 /* * { margin:0px; padding:0px; } */
@@ -87,7 +80,6 @@
 	top: -31px;
 }
 </style>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
          $(document).ready(function () {
             // 슬라이더를 움직여주는 함수
@@ -118,9 +110,7 @@
             moveSlider(randomNumber);
         }); 
     </script>
-        
-</head>
-<body bgcolor="#e0ffff">
+
 	<center>
 
 		<c:if test="${count > 0}">
@@ -170,17 +160,17 @@
                 
 		    <c:choose>
                 <c:when test="${not empty sessionScope.userLoginInfo}">
-                <td align="right" bgcolor="#b0e0e6"><a href="writeForm.do">글쓰기</a>
+                <td align="right" ><a href="writeForm.do">글쓰기</a>
                 </td>
             </c:when>
             <c:otherwise>
-            <td align="right" bgcolor="#b0e0e6">로그인 하시면 글 작성이 가능합니다.</a>
+            <td align="right" >로그인 하시면 글 작성이 가능합니다.</a>
             </c:otherwise>
             </c:choose>
 			
 		</table>
 		<table border="1" width="700" cellpadding="0" cellspacing="0"
-			align="center">
+			align="center" class="table table-bordered table-hover">
 
 			<c:if test="${count == 0}">
 				<tr>
@@ -189,15 +179,17 @@
 			</c:if>
 
 			<c:if test="${count > 0}">
-				<tr height="30" bgcolor="#b0e0e6">
-					<td align="center" width="50">번 호</td>
-					<td align="center" width="250">제 목</td>
-					<td align="center" width="100">작성자</td>
-					<td align="center" width="150">작성일</td>
-					<td align="center" width="50">조 회</td>
-					<td align="center" width="100">IP</td>
-				</tr>
-
+				<thead height="30" bgcolor="#b0e0e6">
+				<tr>
+					<th align="center" width="50">번 호</th>
+					<th align="center" width="250">제 목</th>
+					<th align="center" width="100">작성자</th>
+					<th align="center" width="150">작성일</th>
+					<th align="center" width="50">조 회</th>
+					<th align="center" width="100">IP</th>
+					</tr>
+				</thead>
+                <tbody>
 				<!-- 실제 레코드를 출력하는 부분(for) -->
 				<c:forEach var="article" items="${articleList}">
 
@@ -215,31 +207,11 @@
 						<td align="center" width="100">${article.ip}</td>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</c:if>
 		</table>
 		<!-- 페이징 처리 -->
 		${pagingHtml }
-<%-- 
-		<c:if test="${startPage>blockSize}">
-			<a
-				href="list.do?pageNum=${startPage-blockSize}&search=${search}&searchtext=${searchtext}">[이전]</a>
-		</c:if>
-		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			<a
-				href="list.do?pageNum=${i}&search=${search}&searchtext=${searchtext}">
-				<c:if test="${currentPage==i}">
-					<font color="red"><b> [${i}]</b></font>
-				</c:if> <c:if test="${currentPage!=i}">
-					<b>[${i}]</b>
-				</c:if>
-			</a>
-
-		</c:forEach>
-		<c:if test="${endPage<pageCount}">
-			<a
-				href="list.do?pageNum=${startPage+blockSize}&search=${search}&searchtext=${searchtext}">[다음]</a>
-		</c:if> --%>
-		<!-- 검색어를 추가 -->
 		<p>
 		<form action="list.do" name="search">
 			<select name="keyField">
@@ -253,5 +225,3 @@
 		</form>
 		<p>
 	</center>
-</body>
-</html>

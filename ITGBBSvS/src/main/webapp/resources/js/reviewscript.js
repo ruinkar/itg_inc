@@ -42,3 +42,4 @@ function locCheck(){
 	 		"status=yes,scrollbars=yes,menubar=no");
 }
 
+

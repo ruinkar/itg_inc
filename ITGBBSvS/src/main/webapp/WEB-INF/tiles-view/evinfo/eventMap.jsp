@@ -21,7 +21,19 @@
         -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
         -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
         box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
-        width: 800px;
+        width: 820px;
+        float: left;
+      }
+      #map-info {
+        padding: 6px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ccc #ccc #999 #ccc;
+        -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+        width: 300px;
+        height: 600px;
         float: left;
       }
       #map {
@@ -31,6 +43,7 @@
       height: 600px;      }
       #map-info{
       float: left;
+      margin:10px;
       }
     </style>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js">  </script>

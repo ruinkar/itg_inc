@@ -45,7 +45,7 @@
 		<div class="info_sec">
 			<p class="img">
 				<a href="file.do?filename=${earticle.eimg}" target="_blank" title="새창 열림">
-					<img src='"${earticle.eimg}"' width="115px" alt="" />
+					<img src="${earticle.eimg}" width="115px" alt="" />
 				</a> 
 			</p>
 			<div class="txt">

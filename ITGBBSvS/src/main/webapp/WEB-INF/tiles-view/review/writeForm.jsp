@@ -4,19 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-
-<head>
-<title>게시판</title>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script>
 	$(function() {
 	})
 </script>
-</head>
-<body bgcolor="#e0ffff">
+
 	<center>
 		<b> 글쓰기 </b><br>
 		<!-- onSubmit → submit 버튼 클릭 -->
@@ -92,5 +85,3 @@
 			</table>
 		</form>
 	</center>
-</body>
-</html>
