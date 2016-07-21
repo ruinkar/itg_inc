@@ -37,8 +37,8 @@ $(function() {
 				<div class="stage_top"></div>
 			</c:forEach>
 			<hr />
-			<div class="list-group">
-				<ul id="rank_list">
+			<div class="list-container">
+				<ul id="list-group">
 				</ul>
 			</div>
 			<div id="pagebox">

@@ -7,26 +7,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <style>
-*{margin:0; padding:0; border-style:none; }
+*{margin:0; padding:0; list-style:none; }
 #wrapper-list {margin:auto; }
-#list {};
+#list {}
 
 </style>
 <script>
 $(function() {
-	itg.mpage.init();
-	itg.mpage.print('${json_list}');
+	var json_page = JSON.parse('${json_page}');
+	alert('${json_list}');
+	itg.mpage.init("${mem.id}");
+	itg.mpage.print(json_page);
 });
 </script>
 </head>
 <body>
-	<div><!-- 
-	--><div>${mem.nick}</div><!-- 
-	--><div>${mem.mpoint}</div>
+	<div><!--
+	--><div id="thumbnail_box" style="width:150px; height:150px;"></div><!--
+	--><div id="nick_box">${mem.nick}</div><!-- 
+	--><div id="mpoint_box">${mem.mpoint}</div>
 	</div>
-	<div id="wrapper-list">
+	<div id="list-container">
 		<ul id="list"></ul>
 	</div><!-- 
-	--><div>${pagingHTML}</div>
+	--><div id="pagebox">
+		<div class="outer">
+			<div class="inner">
+				<div id="pages" class="centered">${pagingHtml}</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

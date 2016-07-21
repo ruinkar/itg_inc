@@ -9,7 +9,6 @@
 
 var itg = {
 	uri: "rank_ajax.do",
-	ajaxData: {}, 
 	back_width: 600,
 	back_height: 150,
 	list_item_height: 50,
@@ -46,7 +45,6 @@ itg.initRank = function(rtype) {
 	this.getSizeBG();
 	
 	this.rtype = rtype;
-	itg.ajaxData.rtype = rtype;
 	
 	$("#left").css({
 		height: $(window).height()
@@ -212,21 +210,21 @@ itg.pages.init = function() {
 
 itg.pages.flip = function() {
 	var href = this.href;
+	var pageNum = itgUtil.paramFromGet(href, "pageNum");
 	
-	itg.ajaxData.pageNum = itgUtil.paramFromGet(href, "pageNum");
+	var url = href.contains
+	
 	
 	$.getJSON({
 		method : "post",
 		url : itg.uri,
-		data : itg.ajaxData
+		data : {
+			pageNum : pageNum,
+			rtype : itg.rtype
+		}
 	}).done(function(data) {
 		// console.log(data);
-		if(itg.uri === "rank_ajax.do"){
-			itg.rank_list.print(data.json_page);
-		} else {
-			itg.mpage.print(data.json_page);
-		}
-		
+		itg.rank_list.print(data.json_page);
 		$("#pages").html(data.pagingHtml);
 		document.body.scrollTop = document.body.scrollHeight;
 	}).fail(function(request, status, error) {
@@ -240,15 +238,15 @@ itg.pages.flip = function() {
 
 //mpage..
 
-itg.mpage.init = function (id) {
+itg.mpage.init = function () {
 	
-	itg.uri = "mpage_ajax.do";
-	itg.ajaxData.id = id;
+	// itg.uri = "mpage_ajax.do";
 	itg.getSizeBG();
 	itg.pages.init();
 }
 
-itg.mpage.print = function (json) {
+itg.mpage.print = function (str) {
+	var json = JSON.parse(str);
 	
 	var pageType = ["Board.do","EvInfo.do","Review.do","Reply.do"];
 	var param1 = "?anum=";

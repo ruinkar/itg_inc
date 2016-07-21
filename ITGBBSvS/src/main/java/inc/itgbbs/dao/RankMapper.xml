@@ -62,7 +62,7 @@
 				where r.evnum = b.anum 
 				group by writer
 			) where writer = id 
-			order by avgrat 
+			order by avgrat desc
 		<![CDATA[
 		) where rnum <= #{top}
 		]]>
@@ -81,7 +81,7 @@
 					from board b, review r 
 					where r.evnum = b.anum 
 					group by writer 
-				) where writer = id order by avgrat 
+				) where writer = id order by avgrat desc
 		<![CDATA[
 			) where rnum <= #{endCount}
 		) where rnum >= #{startCount}

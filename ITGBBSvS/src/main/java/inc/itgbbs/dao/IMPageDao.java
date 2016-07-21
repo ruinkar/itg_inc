@@ -2,13 +2,13 @@ package inc.itgbbs.dao;
 
 import java.util.List;
 
-import inc.itgbbs.domain.MemberCommand;
 import inc.itgbbs.domain.PageCommand;
+import inc.itgbbs.domain.RankCommand;
 
 public interface IMPageDao {
 	
 	// 유저 정보
-	public MemberCommand meminfo(String id);
+	public RankCommand meminfo(String id);
 	
 	// 유저 게시글 전체 수
 	public int count(String id);

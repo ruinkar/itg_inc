@@ -19,7 +19,7 @@
 			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
-			<add-attribute value="/styles/rank.css" />
+			<add-attribute value="/styles/itg.css" />
 		</put-list-attribute>
 	</definition>
 
