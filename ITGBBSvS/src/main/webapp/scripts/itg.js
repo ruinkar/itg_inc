@@ -9,7 +9,7 @@
 
 var itg = {
 	uri: "rank_ajax.do",
-	ajaxData: {}, 
+	ajaxData: {},
 	back_width: 600,
 	back_height: 150,
 	list_item_height: 50,
