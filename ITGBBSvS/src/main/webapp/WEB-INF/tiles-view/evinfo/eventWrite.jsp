@@ -3,16 +3,14 @@
 	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-
+    
 
 <script>
 $(function(){
@@ -23,8 +21,7 @@ $(function(){
 });
 
 </script>
-</head>
-<body>
+
         <spring:hasBindErrors name="command"/>
         <form:errors path="command"/>
 	<form  enctype="multipart/form-data" method="post" name="writeForm" action="eventWrite.do">
@@ -32,7 +29,7 @@ $(function(){
 	<div class="form-group">
 	<div class="col-xs-8">
 	<label for="usr">글 제목</label>
-		<input  type="text" class="form-control" id="title" name="title" size="100" title="글 제목 입력" maxlength="50" class="text" />
+		<input type="text" class="form-control" id="title" name="title" size="100" title="글 제목 입력" maxlength="50" class="text"  />
 		</div>
    <div class="col-xs-8">
     <label for="comment">행사명</label>    
@@ -111,6 +108,3 @@ $(function(){
 </div>      
 
 	</form>
-
-</body>
-</html>
