@@ -53,7 +53,7 @@ public class PagingUtil {
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		
-		pagingHtml.append("<ul class=\"pagination\">");
+		pagingHtml.append("<ul class='pagination'>");
 		if (currentPage > blockPage) {
 			
 			if(keyWord==null){//검색 미사용시

@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
-* {margin:0; padding:0; border-style:none; border:0; text-decoration:none; text-align:center; }
+* {}
 
-div {text_align:center;  }
+div {margin:0; padding:0; border-style:none; border:0; text-decoration:none; text-align:center; text_align:center;  }
 
 #left {top:0; left:0; width:10%; background:purple; position:fixed;}
 
@@ -34,4 +34,3 @@ div {text_align:center;  }
 #pages {margin:auto; }
 #pages a,font {top:10px; padding:10px; border:3px solid white; }
 #pages a:hover {color:white; background-color:black; }
-

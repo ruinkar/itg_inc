@@ -13,9 +13,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/free/okkyFree2.jsp" />
 		<put-list-attribute name="javascripts">
-        </put-list-attribute>
-        <put-list-attribute name="stylesheets">
-        </put-list-attribute>
+		</put-list-attribute>
+		<put-list-attribute name="stylesheets">
+		</put-list-attribute>
 	</definition>
 
 	<definition name="reviewList"
@@ -105,18 +105,7 @@
 			value="/WEB-INF/tiles-view/evinfo/deleteForm.jsp" />
 	</definition>
 
-	<definition name="rankList" extends="boardList">
-		<put-attribute name="title" value="" />
-		<put-attribute name="js" value="" />
-		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
-		<put-list-attribute name="javascripts">
-            <add-attribute value="/scripts/itg.js" />
-            <add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
-        </put-list-attribute>
-        <put-list-attribute name="stylesheets">
-            <add-attribute value="/styles/itg.css" />
-        </put-list-attribute>
-	</definition>
+
 	<!--글쓰기 -->
 	<definition name="boardWrite" extends="boardList">
 		<put-attribute name="title" value="글쓰기" />
@@ -124,19 +113,7 @@
 			value="/WEB-INF/tiles-view/free/okkyFreeWrite.jsp" />
 	</definition>
 
-	<definition name="mpage" extends="boardList">
-		<put-attribute name="title" value="" />
-		<put-attribute name="js" value="" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles-view/rank/memberInfo.jsp" />
-			<put-list-attribute name="javascripts">
-            <add-attribute value="/scripts/itg.js" />
-            <add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
-        </put-list-attribute>
-        <put-list-attribute name="stylesheets">
-            <add-attribute value="/styles/itg.css" />
-        </put-list-attribute>
-	</definition>
+
 
 	<!--글 상세보기/답글 결과 확인 -->
 	<definition name="boardView" extends="boardList">
@@ -168,6 +145,38 @@
 		<put-attribute name="title" value="이벤트 맵 리스트" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/evinfo/eventMap.jsp" />
+	</definition>
+
+	<!-- 랭킹 페이지 -->
+	<definition name="rankList" extends="boardList">
+		<put-attribute name="title" value="" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="/scripts/itg.js" />
+			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
+			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
+		</put-list-attribute>
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="/styles/itg.css" />
+			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="mpage" extends="boardList">
+		<put-attribute name="title" value="" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/rank/memberInfo.jsp" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="/scripts/itg.js" />
+			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
+			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
+		</put-list-attribute>
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="/styles/itg.css" />
+			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
+		</put-list-attribute>
 	</definition>
 
 </tiles-definitions>

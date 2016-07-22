@@ -15,7 +15,6 @@
 <script>
 $(function() {
 	var json_page = JSON.parse('${json_page}');
-	alert('${json_list}');
 	itg.mpage.init("${mem.id}");
 	itg.mpage.print(json_page);
 });
@@ -30,12 +29,6 @@ $(function() {
 	<div id="list-container">
 		<ul id="list"></ul>
 	</div><!-- 
-	--><div id="pagebox">
-		<div class="outer">
-			<div class="inner">
-				<div id="pages" class="centered">${pagingHtml}</div>
-			</div>
-		</div>
-	</div>
+	--><div id="pgbox">${pagingHtml}</div>
 </body>
 </html>

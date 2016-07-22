@@ -25,12 +25,12 @@ $(function() {
 </script>
 </head>
 <body>
-	<div id="left">
+	<!-- <div id="left">
 		<ul>
-			<!----><li><a href="rank.do">활동</a></li><!--
-			  ----><li><a href="rank.do?rtype=1">평점</a></li>
+			<li><a href="rank.do">활동</a></li>
+			  --<li><a href="rank.do?rtype=1">평점</a></li>
 		</ul>
-	</div><!-- 
+	</div> --><!-- 
 	 --><div id="right">
 		<div>
 			<c:forEach var="index" begin="1" end="4">
@@ -41,13 +41,7 @@ $(function() {
 				<ul id="list-group">
 				</ul>
 			</div>
-			<div id="pagebox">
-				<div class="outer">
-					<div class="inner">
-						<div id="pages" class="centered">${pagingHtml}</div>
-					</div>
-				</div>
-			</div>
+			<div id="pgbox">${pagingHtml}</div>
 		</div>
 	</div>
 </body>

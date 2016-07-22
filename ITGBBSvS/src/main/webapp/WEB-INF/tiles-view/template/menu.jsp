@@ -7,13 +7,50 @@
 	String contextPath = request.getContextPath();
 %>
 
+<style>
+.list-group.panel > .list-group-item {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px
+}
+.list-group-submenu {
+  margin-left:20px;
+}
+.itg-color	{background-color:36175E; }
+</style>
 <center>
-<ul class="nav nav-pills nav-stacked">
-   <li><a href="<%=contextPath%>/evinfo/list.do">행사 정보</a></li>
-   <li><a href="<%=contextPath%>/review/list.do">리뷰 정보</a></li> 
-   <li><a href="<%=contextPath%>/free/list.do">자유게시판</a></li>
-   <li><a href="<%=contextPath%>/rank.do">활동랭킹</a></li>
-</ul>
+<div id="MainMenu">
+  <div class="list-group panel"><!-- 
+    <a href="#demo3" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">메인1</a>
+    <div class="collapse" id="demo3">
+      <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">서브1 <i class="fa fa-caret-down"></i></a>
+      <div class="collapse list-group-submenu" id="SubMenu1">
+        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
+        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
+        <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i class="fa fa-caret-down"></i></a>
+        <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
+          <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
+          <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
+        </div>
+        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
+      </div>
+      <a href="javascript:;" class="list-group-item">Subitem 2</a>
+      <a href="javascript:;" class="list-group-item">Subitem 3</a>
+    </div> -->
+    <a href="#" class="list-group-item list-group-item-success" >메인</a>
+    <a href="#menu-evinfo" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">행사 정보</a>
+    <div class="collapse" id="menu-evinfo">
+      <a href="<%=contextPath %>/evinfo/list.do" class="list-group-item">포스트형</a>
+      <a href="<%=contextPath %>/evinfo/eventMap.do" class="list-group-item">지도형</a>
+    </div>
+    <a href="<%=request.getContextPath() %>/review/list.do" class="list-group-item list-group-item-success" >행사 리뷰</a>
+    <a href="<%=request.getContextPath() %>/free/list.do" class="list-group-item list-group-item-success" >자유게시판</a>
+    <a href="#menu-rank" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">회원 랭킹</a>
+    <div class="collapse" id="menu-rank">
+      <a href="<%=contextPath %>/rank.do" class="list-group-item">활동 점수</a>
+      <a href="<%=contextPath %>/rank.do?rtype=1" class="list-group-item">평점 평균</a>
+    </div>
+  </div>
+</div>
 <c:choose>
 <c:when test="${not empty sessionScope.userLoginInfo}">
  이름 : ${sessionScope.userLoginInfo.id}<br>

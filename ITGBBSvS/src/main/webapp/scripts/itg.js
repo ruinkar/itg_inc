@@ -140,6 +140,8 @@ itg.rank_list.init = function() {
 	this.$rank_list.css({
 		width: itg.back_width
 	});
+	
+	
 }; // itg.rank_list.init()
 
 // 나머지 랭크 json to view
@@ -198,16 +200,16 @@ itg.rank_list.print = function(json_page) {
 	});
 } // itg.rank_list.print()
 
-itg.pages.init = function() {
+itg.pages.init = function() {/*
 	this.$pagebox = $("#pagebox");
 	this.$pagebox.css({
 		width: itg.back_width,
 		height: itg.pages_height
-	});
+	});*/
 	
-	this.$pages = $("#pages");
+	this.$pgbox = $("#pgbox");
 	
-	this.$pages.on("click", "a", this.flip);
+	this.$pgbox.on("click", "a", this.flip);
 } // itg.pages.init()
 
 itg.pages.flip = function() {
@@ -227,7 +229,7 @@ itg.pages.flip = function() {
 			itg.mpage.print(data.json_page);
 		}
 		
-		$("#pages").html(data.pagingHtml);
+		$("#pgbox").html(data.pagingHtml);
 		document.body.scrollTop = document.body.scrollHeight;
 	}).fail(function(request, status, error) {
 		console.log(error);
