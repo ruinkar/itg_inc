@@ -11,6 +11,11 @@
 
 </script>
 
+<<<<<<< HEAD
+=======
+<body bgcolor="#e0ffff">
+<jsp:include page="../template/slideMenu.html" flush="false" />
+>>>>>>> refs/heads/goombei02
 <center><b>글삭제</b>
 <br>
 <form method="POST" name="delForm"  action="deleteForm.do" 

@@ -9,15 +9,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
        
-<!-- @Autowired 사용을 위해 -->
-    <context:annotation-config/> 
+	<!-- @Autowired 사용을 위해 -->
+    <context:annotation-config/>
     
-    <bean class="com.board.dao.BoardDaoImpl" />
-    <bean class="com.board.controller.ListController" />
-    <bean class="com.board.controller.WriteController" />
-    <bean class="com.board.controller.DetailController" />
-    <bean class="com.board.controller.UpdateController" />
-    <bean class="com.board.controller.DeleteController" />
+    <bean class="inc.itgbbs.dao.RankDao"/>
+    <bean class="inc.itgbbs.dao.MPageDao"/>
     
     <bean class="inc.itgbbs.dao.ReviewDaoImpl" />
     <bean class="inc.itgbbs.controller.ReviewListController" />
@@ -27,6 +23,9 @@
     <bean class="inc.itgbbs.controller.ReviewUpdateController" />
     <bean class="inc.itgbbs.controller.ReviewDeleteController" />
     <bean class="inc.itgbbs.controller.ReviewReplyWriteController" />
+
+    <bean class="inc.itgbbs.controller.MPageController"/>
+    <bean class="inc.itgbbs.controller.RankController"/>
     
     <bean class="inc.itgbbs.dao.LoginDaoImpl" />
     <bean class="inc.itgbbs.controller.LoginMenuController" />

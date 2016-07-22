@@ -5,7 +5,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<<<<<<< HEAD
 
+=======
+<html>
+<head>
+<title>게시판</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script language="JavaScript" src="script.js"></script>
+</head>
+<body bgcolor="#e0ffff">
+<jsp:include page="../template/slideMenu.html" flush="false" />
+>>>>>>> refs/heads/goombei02
 <center><b>글수정</b>
 <br>
 <spring:hasBindErrors name="command"/>

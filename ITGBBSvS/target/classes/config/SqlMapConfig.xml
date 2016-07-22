@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
-
 <configuration>
+
 	<typeAliases>
-	    <!-- <typeAlias alias="BoardCommand" 
-	                    type="com.board.domain.BoardCommand"/> -->
-	    <typeAlias alias="BoardDTO" 
+		<typeAlias alias="PagingUtil" type="inc.itgbbs.util.PagingUtil" />
+		<typeAlias alias="RankCommand" type="inc.itgbbs.domain.RankCommand" />
+		<typeAlias alias="PageCommand" type="inc.itgbbs.domain.PageCommand" />
+		<typeAlias alias="BoardCommand" type="inc.itgbbs.domain.BoardCommand" />
+		      <typeAlias alias="BoardDTO" 
                         type="inc.itgbbs.domain.BoardDTO"/>
         <typeAlias alias="ReviewDTO" 
                         type="inc.itgbbs.domain.ReviewDTO"/>
@@ -17,15 +18,13 @@
         <typeAlias alias="EventDTO" 
                         type="inc.itgbbs.domain.EventDTO"/>
 	</typeAliases>
-	
+
 	<mappers>
-	    <!-- <mapper resource="com/board/dao/BoardMapper.xml" /> -->
-	    <mapper resource="inc/itgbbs/dao/ReviewMapper.xml" />
-	    <mapper resource="inc/itgbbs/dao/LoginMapper.xml" />
-	    <mapper resource="inc/itgbbs/dao/EventMapper.xml" />
+		<mapper resource="inc/itgbbs/dao/RankMapper.xml" />
+		<mapper resource="inc/itgbbs/dao/MPageMapper.xml" />
+		      <mapper resource="inc/itgbbs/dao/ReviewMapper.xml" />
+        <mapper resource="inc/itgbbs/dao/LoginMapper.xml" />
+        <mapper resource="inc/itgbbs/dao/EventMapper.xml" />
 	</mappers>
-    
+
 </configuration>
-
-<!-- mapper는 개인별로 만들어서 경로를 여기 추가해주세요. -->
-

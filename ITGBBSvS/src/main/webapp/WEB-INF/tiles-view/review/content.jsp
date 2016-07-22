@@ -16,6 +16,14 @@ function  delreply (idx)
 </style>
 
 
+<<<<<<< HEAD
+=======
+
+</head>
+
+<body bgcolor="#e0ffff">
+<jsp:include page="../template/slideMenu.html" flush="false" />
+>>>>>>> refs/heads/goombei02
 <center>      
 <b>글내용 보기</b>
 <br>

@@ -3,5 +3,8 @@
 /com/
 /config/
 /legacy/
+<<<<<<< HEAD
 /log4j.xml
+=======
+>>>>>>> refs/heads/goombei02
 /messages/
