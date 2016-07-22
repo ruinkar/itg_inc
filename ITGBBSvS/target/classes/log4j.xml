@@ -14,14 +14,11 @@
 		<appender-ref ref="STDOUT" />
 	</category>
 
-<<<<<<< HEAD
     <category name="inc.itgbbs" additivity="false">
         <priority value="debug" />
         <appender-ref ref="STDOUT" />
     </category>
 
-=======
->>>>>>> refs/heads/goombei02
 	<root>
 		<priority value="error" />
 		<appender-ref ref="STDOUT" />

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Review">
+    
+    <select id="selectRank"  resultType="BoardDTO">
+    <![CDATA[
+    select * from
+    (select rownum as rnum , c.*  from 
+    ( select * from board  where category = 2 order by readcount desc ) c  where rownum <= 10)
+    where rnum >= 1
+    ]]>
+    </select> 
+	<select id="selectCount" parameterType="map" resultType="Integer">
+	
+		select count(*) from board
+		<where>
+			<if test="keyWord!=null and keyField=='title'">
+			<![CDATA[
+				category=2 and title like '%' || #{keyWord} || '%'
+				]]>
+			</if>
+			<if test="keyWord!=null and keyField=='writer'">
+			<![CDATA[
+				category=2 and writer like '%' || #{keyWord} || '%'
+				]]>
+			</if>
+			<if test="keyWord!=null and keyField=='acontent'">
+			<![CDATA[
+				category=2 and acontent like '%' || #{keyWord} || '%'
+				]]>
+			</if>
+			<if test="keyWord!=null and keyField=='all'">
+			<![CDATA[
+				category=2 and 
+				( title like '%' || #{keyWord} || '%' or
+				writer like '%' || #{keyWord} || '%' or
+				acontent like '%' || #{keyWord} || '%' )
+				]]>
+			</if>
+			<if test="keyWord=='' and keyField==''">
+			<![CDATA[
+			category=2
+			]]>
+			</if>
+		</where> 
+	</select>
+	<select id="selectList" parameterType="map" resultType="BoardDTO">
+<!--        <![CDATA[
+      select * from 
+(select rownum as rnum , c.* from
+( select * from board where category=2 order by anum desc ) c where rownum <= #{end} ) where rnum >=#{start}
+  ]]> -->
+ 		select *
+		from (select
+		rownum as rnum , c.*
+		from (
+		
+		select * from board
+
+                <where>
+            <if test="keyWord!=null and keyField=='title'">
+            <![CDATA[
+                category=2 and title like '%' || #{keyWord} || '%'
+            ]]>
+            </if>
+            <if test="keyWord!=null and keyField=='writer'">
+            <![CDATA[
+                category=2 and writer like '%' || #{keyWord} || '%'
+                ]]>
+            </if>
+            <if test="keyWord!=null and keyField=='acontent'">
+            <![CDATA[
+                category=2 and acontent like '%' || #{keyWord} || '%'
+                ]]>
+            </if>
+            <if test="keyWord!=null and keyField=='all'">
+            <![CDATA[
+                category=2 and 
+                ( title like '%' || #{keyWord} || '%' or
+                writer like '%' || #{keyWord} || '%' or
+                acontent like '%' || #{keyWord} || '%' )
+                ]]>
+            </if>
+            <if test="keyWord=='' and keyField==''">
+            <![CDATA[
+            category=2
+            ]]>
+            </if>
+        </where>
+        <![CDATA[
+        order by anum desc  ) c   where rownum <= #{end})  where rnum >=#{start} 
+            ]]>    
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="updateReadCount" parameterType="Integer">
+		update board set readcount=readcount+1 where anum=#{anum}
+	</update>
+
+
+
+	<!-- 글 내용 보기 -->
+	<select id="selectReview" parameterType="Integer" resultType="ReviewAllDTO">
+    <![CDATA[
+        select * from 
+            ( select rownum as listnum , b.* , re.rating as rating , re.evnum  from board b , review re where  b.anum = re.anum )
+            where anum = #{anum}
+    ]]>
+	</select>
+
+	<!-- 글 이벤트 제목 보기 -->
+	<select id="selectRating" parameterType="Integer" resultType="ReviewAllDTO">
+    <![CDATA[
+    select * from
+          (select b.title as evtitle , re.anum from board b , review re where b.anum = re.evnum)
+          where anum = #{anum}
+    ]]>
+	</select>   
+    
+<!-- 댓글 총 갯수 -->
+<select id="getReplyCount" parameterType="Integer" resultType="Integer">
+    
+        select count(*) from board
+        <where>
+            <![CDATA[
+                category=3 and pnum = #{anum}
+                ]]>
+    </where>
+</select>
+<!-- 댓글 불러오기 -->
+    <select id="getReplies"  parameterType="Integer" resultType="BoardDTO">
+    <![CDATA[
+    select anum , writer , acontent  from board where category = 3 and pnum = #{anum}  order by anum asc
+    ]]>
+    </select> 
+    
+    <!-- 새로운 글 최대값 찾기 -->
+    <select id="getNewAnum" resultType="Integer">
+        select max(anum) from board
+    </select>
+    
+    <!-- 글쓰기 -->
+ <insert id="insertReview" parameterType="BoardDTO">
+     INSERT INTO BOARD (ANUM, WRITER, CATEGORY, ADATE, IP, TITLE, ACONTENT, TAG1, TAG2, TAG3, TAG4,TAG5 , AFILE )
+            VALUES  ( #{anum},#{writer},#{category},sysdate, #{ip},#{title},#{acontent} ,#{tag1},#{tag2},#{tag3},#{tag4},#{tag5} ,#{afile})
+ </insert>
+ 
+ <insert id="insertRating" parameterType="ReviewDTO">
+     INSERT INTO REVIEW (ANUM, EVNUM, RATING ) 
+     VALUES  (#{anum},#{evnum}, #{rating})
+ </insert>   
+ 
+ 
+ <select id="getEventCount" parameterType="map" resultType="Integer">
+    
+        select count(*) from board
+        <where>
+            <if test="keyWord!=null and keyField=='title'">
+            <![CDATA[
+                category=1 and title like '%' || #{keyWord} || '%'
+                ]]>
+            </if>
+            <if test="keyWord=='' and keyField==''">
+            <![CDATA[
+            category=1
+            ]]>
+            </if>
+        </where> 
+    </select>
+
+ <select id="getEventList" parameterType="map" resultType="BoardDTO">
+    
+        select *
+        from (select
+        rownum as rnum , c.*
+        from (
+        
+        select * from board
+        <where>
+            <if test="keyWord!=null and keyField=='title'">
+            <![CDATA[
+                category=1 and title like '%' || #{keyWord} || '%'
+                ]]>
+            </if>
+            <if test="keyWord=='' and keyField==''">
+            <![CDATA[
+            category=1
+            ]]>
+            </if>
+        </where>
+         <![CDATA[
+        order by anum desc  ) c   where rownum <= #{end})  where rnum >=#{start} 
+            ]]>  
+    </select>
+ <!-- 업데이트 리뷰 -->
+ <update id="updateReview" parameterType="BoardDTO">
+    UPDATE BOARD SET TITLE = #{title}, ACONTENT = #{acontent}, AFILE = #{afile:VARCHAR}, TAG1 = #{tag1}, TAG2 = #{tag2}, TAG3 = #{tag3}, TAG4 = #{tag4}, TAG5 = #{tag5} WHERE (ANUM = #{anum})
+ </update>
+ 
+ <update id="updateRating" parameterType="ReviewDTO">
+    UPDATE REVIEW SET EVNUM = #{evnum}, RATING = #{rating} WHERE (ANUM = #{anum})
+ </update>
+ 
+ <select id="getBoard" parameterType="Integer" resultType="BoardDTO">
+  select * from board where anum=#{anum}
+ </select>
+ 
+ <delete id="deletereply" parameterType="Integer">
+    delete from board where pnum=#{anum}
+ </delete>
+ 
+ <delete id="deleteBoard" parameterType="Integer">
+    delete from board where anum=#{anum}
+ </delete>   
+ 
+ <insert id="insertReply" parameterType="BoardDTO">
+    INSERT INTO BOARD (ANUM, WRITER, CATEGORY, ADATE, IP, TITLE, ACONTENT, PNUM ) 
+            VALUES  ( #{anum},#{writer}, #{category},sysdate, '192.168.0.2', #{title}, #{acontent}, #{pnum} )
+ </insert>
+ 
+ </mapper>
+
+
+
+
+
+
+

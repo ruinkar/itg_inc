@@ -109,14 +109,7 @@
             moveSlider(randomNumber);
         }); 
     </script>
-<<<<<<< HEAD
 
-=======
-        
-</head>
-<body bgcolor="#e0ffff">
-<jsp:include page="../template/slideMenu.html" flush="false" />
->>>>>>> refs/heads/goombei02
 	<center>
 
 		<c:if test="${count > 0}">
