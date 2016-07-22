@@ -8,12 +8,12 @@
 		<put-attribute name="title" value="메인 페이지" />
 		<put-attribute name="menu"
 			value="/WEB-INF/tiles-view/template/menu.jsp" />
-		<!-- <put-attribute name="header"
-			value="/WEB-INF/tiles-view/template/header.jsp" /> -->
+		<put-attribute name="header"
+			value="/WEB-INF/tiles-view/template/header.jsp" />
 		<put-attribute name="body"
-			value="/WEB-INF/tiles-view/base/boardList.jsp" />
-		<!-- <put-attribute name="footer"
-			value="/WEB-INF/tiles-view/template/footer.jsp" /> -->
+			value="/WEB-INF/tiles-view/free/okkyFree2.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/tiles-view/template/footer.jsp" />
 		<put-list-attribute name="javascripts">
 			<add-attribute value="/scripts/itg.js" />
 			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
@@ -22,107 +22,143 @@
 			<add-attribute value="/styles/itg.css" />
 		</put-list-attribute>
 	</definition>
-    
-    <definition name="reviewList" template="/WEB-INF/tiles-view/template/reviewLayout.jsp">
-        <put-attribute name="title" value="후기 페이지" />
-        <put-attribute name="css"
-            value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
-        <put-attribute name="js"
-            value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
-        <put-attribute name="menu"
-            value="/WEB-INF/tiles-view/template/menu.jsp" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/review/list.jsp" />
-    </definition>
-    
-    
-    <definition name="ReviewEventList" template="/WEB-INF/tiles-view/review/eventCheck.jsp">
-    <put-attribute name="title" value="행사 검색" />
-        <put-attribute name="css" value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
-        <put-attribute name="js" value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
-    </definition>
-    
-    <definition name="reviewContent" extends="reviewList">
-        <put-attribute name="title" value="상세 보기" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/review/content.jsp" />
-    </definition>
-    
-    <definition name="reviewWriteForm" extends="reviewList">
-        <put-attribute name="title" value="글쓰기" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/review/writeForm.jsp" />
-    </definition>
-    
-    <definition name="reviewUpdateForm" extends="reviewList">
-        <put-attribute name="title" value="글쓰기" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/review/updateForm.jsp" />
-    </definition>
-    
-    <definition name="reviewDeleteForm" extends="reviewList">
-        <put-attribute name="title" value="글쓰기" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/review/deleteForm.jsp" />
-    </definition>
-    
-    
-    <definition name="eventList" template="/WEB-INF/tiles-view/template/eventmenuTemplate.jsp">
-        <put-attribute name="title" value="행사 페이지" />
-        <put-attribute name="css"
-            value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
-        <put-attribute name="js"
-            value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
-            
-        <put-attribute name="menu"
-            value="/WEB-INF/tiles-view/template/menu.jsp" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventMain.jsp" />
-        <put-attribute name="top" value="/WEB-INF/tiles-view/template/top.jsp" />
-    </definition>
 
-    <definition name="eventWriteForm" extends="eventList">
-        <put-attribute name="title" value="행사 쓰기" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventWrite.jsp" />
-    </definition>
+	<definition name="reviewList"
+		template="/WEB-INF/tiles-view/template/reviewLayout.jsp">
+		<put-attribute name="title" value="후기 페이지" />
+		<put-attribute name="css"
+			value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
+		<put-attribute name="js"
+			value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/tiles-view/template/menu.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/review/list.jsp" />
+	</definition>
 
-<definition name="eventContentForm" extends="eventList">
-        <put-attribute name="title" value="행사 보기" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventContent.jsp" />
-    </definition>
 
-<definition name="eventUpdateForm" extends="eventList">
-        <put-attribute name="title" value="행사 수정하기" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventModify.jsp" />
-    </definition>
+	<definition name="ReviewEventList" template="/WEB-INF/tiles-view/review/eventCheck.jsp">
+		<put-attribute name="title" value="행사 검색" />
+		<put-attribute name="css"
+			value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
+		<put-attribute name="js"
+			value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
+	</definition>
 
-<definition name="eventDeleteForm" extends="eventList">
-        <put-attribute name="title" value="행사 삭제" />
-        <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/deleteForm.jsp" />
-    </definition>
-    
+	<definition name="reviewContent" extends="reviewList">
+		<put-attribute name="title" value="상세 보기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/review/content.jsp" />
+	</definition>
+
+	<definition name="reviewWriteForm" extends="reviewList">
+		<put-attribute name="title" value="글쓰기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/review/writeForm.jsp" />
+	</definition>
+
+	<definition name="reviewUpdateForm" extends="reviewList">
+		<put-attribute name="title" value="글쓰기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/review/updateForm.jsp" />
+	</definition>
+
+	<definition name="reviewDeleteForm" extends="reviewList">
+		<put-attribute name="title" value="글쓰기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/review/deleteForm.jsp" />
+	</definition>
+
+
+	<definition name="eventList"
+		template="/WEB-INF/tiles-view/template/eventmenuTemplate.jsp">
+		<put-attribute name="title" value="행사 페이지" />
+		<put-attribute name="css"
+			value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
+		<put-attribute name="js"
+			value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
+
+		<put-attribute name="menu"
+			value="/WEB-INF/tiles-view/template/menu.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/evinfo/eventMain.jsp" />
+		<put-attribute name="top"
+			value="/WEB-INF/tiles-view/template/top.jsp" />
+	</definition>
+
+	<definition name="eventWriteForm" extends="eventList">
+		<put-attribute name="title" value="행사 쓰기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/evinfo/eventWrite.jsp" />
+	</definition>
+
+	<definition name="eventContentForm" extends="eventList">
+		<put-attribute name="title" value="행사 보기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/evinfo/eventContent.jsp" />
+	</definition>
+
+	<definition name="eventUpdateForm" extends="eventList">
+		<put-attribute name="title" value="행사 수정하기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/evinfo/eventModify.jsp" />
+	</definition>
+
+	<definition name="eventDeleteForm" extends="eventList">
+		<put-attribute name="title" value="행사 삭제" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/evinfo/deleteForm.jsp" />
+	</definition>
+
 	<definition name="rankList" extends="boardList">
 		<put-attribute name="title" value="" />
 		<put-attribute name="js" value="" />
 		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
 	</definition>
-	
+	<!--글쓰기 -->
+	<definition name="boardWrite" extends="boardList">
+		<put-attribute name="title" value="글쓰기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/free/okkyFreeWrite.jsp" />
+	</definition>
+
 	<definition name="mpage" extends="boardList">
 		<put-attribute name="title" value="" />
 		<put-attribute name="js" value="" />
-		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/memberInfo.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/rank/memberInfo.jsp" />
 	</definition>
-	
+
+	<!--글 상세보기/답글 결과 확인 -->
+	<definition name="boardView" extends="boardList">
+		<put-attribute name="title" value="글 상세보기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/free/okkyFreeArticle.jsp" />
+	</definition>
+
 	<definition name="pageError" extends="boardList">
 		<put-attribute name="title" value="" />
 		<put-attribute name="js" value="" />
 		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
 	</definition>
 
+	<!--글 수정하기 -->
+	<definition name="boardModify" extends="boardList">
+		<put-attribute name="title" value="글 수정하기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/free/updateForm.jsp" />
+	</definition>
 
-<definition name="LocSearchForm" template="/WEB-INF/tiles-view/evinfo/mapsearch.jsp">
-    <put-attribute name="title" value="위치 검색" />
-    </definition>
-    
-<definition name="eventMap" extends="eventList">
+	<definition name="LocSearchForm" template="/WEB-INF/tiles-view/evinfo/mapsearch.jsp">
+		<put-attribute name="title" value="위치 검색" />
+	</definition>
 
-<!-- <definition name="eventMap" template="/WEB-INF/tiles-view/evinfo/eventMap.jsp"> -->
-    <put-attribute name="title" value="이벤트 맵 리스트" />
-    <put-attribute name="body" value="/WEB-INF/tiles-view/evinfo/eventMap.jsp" />
-    </definition>    
-    
+	<definition name="eventMap" extends="eventList">
+
+		<!-- <definition name="eventMap" template="/WEB-INF/tiles-view/evinfo/eventMap.jsp"> -->
+		<put-attribute name="title" value="이벤트 맵 리스트" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/evinfo/eventMap.jsp" />
+	</definition>
+
 </tiles-definitions>

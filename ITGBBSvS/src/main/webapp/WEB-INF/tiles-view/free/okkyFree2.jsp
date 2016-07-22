@@ -188,7 +188,7 @@
 
 			<div id="list-article" class="content scaffold-list" role="main">
 				<div class="nav" role="navigation">
-					<a href="/ITGBBS/free/writeForm.do"
+					<a href="writeForm.do"
 						class="create btn btn-success btn-wide pull-right"><i
 						class="fa fa-pencil"></i>새 글 쓰기</a>
 
@@ -297,15 +297,15 @@
 
 						</c:if>
 						<c:if test="${count > 0}">
-							<c:forEach var="article" items="${articleList}">
+							<c:forEach var="article" items="${list}">
 
 								<li class="list-group-item  list-group-no-note clearfix">
 
 									<div class="list-title-wrapper clearfix">
 										<div class="list-tag clearfix">
 											<span class="list-group-item-text article-id"> <c:out
-													value="${number}" /> <c:set var="number"
-													value="${number-1}" />
+													value="스프링" /> <c:set var="number"
+													value="스프링" />
 											</span> <a href="/articles/life"
 												class="list-group-item-text item-tag label label-info"><i
 												class="fa fa-comments"></i>자유게시판(사는얘기)</a>
@@ -314,7 +314,7 @@
 
 										<h5 class="list-group-item-heading ">
 											<a
-												href="/ITGBBS/free/content.do?anum=${article.anum}&pageNum=${currentPage}">${article.title}</a>
+												href="content.do?anum=${article.anum}">${article.title}</a>
 										</h5>
 									</div>
 
@@ -356,51 +356,7 @@
 
 				<div class="text-center">
 
-					<ul class="pagination pagination-sm">
-
-						<!--페이징 처리: 이번블럭, 현재블럭, 다음블럭  -->
-						<c:if test="${count > 0}">
-							<!--1. 총페이지 구하기  -->
-							<c:set var="pageCount"
-								value="${count/pageSize+(count%pageSize==0?0:1)}" />
-							<!-- 2. 시작페이지(1), 끝페이지(주로 10) -->
-							<fmt:parseNumber var="result" value="${currentPage/blockSize}"
-								integerOnly="true" />
-							<c:set var="startPage" value="${result*blockSize+1}" />
-							<c:set var="endPage" value="${startPage+blockSize-1}" />
-
-							<c:if test="${endPage > pageCount}">
-								<c:set var="endPage" value="${pageCount}" />
-							</c:if>
-
-
-
-							<!-- //이전블럭 -->
-							<c:if test="${startPage > blockSize}">
-								<li class="prev"><a href="/ITGBBS/free/list.do?pageNum=${startPage-blockSize}" class="step">&laquo;</a></li>
-							</c:if>
-
-							<!-- //현재블럭 [이전] 11 12 13 14 .. 20 -->
-							<c:forEach var="i" begin="${startPage}" end="${endPage}">
-								<li><a href="/ITGBBS/free/list.do?pageNum=${i}"
-									class="step">${i}</a></li>
-							</c:forEach>
-
-							<!-- //다음블럭  ...23일 경우 -->
-							<c:if test="${endPage < pageCount}">
-								<li><a
-									href="/ITGBBS/free/list.do?pageNum=${startPage+blockSize}"
-									class="step"><span>...</span></li>
-						
-								<li><a href="/ITGBBS/free/list.do?pageNum=${pageCount}" class="step">${pageCount}</a></li>
-							
-								<li class="next"><a href="/ITGBBS/free/list.do?pageNum=${startPage+blockSize}" class="step">&raquo;</a></li>
-							</c:if>
-						<!-- 						<li class="next"><a
-							href="/articles/community?offset=20&amp;max=20&amp;sort=id&amp;order=desc"
-							class="step">&raquo;</a></li> -->
-						</c:if>	
-					</ul>
+					<ul class="pagination pagination-sm">${pagingHtml}</ul>
 
 				</div>
 			</div>

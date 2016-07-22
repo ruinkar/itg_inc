@@ -329,11 +329,11 @@
 											title="게시물 설정"></i></a>
 										<ul class="dropdown-menu" role="menu">
 											<li><a
-												href="/ITGBBS/free/updateForm.do?anum=${article.anum}"
+												href="updateForm.do?anum=${article.anum}"
 												class="edit"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>
 
 											<li><a
-												href="/ITGBBS/free/deletePro.do?anum=${article.anum}"
+												href="deletePro.do?anum=${article.anum}"
 												id="article-delete-btn"><i class="fa fa-trash-o fa-fw"></i>
 													삭제 </a></li>
 
@@ -434,7 +434,7 @@
 
 				<li class="list-group-item note-form clearfix">
 					<!-- 댓글 쓰기 -->
-					<form action="/ITGBBS/free/replyPro.do" method="post" class="note-create-form">
+					<form action="replyPro.do" method="post" class="note-create-form">
 
 						<input type="hidden" name="lastNoteId" value="1084061 "
 							id="lastNoteId" />
@@ -462,8 +462,7 @@
 							<fieldset class="form">
 								<input type="hidden" name="note.textType" value="HTML"
 									id="note.textType" /> <input type="hidden" name="pnum"
-									value="${anum}" id="pnum" /> <input type="hidden" name="pageNum"
-									value="${pageNum}" id="pageNum" />
+									value="${article.anum}" id="pnum" />
 								<textarea name="acontent" id="acontent" placeholder="댓글 쓰기"
 									class="form-control"></textarea>
 							</fieldset>
@@ -507,22 +506,7 @@
 
 
 
-		<div class="right-banner-wrapper">
-
-
-
-			<div class="google-ad">
-				<script async
-					src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- okjspad_160x600 -->
-				<ins class="adsbygoogle"
-					style="display: inline-block; width: 160px; height: 600px"
-					data-ad-client="ca-pub-8103607814406874" data-ad-slot="6573675943"></ins>
-				<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
-			</div>
-		</div>
+		
 		<div id="footer" class="footer" role="contentinfo">
 			<div class="row">
 				<div class="col-sm-6">

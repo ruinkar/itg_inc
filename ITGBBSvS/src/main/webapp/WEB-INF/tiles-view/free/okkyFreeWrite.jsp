@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- 오키자유게시판 새글 쓰기(로그인 후) http://okky.kr/articles/community/create#  
 	기능 구현
@@ -57,7 +58,8 @@
 
 
 			<!--왼쪽 메뉴바 색깔 보라색으로 변경  -->
-			<div class="sidebar sidebar-category" style="background-color: #5d2c96">
+			<div class="sidebar sidebar-category"
+				style="background-color: #5d2c96">
 
 				<a href="javascript://" class="sidebar-header"> <i
 					class="fa fa-bars sidebar-header-icon"></i>
@@ -260,8 +262,9 @@
 
 					</div>
 					<div class="panel-body">
-						<form action="/ITGBBS/free/writePro.do" method="post" id="article-form"
-							class="article-form" role="form" onsubmit="return postForm()">
+						<form action="writePro.do"  method="post"
+							id="article-form" class="article-form" role="form"
+							onsubmit="return postForm()">
 							<input type="hidden" name="SYNCHRONIZER_TOKEN"
 								value="d1ce26bf-c69d-4a84-8c6b-7443b058ad46"
 								id="SYNCHRONIZER_TOKEN" /> <input type="hidden"
@@ -320,25 +323,22 @@
 
 								<div class="form-group  has-feedback">
 									<div>
-										<input type="text" name="title" required="" value=""
+										<input type="text" name="title" required="" 
 											placeholder="제목을 입력해 주세요." class="form-control" id="title" />
 									</div>
 								</div>
 
 								<div class="form-group  has-feedback">
 									<div>
-										<input type="text" name="tagString" value=""
+										<input type="text" name="tagString"
 											placeholder="Tags," data-role="tagsinput"
 											class="form-control" id="tagString" />
 									</div>
 								</div>
 
 								<div class="form-group  has-feedback">
-
-									<textarea name="acontent" id="summernote" rows="20"
+									<textarea name="acontent" rows="20"
 										class="form-control input-block-level"></textarea>
-
-
 								</div>
 
 								<input type="hidden" name="content.textType" value="HTML"
@@ -349,8 +349,8 @@
 
 								<div class="nav" role="navigation">
 									<fieldset class="buttons">
-										<a href="/articles/community" class="btn btn-default btn-wide"
-											onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a> <input
+										<a href="/articles/community" class="btn btn-default btn-wide"> 취소</a> 
+											<input
 											type="submit" name="create"
 											class="create btn btn-success btn-wide pull-right" value="등록"
 											id="create" />
