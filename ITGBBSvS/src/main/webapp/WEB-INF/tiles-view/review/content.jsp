@@ -15,15 +15,6 @@ function  delreply (idx)
 .menuName{background:#b0e0e6}
 </style>
 
-
-<<<<<<< HEAD
-=======
-
-</head>
-
-<body bgcolor="#e0ffff">
-<jsp:include page="../template/slideMenu.html" flush="false" />
->>>>>>> refs/heads/goombei02
 <center>      
 <b>글내용 보기</b>
 <br>

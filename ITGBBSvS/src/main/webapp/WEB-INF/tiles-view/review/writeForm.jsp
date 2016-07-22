@@ -9,22 +9,6 @@
 	$(function() {
 	})
 </script>
-<<<<<<< HEAD
-=======
-</head>
-<body bgcolor="#e0ffff">
-	<div class="layout-container">
-		<div class="main ">
-			<jsp:include page="../template/slideMenu.html" flush="false" />
-			<center>
-				<b> 글쓰기 </b><br>
-				<!-- onSubmit → submit 버튼 클릭 -->
-				<form method="post" name="writeForm" action="writePro.do"
-					onsubmit="return writeSave()">
-					<!-- hidden -->
-					<input type="hidden" name="num" value="${num}"> <input
-						type="hidden" name="category" value="2">
->>>>>>> refs/heads/goombei02
 
 	<center>
 		<b> 글쓰기 </b><br>
