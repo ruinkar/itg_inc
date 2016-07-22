@@ -11,6 +11,8 @@
 <ul class="nav nav-pills nav-stacked">
    <li><a href="<%=contextPath%>/evinfo/list.do">행사 정보</a></li>
    <li><a href="<%=contextPath%>/review/list.do">리뷰 정보</a></li> 
+   <li><a href="<%=contextPath%>/free/list.do">자유게시판</a></li>
+   <li><a href="<%=contextPath%>/rank.do">활동랭킹</a></li>
 </ul>
 <c:choose>
 <c:when test="${not empty sessionScope.userLoginInfo}">

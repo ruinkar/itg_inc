@@ -53,140 +53,7 @@
 	<div class="layout-container">
 		<div class="main ">
 
-
-
-
-			<!-- <div class="test1"> -->
-			<div class="sidebar sidebar-category"
-				style="background-color: #5d2c96">
-
-				<a href="javascript://" class="sidebar-header"> <i
-					class="fa fa-bars sidebar-header-icon"></i>
-				</a>
-
-				<h1>
-					<div class="logo">
-						<a href="/ITGBBS/free/list.do"><img
-							src="http://okky.kr/assets/okjsp_logo-467f1484e489ca1133e6320083e1fb9f.png"
-							alt="OKKY" title="OKKY" /></a>
-					</div>
-				</h1>
-
-				<ul id="search-google-icon"
-					class="nav nav-sidebar nav-sidebar-search-wrapper">
-					<li class="nav-sidebar-search"><a href="javascript://"
-						class="link" id="search-google" data-toggle="popover"
-						data-trigger="click"><i class="fa fa-search"></i></a></li>
-				</ul>
-
-				<form id="search-google-form" name="searchMain"
-					class="nav-sidebar-form" action="http://www.google.com/search">
-					<div class="input-group">
-						<input type="text" name="qt" class="form-control input-sm"
-							placeholder="Google 검색" /> <input type="hidden" name="q" /> <span
-							class="input-group-btn">
-							<button class="btn btn-default btn-sm" type="submit">
-								<i class="fa fa-search"></i>
-							</button>
-						</span>
-					</div>
-				</form>
-
-				<div class="nav-user nav-sidebar">
-
-
-
-					<ul class="nav nav-sidebar">
-						<li data-toggle="tooltip" data-container="body" title="로그인"><a
-							href="/login/auth?redirectUrl=%2Farticles%2Fcommunity"
-							class="link"><i class="fa fa-sign-in"></i> <span
-								class="nav-sidebar-label">로그인</span></a></li>
-						<li data-toggle="tooltip" data-container="body" title="회원가입"><a
-							href="/user/register" class="link"><i class="fa fa-user"></i>
-								<span class="nav-sidebar-label">회원가입</span></a></li>
-					</ul>
-
-				</div>
-
-				<ul class="nav nav-sidebar nav-main">
-
-					<li data-toggle="tooltip" data-placement="right"
-						data-container="body" title="Q&A"><a
-						href="/articles/questions" class="link"><i
-							class="nav-icon fa fa-database"></i> <span
-							class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
-
-					<li data-toggle="tooltip" data-placement="right"
-						data-container="body" title="Tech"><a href="/articles/tech"
-						class="link"><i class="nav-icon fa fa-code"></i> <span
-							class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
-
-					<li class="active" data-toggle="tooltip" data-placement="right"
-						data-container="body" title="커뮤니티"><a
-						href="/articles/community" class="link"><i
-							class="nav-icon fa fa-comments"></i> <span
-							class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
-
-					<li data-toggle="tooltip" data-placement="right"
-						data-container="body" title="칼럼"><a href="/articles/columns"
-						class="link"><i class="nav-icon fa fa-quote-left"></i> <span
-							class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
-
-					<li data-toggle="tooltip" data-placement="right"
-						data-container="body" title="Jobs"><a href="/articles/jobs"
-						class="link"><i class="nav-icon fa fa-group"></i> <span
-							class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
-
-				</ul>
-
-				<ul class="nav nav-sidebar nav-bottom">
-					<li data-toggle="tooltip" data-placement="right"
-						data-container="body" title="Github Issues"><a
-						href="https://github.com/okjsp/okky/issues" class="link"
-						target="_blank"><i class="fa fa-github"></i> <span
-							class="nav-sidebar-label nav-sidebar-category-label">Github
-								Issues</span></a></li>
-				</ul>
-			</div>
-
-
-			<!-- <div class="test2"> -->
-			<div class="sidebar-category-nav" style="background-color: #5d2c96">
-				<h3 class="sub-title">커뮤니티</h3>
-				<ul class="nav">
-					<li><a href="/articles/community" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
-							class="nav-indicator nav-selected"><span
-								class="nav-selected-dot"></span></span></a></li>
-
-					<li><a href="/articles/notice" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">공지사항</span>
-							<span class="nav-indicator "><span
-								class="nav-selected-dot"></span></span></a></li>
-
-					<li><a href="/articles/life" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span>
-							<span class="nav-indicator "><span
-								class="nav-selected-dot"></span></span></a></li>
-
-					<li><a href="/articles/forum" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span
-							class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-
-					<li><a href="/articles/gathering" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span>
-							<span class="nav-indicator "><span
-								class="nav-selected-dot"></span></span></a></li>
-
-					<li><a href="/articles/promote" class="link"><span
-							class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span>
-							<span class="nav-indicator "><span
-								class="nav-selected-dot"></span></span></a></li>
-
-				</ul>
-			</div>
-
-			<div id="list-article" class="content scaffold-list" role="main">
+            <div id="list-article" class="content scaffold-list" role="main">
 				<div class="nav" role="navigation">
 					<a href="writeForm.do"
 						class="create btn btn-success btn-wide pull-right"><i
@@ -355,7 +222,7 @@
 
 
 				<div class="text-center">
-
+                    
 					<ul class="pagination pagination-sm">${pagingHtml}</ul>
 
 				</div>
