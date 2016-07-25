@@ -254,7 +254,7 @@ itg.mpage.init = function (id) {
 itg.mpage.print = function (json) {
 	$("#list").html("");
 	
-	var pageType = ["./free/content.do","./evinfo/content.do","./review/content.do","Reply.do"];
+	var pageType = ["./free/content.do","./evinfo/content.do","./review/content.do","./mpage/reply.do"];
 	var param1 = "?anum=";
 	
 	var eh = "에 ";
