@@ -10,10 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import inc.itgbbs.dao.ReviewDao;
 import inc.itgbbs.domain.BoardDTO;
+import inc.itgbbs.util.ContentPath;
 import inc.itgbbs.util.FileUtil;
 
 @Controller
-public class EventDeleteController {
+public class EventDeleteController implements ContentPath{
 
 	private Logger log = Logger.getLogger(this.getClass());
 
@@ -21,7 +22,7 @@ public class EventDeleteController {
 	private ReviewDao reviewDao; // Setter Method를 호출하는지 확인
 
 	
-	@RequestMapping(value = "/evinfo/deleteForm.do", method = RequestMethod.GET)
+	@RequestMapping(value = EVINFO + "/deleteForm.do", method = RequestMethod.GET)
 	public ModelAndView process
     (@RequestParam(value="pageNum",defaultValue="1") 
         int pageNum,

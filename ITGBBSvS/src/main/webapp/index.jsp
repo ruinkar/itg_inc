@@ -1,9 +1,8 @@
-<%
+<script>
+var cmd2move= [
+	"/review/list.do",
+    "/free/list.do",
+    "/rank.do" ];
 
-
-// response.sendRedirect(request.getContextPath()+"/review/list.do");
-
-//response.sendRedirect(request.getContextPath()+"/rank.do");
-
- response.sendRedirect(request.getContextPath()+"/free/list.do");
-%>
+location.href = "${pageContext.request.contextPath}" + cmd2move[1];
+</script>

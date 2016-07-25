@@ -26,7 +26,7 @@ public class ReviewContentController {
 	
 	@RequestMapping("/review/content.do")
 	public ModelAndView process(@RequestParam("anum") int anum,
-			@RequestParam("pageNum") int pageNum
+			@RequestParam(value="pageNum", defaultValue="1") int pageNum
 			) {
 		if(log.isDebugEnabled()) {
 			log.debug("anum = " + anum);

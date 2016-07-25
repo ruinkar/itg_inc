@@ -2,8 +2,6 @@ package inc.itgbbs.controller;
 
 import java.io.File;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 import inc.itgbbs.dao.EventDao;
 import inc.itgbbs.domain.BoardDTO;
 import inc.itgbbs.domain.EventDTO;
+import inc.itgbbs.util.ContentPath;
 import inc.itgbbs.util.FileUtil;
 import inc.itgbbs.util.TimeConvert;
 
 @Controller
-public class EventUpdateController {
+public class EventUpdateController implements ContentPath{
 
 	private Logger log=Logger.getLogger(this.getClass());
 	
@@ -31,7 +30,7 @@ public class EventUpdateController {
 	//입력->insertForm.jsp->액션컨트롤러 필요
 	//submit->요청명령어가 틀리면->따로 작성(p303)
 	//1.Get방식value="/요청명령어",method=RequestMethod.GET
-	@RequestMapping(value="/evinfo/updateForm.do",method=RequestMethod.GET)
+	@RequestMapping(value=EVINFO+"/updateForm.do",method=RequestMethod.GET)
 	public ModelAndView process(@RequestParam("anum") int anum,
 			@RequestParam("pageNum") int pageNum
 			) {
@@ -120,6 +119,6 @@ public class EventUpdateController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return "redirect:/evinfo/list.do";//redirect:/요청명령어
+		return "redirect:"+EVINFO+"/list.do";//redirect:/요청명령어
 	}
 }

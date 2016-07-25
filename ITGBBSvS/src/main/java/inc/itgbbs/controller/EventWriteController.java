@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import inc.itgbbs.dao.EventDao;
 import inc.itgbbs.domain.BoardDTO;
 import inc.itgbbs.domain.EventDTO;
+import inc.itgbbs.util.ContentPath;
 import inc.itgbbs.util.FileUtil;
 import inc.itgbbs.util.TimeConvert;
 
 @Controller
-public class EventWriteController {
+public class EventWriteController implements ContentPath {
 
 	private Logger log=Logger.getLogger(this.getClass());
 	
@@ -35,7 +36,7 @@ public class EventWriteController {
 	//입력->insertForm.jsp->액션컨트롤러 필요
 	//submit->요청명령어가 틀리면->따로 작성(p303)
 	//1.Get방식value="/요청명령어",method=RequestMethod.GET
-	@RequestMapping(value="/evinfo/eventWrite.do",method=RequestMethod.GET)
+	@RequestMapping(value=EVINFO+"/eventWrite.do",method=RequestMethod.GET)
 		public String form(){
 		    System.out.println("form()");
 			return "eventWriteForm";//이동할 페이지명
@@ -51,7 +52,7 @@ public class EventWriteController {
 	
 	
 	//2.Post방식
-	@RequestMapping(value="/evinfo/eventWrite.do",method=RequestMethod.POST)
+	@RequestMapping(value=EVINFO+"/eventWrite.do",method=RequestMethod.POST)
 	public String submit(@ModelAttribute("command") BoardDTO command,
 									@ModelAttribute("event") EventDTO event,
 									BindingResult result,
@@ -114,6 +115,6 @@ public class EventWriteController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return "redirect:/evinfo/list.do";//redirect:/요청명령어
+		return "redirect:"+EVINFO+"/list.do";//redirect:/요청명령어
 	}
 }

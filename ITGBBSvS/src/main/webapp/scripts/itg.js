@@ -243,6 +243,7 @@ itg.pages.flip = function() {
 //mpage..
 
 itg.mpage.init = function (id) {
+	// member id, context
 	
 	itg.uri = "mpage_ajax.do";
 	itg.ajaxData.id = id;
@@ -253,7 +254,7 @@ itg.mpage.init = function (id) {
 itg.mpage.print = function (json) {
 	$("#list").html("");
 	
-	var pageType = ["Board.do","EvInfo.do","Review.do","Reply.do"];
+	var pageType = ["./free/content.do","./evinfo/content.do","./review/content.do","Reply.do"];
 	var param1 = "?anum=";
 	
 	var eh = "에 ";
