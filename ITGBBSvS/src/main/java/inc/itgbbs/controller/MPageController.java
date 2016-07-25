@@ -11,13 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import inc.itgbbs.dao.IMPageDao;
 import inc.itgbbs.domain.BoardCommand;
-import inc.itgbbs.domain.MemberCommand;
 import inc.itgbbs.domain.PageCommand;
 import inc.itgbbs.domain.RankCommand;
+import inc.itgbbs.util.ContentPath;
 import inc.itgbbs.util.PagingUtil;
 
 @Controller
-public class MPageController {
+public class MPageController implements ContentPath{
 	
 	final int top = 10; // 상위 랭킹 수
 	int blockCount = 10; // 페이지 당 항목 수
@@ -81,6 +81,20 @@ public class MPageController {
 		
 		return json.toString();
 	}
+	
+	@RequestMapping("/mpage/reply.do")
+	public String reply(
+			@RequestParam("anum") int anum
+			) {
+		
+		String[] contentPath = {FREE, EVINFO, REVIEW };
+		BoardCommand bc = mPageDao.reply(anum);
+		int anum2 = bc.getAnum();
+		int cat = bc.getCategory();
+		
+		return "redirect:" + contentPath[cat] + "/content.do?anum=" + anum2;
+	}
+	
 	
 	
 	// list를 json 배열으로

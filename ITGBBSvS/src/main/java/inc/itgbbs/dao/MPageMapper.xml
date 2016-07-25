@@ -24,4 +24,14 @@
 		) where rnum >= #{start}
 		]]>
 	</select>
+	
+	<select id="reply" parameterType="int" resultType="BoardCommand">
+		select category, anum
+		from (
+			select pnum
+			from board
+			where anum = #{anum}
+		) p, board 
+		where anum = p.pnum
+	</select>
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import inc.itgbbs.domain.BoardCommand;
 import inc.itgbbs.domain.PageCommand;
 import inc.itgbbs.domain.RankCommand;
 
@@ -24,6 +25,11 @@ public class MPageDao extends SqlSessionDaoSupport implements IMPageDao {
 	public List list(PageCommand pageCommand) {
 		// System.out.println(pageCommand.getStart() + " " + pageCommand.getEnd());
 		return getSqlSession().selectList("MPage.list", pageCommand);
+	}
+
+	@Override
+	public BoardCommand reply(int anum) {
+		return getSqlSession().selectOne("MPage.reply", anum);
 	}
 
 
