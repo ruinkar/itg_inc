@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%
-	String contextPath = request.getContextPath();
-%>
 
 <style>
 .list-group.panel > .list-group-item {
@@ -39,6 +34,7 @@
     <a href="#" class="list-group-item list-group-item-success" >메인</a>
     <a href="#menu-evinfo" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">행사 정보</a>
     <div class="collapse" id="menu-evinfo">
+<<<<<<< Upstream, based on Review_v0.3
       <a href="<%=contextPath %>/evinfo/list.do" class="list-group-item">포스트형</a>
       <a href="<%=contextPath %>/evinfo/eventMap.do" class="list-group-item">지도형</a>
        <c:choose>
@@ -46,13 +42,17 @@
                 <a href="<%=contextPath %>/evinfo/eventWrite.do" class="list-group-item">행사 올리기</a>
             </c:when>
             </c:choose> 
+=======
+      <a href="${pageContext.request.contextPath}/evinfo/list.do" class="list-group-item">포스트형</a>
+      <a href="${pageContext.request.contextPath}/evinfo/eventMap.do" class="list-group-item">지도형</a>
+>>>>>>> 82b94a5 on working
     </div>
-    <a href="<%=request.getContextPath() %>/review/list.do" class="list-group-item list-group-item-success" >행사 리뷰</a>
-    <a href="<%=request.getContextPath() %>/free/list.do" class="list-group-item list-group-item-success" >자유게시판</a>
+    <a href="${pageContext.request.contextPath}/review/list.do" class="list-group-item list-group-item-success" >행사 리뷰</a>
+    <a href="${pageContext.request.contextPath}/free/list.do" class="list-group-item list-group-item-success" >자유게시판</a>
     <a href="#menu-rank" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">회원 랭킹</a>
     <div class="collapse" id="menu-rank">
-      <a href="<%=contextPath %>/rank.do" class="list-group-item">활동 점수</a>
-      <a href="<%=contextPath %>/rank.do?rtype=1" class="list-group-item">평점 평균</a>
+      <a href="${pageContext.request.contextPath}/rank.do" class="list-group-item">활동 점수</a>
+      <a href="${pageContext.request.contextPath}/rank.do?rtype=1" class="list-group-item">평점 평균</a>
     </div>
   </div>
 </div>

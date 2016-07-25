@@ -151,12 +151,12 @@
 		<put-attribute name="js" value="" />
 		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
 		<put-list-attribute name="javascripts">
-			<add-attribute value="/scripts/itg.js" />
+			<add-attribute value="/resources/js/itg.js" />
 			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
 			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
-			<add-attribute value="/styles/itg.css" />
+			<add-attribute value="/resources/css/itg.css" />
 			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
 		</put-list-attribute>
 	</definition>
@@ -167,12 +167,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/rank/memberInfo.jsp" />
 		<put-list-attribute name="javascripts">
-			<add-attribute value="/scripts/itg.js" />
+			<add-attribute value="/resources/js/itg.js" />
 			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
 			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
-			<add-attribute value="/styles/itg.css" />
+			<add-attribute value="/resources/css/itg.css" />
 			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
 		</put-list-attribute>
 	</definition>
