@@ -6,9 +6,9 @@
 
 <script>
 function  delreply (idx)
-{
+{	
 	document.replydelform.anum.value=idx;
-	document.replydelform.submit();
+	document.replydelform.submit();	
 }
 </script>
 <style>
@@ -129,7 +129,7 @@ function  delreply (idx)
 <input  type="hidden" name="writer" value="${sessionScope.userLoginInfo.id}">
 <tr height="30">
     <td align="center" width="125" class="menuName">${sessionScope.userLoginInfo.id}</td>
-    <td align="left" width="250" colspan="2"><textarea name="acontent" rows="13" cols="40"></textarea></td>
+    <td align="left" width="250" colspan="2"><textarea id="summernote" name="acontent" onfocus="$(this).summernote({focus, height:300});"></textarea></td>
     <td align="center" width="125" ><input type="submit" value="덧글달기"></td>
   </tr>
     </c:when>

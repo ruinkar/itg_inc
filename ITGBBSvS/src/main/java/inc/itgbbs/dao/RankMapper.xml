@@ -37,7 +37,7 @@
 	
 	
 	<!-- 활동 점수별 하위 -->
-	<select id="list_page_mpoint" parameterType="PagingUtil" resultType="RankCommand">
+	<select id="list_page_mpoint" parameterType="PageCommand" resultType="RankCommand">
 		select id, nick, thumbnail, mpoint 
 		from (
 			select m.*, rownum rnum from (
@@ -45,8 +45,8 @@
 				from member 
 				order by mpoint desc
 		<![CDATA[
-			) m where rownum <= #{endCount} 
-		) where rnum >= #{startCount}
+			) m where rownum <= #{end} 
+		) where rnum >= #{start}
 		]]>
 	</select>
 
@@ -70,7 +70,7 @@
 
 
 	<!-- 받은 평점별 하위 -->
-	<select id="list_page_rating" parameterType="PagingUtil" resultType="RankCommand">
+	<select id="list_page_rating" parameterType="PageCommand" resultType="RankCommand">
 		select * 
 		from (
 			select * 
@@ -83,8 +83,8 @@
 					group by writer 
 				) where writer = id order by avgrat desc
 		<![CDATA[
-			) where rnum <= #{endCount}
-		) where rnum >= #{startCount}
+			) where rnum <= #{end}
+		) where rnum >= #{start}
 		]]>
 	</select>
 

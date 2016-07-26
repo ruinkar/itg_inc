@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import inc.itgbbs.domain.PageCommand;
 import inc.itgbbs.domain.RankCommand;
-import inc.itgbbs.util.PagingUtil;
 
 public class RankDao extends SqlSessionDaoSupport implements IRankDao {
 	
@@ -24,11 +24,11 @@ public class RankDao extends SqlSessionDaoSupport implements IRankDao {
 	}
 
 	@Override
-	public List<RankCommand> getListPage(int rtype, PagingUtil pagingUtil) {
-		System.out.println(pagingUtil.getStartCount() + " " + pagingUtil.getEndCount());
+	public List<RankCommand> getListPage(int rtype, PageCommand pageCommand) {
+		System.out.println(pageCommand.getStart() + " " + pageCommand.getEnd());
 		return getSqlSession().selectList(
 				rtype == 0 ?
-				"Rank.list_page_mpoint" : "Rank.list_page_rating", pagingUtil);
+				"Rank.list_page_mpoint" : "Rank.list_page_rating", pageCommand);
 	}
 	
 }

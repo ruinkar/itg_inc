@@ -77,6 +77,9 @@ public class ReviewWriteController {
 				System.out.println("newName="+newName);
 				command.setAfile("/img/"+newName);//DB에 저장하기 직전에 저장(변경파일명)
 			}
+			else {
+				command.setAfile("/img/noimage.jpg");//DB에 저장하기 직전에 저장(변경파일명)
+			}
 			//최대값을 구하기->+1
 			int newSeq=reviewDao.getNewAnum()+1;
 			System.out.println("boardDao.getNewSeq()="+reviewDao.getNewAnum());

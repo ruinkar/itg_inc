@@ -18,7 +18,7 @@ div#mainContent {
 		<c:forEach var="article" items="${articleList}">
 			<div class="col-sm-3">
 				<div class="thumbnail">
-					<a href="eventContent.do?anum=${article.evnum}&pageNum=${currentPage}">
+					<a href="content.do?anum=${article.evnum}&pageNum=${currentPage}">
 						<img src="${article.eimg}" alt="Paris" width="400" height="300">
 							<p>
 								<strong>${article.ename}</strong>
