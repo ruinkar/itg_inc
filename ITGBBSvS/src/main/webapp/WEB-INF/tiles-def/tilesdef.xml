@@ -65,20 +65,16 @@
 	</definition>
 
 
-	<definition name="eventList"
-		template="/WEB-INF/tiles-view/template/eventmenuTemplate.jsp">
+    <definition name="eventList" extends="reviewList">
+	<!-- <definition name="eventList"
+		template="/WEB-INF/tiles-view/template/eventmenuTemplate.jsp"> -->
 		<put-attribute name="title" value="행사 페이지" />
-		<put-attribute name="css"
-			value="/WEB-INF/tiles-view/script/boardDefaultCss.jsp" />
-		<put-attribute name="js"
-			value="/WEB-INF/tiles-view/script/boardSearchJs.jsp" />
-
 		<put-attribute name="menu"
 			value="/WEB-INF/tiles-view/template/menu.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/evinfo/eventMain.jsp" />
-		<put-attribute name="top"
-			value="/WEB-INF/tiles-view/template/top.jsp" />
+		<!-- <put-attribute name="top"
+			value="/WEB-INF/tiles-view/template/top.jsp" /> -->
 	</definition>
 
 	<definition name="eventWriteForm" extends="eventList">
@@ -145,6 +141,8 @@
 		<put-attribute name="title" value="이벤트 맵 리스트" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/evinfo/eventMap.jsp" />
+		<put-attribute name="css"
+            value="" />
 	</definition>
 
 	<!-- 랭킹 페이지 -->

@@ -327,7 +327,7 @@
 											placeholder="제목을 입력해 주세요." class="form-control" id="title" />
 									</div>
 								</div>
-
+                                
 								<div class="form-group  has-feedback">
 									<div>
 										<input type="text" name="tagString"

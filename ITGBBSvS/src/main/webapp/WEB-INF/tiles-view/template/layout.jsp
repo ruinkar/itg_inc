@@ -21,7 +21,7 @@
 	<%-- <tr height="100" valign="middle" bgcolor="#ffffff">
 		<td colspan="2"><tiles:insertAttribute name="header" /></td>
 	</tr> --%>
-	<tr height="600" bgcolor="#ffffff">
+	<tr height="600" width="600px" bgcolor="#ffffff">
 		<td width="15%" valign="top"><tiles:insertAttribute name="menu" /></td>
 		<td width="85%" valign="top"><tiles:insertAttribute name="body" /></td>
 	</tr>

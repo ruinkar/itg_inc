@@ -42,6 +42,11 @@
 	height: 200px;
 }
 
+.slider_image_size {
+    width: 300px;
+    height: 200px;
+}
+
 /* Slider Text Panel */
 .slider_text_panel {
 	position: absolute;
@@ -121,7 +126,7 @@
 
 <center>
 
-	<c:if test="${count > 0}">
+    <c:if test="${count > 0}">
 		<div class="top_pannel">
 			<a class="top1st"
 				href="content.do?anum=${firstRank.anum}&pageNum=${currentPage}">
@@ -162,6 +167,57 @@
 			</div>
 		</div>
 	</c:if>
+	<%-- 
+	<c:if test="${count > 0}">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <c:forEach var="ranklist" items="${otherRank}" varStatus="status">
+    <c:if test="${status.index eq 0}">0, 1, 2, 3, 4, 5 중 index 1번째
+        <li data-target="#myCarousel" data-slide-to="${status.index}" class="active"></li>
+    </c:if>
+    <c:if test="${status.index > 0}">0, 1, 2, 3, 4, 5 중 index 1번째
+        <li data-target="#myCarousel" data-slide-to="${status.index}"></li>
+    </c:if>
+        
+    </c:forEach>
+    
+<!--     <li data-target="#myCarousel" data-slide-to="1"></li> -->
+  </ol>
+    
+    
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+  <c:forEach var="ranklist" items="${otherRank}" varStatus="status">
+    <c:if test="${status.index eq 0}">0, 1, 2, 3, 4, 5 중 index 1번째
+    <div class="item active">
+    </c:if>
+    <c:if test="${status.index > 0}">0, 1, 2, 3, 4, 5 중 index 1번째
+    <div class="item">
+    </c:if>
+      <img   src="${ranklist.afile}"/>
+      <div class="carousel-caption">
+      <h3>${ranklist.title}</h3>
+                            <p>${ranklist.acontent}</p>
+        <!-- <h3>Chania</h3>
+        <p>The atmosphere in Chania has a touch of Florence and Venice.</p> -->
+      </div>
+    </div>
+</c:forEach>
+  </div>
+</c:if> 
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+--%>
+
 	<b>글목록(전체 글:${count})</b>
 	<table width="700">
 		<tr>

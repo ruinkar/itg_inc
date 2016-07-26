@@ -20,6 +20,13 @@ function writeSave(){
 		  document.writeForm.rating.focus();
 		  return false;
 		}
+	
+	if(document.writeForm.upload.value==""){
+		  alert("후기사진을 올려주십시오");
+		  document.writeForm.upload.focus();
+		  return false;
+		}
+	
  }
 
 function eventCheck(){

@@ -41,6 +41,11 @@
     <div class="collapse" id="menu-evinfo">
       <a href="<%=contextPath %>/evinfo/list.do" class="list-group-item">포스트형</a>
       <a href="<%=contextPath %>/evinfo/eventMap.do" class="list-group-item">지도형</a>
+       <c:choose>
+                <c:when test="${not empty sessionScope.userLoginInfo}">
+                <a href="<%=contextPath %>/evinfo/eventWrite.do" class="list-group-item">행사 올리기</a>
+            </c:when>
+            </c:choose> 
     </div>
     <a href="<%=request.getContextPath() %>/review/list.do" class="list-group-item list-group-item-success" >행사 리뷰</a>
     <a href="<%=request.getContextPath() %>/free/list.do" class="list-group-item list-group-item-success" >자유게시판</a>
@@ -53,8 +58,10 @@
 </div>
 <c:choose>
 <c:when test="${not empty sessionScope.userLoginInfo}">
+<div width="100px">
  이름 : ${sessionScope.userLoginInfo.id}<br>
-<a href="../login/deleteSession.do">로그아웃</a>       
+<a href="../login/deleteSession.do">로그아웃</a>
+</div>       
 </c:when>
 <c:otherwise>
         <form name="loginForm" method="post"
@@ -79,3 +86,4 @@
     </c:otherwise>
 </c:choose> 
 </center>
+

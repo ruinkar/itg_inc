@@ -4,5 +4,5 @@ var cmd2move= [
     "/free/list.do",
     "/rank.do" ];
 
-location.href = "${pageContext.request.contextPath}" + cmd2move[1];
+location.href = "${pageContext.request.contextPath}" + cmd2move[0];
 </script>

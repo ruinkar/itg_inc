@@ -154,8 +154,8 @@
  </update>
  
  <update id="updateevent" parameterType="EventDTO">
-    UPDATE EVENT SET HOST = #{host}, ENAME = #{name}, 
-    "BEGIN" = #{begin}, "END" = #{end}, LOCATION = #{location}, EIMG = #{eimg}, LAT = #{lat}, LNG = #{lng} WHERE (EVNUM = ${evnum})
+    UPDATE EVENT SET HOST = #{host}, ENAME = #{ename}, 
+    "BEGIN" = #{begin}, "END" = #{end}, LOCATION = #{location}, EIMG = #{eimg:VARCHAR}, LAT = #{lat}, LNG = #{lng} WHERE (EVNUM = ${evnum})
  </update>
  
 

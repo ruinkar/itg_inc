@@ -83,8 +83,8 @@ public class EventWriteController implements ContentPath {
 			}
 			else
 			{
-				command.setAfile(" ");//DB에 저장하기 직전에 저장(변경파일명)
-				event.setEimg(" ");//DB에 저장하기 직전에 저장(변경파일명)
+				command.setAfile("/img/noimage.jpg");
+				event.setEimg("/img/noimage.jpg");//DB에 저장하기 직전에 저장(변경파일명)
 			}
 			//최대값을 구하기->+1
 			int newSeq=eventDao.getNewAnum()+1;

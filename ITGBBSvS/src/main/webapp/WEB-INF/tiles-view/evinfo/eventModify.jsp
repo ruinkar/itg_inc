@@ -68,6 +68,7 @@ ${barticle.acontent}
                     </c:if>
         <input id="lat" type="hidden" name="lat" size="5" title="위도" maxlength="3" class="text" value="${earticle.lat}"/>
         <input id="lng" type="hidden" name="lng" size="5" title="경도" maxlength="3" class="text" value="${earticle.lng}"/>
+        <input id="lng" type="hidden" name="afile" size="5" title="경도" maxlength="3" class="text" value="${barticle.afile}"/>
         <br><br><br>
         <input type="submit" value="수정하기" >
         <input type="button" value="목록보기" OnClick="window.location='list.do'">

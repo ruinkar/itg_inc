@@ -12,20 +12,20 @@
 <tiles:insertAttribute name="css" />
 <tiles:insertAttribute name="js" />
 <style>
-{ margin:0px; padding:0px; }
+
 </style>
 </head>
 <body>
 
 
-<table border="0" cellpadding="0" cellspacing="1" bgcolor="#a0a0a0" width="100%">
-	<tr bgcolor="#ffffff">
-		<td width="15%" valign="top"><tiles:insertAttribute name="menu" /></td>
-		<td width="85%" valign="top"><tiles:insertAttribute name="body" /></td>
+<table  class="main_table" border="0" cellpadding="0" cellspacing="1" bgcolor="#a0a0a0" width="100%">
+	<tr  bgcolor="#ffffff">
+		<td class="main_menu" width="15%" valign="top"><tiles:insertAttribute name="menu" /></td>
+		<td width="85%" valign="top"><tiles:insertAttribute name="body" />
+		</td>
 	</tr>
 	
 </table>
-
 
 </body>
 </html>
