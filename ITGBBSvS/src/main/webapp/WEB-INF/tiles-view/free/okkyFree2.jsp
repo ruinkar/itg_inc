@@ -20,7 +20,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>OKKY - 커뮤니티</title>
+<title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon"
 	href="http://okky.kr/assets/favicon-4ddd8035b72404da5a8c298cbaacad86.ico"
@@ -46,14 +46,12 @@
 <meta name="layout" content="main">
 
 
-
-
 </head>
 <body>
 	<div class="layout-container">
 		<div class="main ">
 
-            <div id="list-article" class="content scaffold-list" role="main">
+			<div id="list-article" class="content scaffold-list" role="main">
 				<div class="nav" role="navigation">
 					<a href="writeForm.do"
 						class="create btn btn-success btn-wide pull-right"><i
@@ -63,8 +61,6 @@
 					<i class="fa fa-pencil"><input type="submit" value="새 글 쓰기"/></i></form> -->
 
 
-
-					<h4>커뮤니티</h4>
 					<div class="category-filter-wrapper">
 						<form action="/articles/community" method="get"
 							name="category-filter-form" id="category-filter-form">
@@ -118,47 +114,11 @@
 							<li class="list-group-item  list-group-no-note clearfix">
 
 								<div class="list-title-wrapper clearfix">
-									<div class="list-tag clearfix">
-										<span class="list-group-item-text article-id">#334499</span> <a
-											href="/articles/life"
-											class="list-group-item-text item-tag label label-info"><i
-											class="fa fa-comments"></i> 사는얘기</a>
-
-									</div>
 
 									<h5 class="list-group-item-heading ">
 										<a href="/ITGBBS/free/okkyFreeArticle.jsp">게시판에 저장된 글이
 											없습니다.</a>
 									</h5>
-								</div>
-
-								<div class="list-summary-wrapper clearfix">
-
-									<div class="list-group-item-summary clearfix">
-										<ul>
-											<li class="item-icon-disabled"><i
-												class="item-icon fa fa-comment "></i> 0</li>
-											<li class="item-icon-disabled"><i
-												class="item-icon fa fa-thumbs-up"></i> 0</li>
-											<li class=""><i class="item-icon fa fa-eye"></i> 23</li>
-										</ul>
-									</div>
-
-								</div>
-
-								<div class="list-group-item-author clearfix">
-									<div class='avatar avatar-list clearfix '>
-										<a href='/user/info/3493' class='avatar-photo'><img
-											src='//www.gravatar.com/avatar/904f71d814b2fb4a43c93284d5c8dea9?d=identicon&s=30' /></a>
-										<div class="avatar-info">
-											<a class="nickname" href="/user/info/3493">msb0</a>
-											<div class="activity">
-												<span class="fa fa-flash"></span> 293
-											</div>
-											<div class="date-created timeago"
-												title="2016-06-27 11:54:27.0">2016-06-27 11:54:27.0</div>
-										</div>
-									</div>
 								</div>
 							</li>
 
@@ -170,18 +130,14 @@
 
 									<div class="list-title-wrapper clearfix">
 										<div class="list-tag clearfix">
-											<span class="list-group-item-text article-id"> <c:out
-													value="스프링" /> <c:set var="number"
-													value="스프링" />
-											</span> <a href="/articles/life"
-												class="list-group-item-text item-tag label label-info"><i
-												class="fa fa-comments"></i>자유게시판(사는얘기)</a>
-
+											<span class="list-group-item-text article-id"><!--
+											--><c:out value="#${article.anum}" /><c:set var="number" value="${article.anum}" />
+											</span> <a href="#" class="list-group-item-text item-tag label label-info">
+											<i class="fa fa-comments"></i>${article.tag1}</a>
 										</div>
 
 										<h5 class="list-group-item-heading ">
-											<a
-												href="content.do?anum=${article.anum}">${article.title}</a>
+											<a href="content.do?anum=${article.anum}">${article.title}</a>
 										</h5>
 									</div>
 
@@ -193,8 +149,7 @@
 													class="item-icon fa fa-comment "></i> 0</li>
 												<li class="item-icon-disabled"><i
 													class="item-icon fa fa-thumbs-up"></i> 0</li>
-												<li class=""><i class="item-icon fa fa-eye"></i>${article.readcount}
-													%></li>
+												<li class=""><i class="item-icon fa fa-eye"></i>${article.readcount}</li>
 											</ul>
 										</div>
 
@@ -202,10 +157,10 @@
 
 									<div class="list-group-item-author clearfix">
 										<div class='avatar avatar-list clearfix '>
-											<a href='/user/info/3493' class='avatar-photo'><img
-												src='//www.gravatar.com/avatar/904f71d814b2fb4a43c93284d5c8dea9?d=identicon&s=30' /></a>
+											<a href="${pageContext.request.contextPath}/memberInfo.do?id=${article.writer}" class='avatar-photo'><img
+												src="/img/noimage.jpg" /></a>
 											<div class="avatar-info">
-												<a class="nickname" href="/user/info/3493">${article.writer}</a>
+												<a class="nickname" href="${pageContext.request.contextPath}/memberInfo.do?id=${article.writer}">${article.writer}</a>
 												<div class="activity">
 													<span class="fa fa-flash"></span> 293
 												</div>
@@ -222,63 +177,16 @@
 
 
 				<div class="text-center">
-                    
+
 					<ul class="pagination pagination-sm">${pagingHtml}</ul>
 
 				</div>
 			</div>
 
 
-			<div class="right-banner-wrapper">
-
-
-
-				<div class="google-ad">
-					<script async
-						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- okjspad_160x600 -->
-					<ins class="adsbygoogle"
-						style="display: inline-block; width: 160px; height: 600px"
-						data-ad-client="ca-pub-8103607814406874" data-ad-slot="6573675943"></ins>
-					<script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-				</div>
-			</div>
-			<div id="footer" class="footer" role="contentinfo">
-				<div class="row">
-					<div class="col-sm-6">
-						<div style="float: left; margin-right: 10px;">
-							<img
-								src="http://okky.kr/assets/okky_logo_footer-afc30f99f303854f15a531d9089a1d50.png" />
-						</div>
-						<div>
-							<a href="/intro/about">About OKKY</a> | <a href="/user/privacy"
-								data-toggle="modal" data-target="#userPrivacy">개인정보보호</a> | <a
-								href="https://github.com/okjsp/okky" target="_blank">Github</a>
-							v0.8.1 <br /> @ 2015 <a href="http://www.ebrain.kr"
-								target="_blank">eBrain Management</a>
-						</div>
-					</div>
-					<div class="sponsor-banner col-sm-6">
-						<a href="http://www.aspose.com" target="_blank"><img
-							src="http://okky.kr/assets/spb_aspose-b744b6a8815d38b3c945904a1267b583.png" /></a>
-						<a href="http://www.hanbit.co.kr" target="_blank"><img
-							src="http://okky.kr/assets/spb_hb2-b6666fbb2c4778a64b386e89e0b4dd9f.png" /></a>
-						<a href="http://alert.cidow.com" target="_blank"><img
-							src="http://okky.kr/assets/spb_alert-5415d4607b9b8831cea9f7b59edf49c6.png" /></a>
-						<a href="http://www.80port.com" target="_blank"><img
-							src="http://okky.kr/assets/spb_port80-276554688f11177fae25fb25fbb538b4.png" /></a>
-					</div>
-				</div>
-
-
-			</div>
 		</div>
 	</div>
-	<script>
-            var contextPath = "", encodedURL = "%2Farticles%2Fcommunity";
-        </script>
+	
 	<script
 		src="http://okky.kr/assets/application-196466c60cf4e718162e141a5acdf612.js"
 		type="text/javascript"></script>
@@ -288,42 +196,15 @@
 
 
 	<script>
-            $(function() {
-                $('.category-sort-link').click(function(e) {
-                    $('#category-sort-input').val($(this).data('sort'));
-                    $('#category-order-input').val($(this).data('order'));
-                    e.preventDefault();
-                    $('#category-filter-form')[0].submit();
-                });
-            });
-            </script>
-
-
-	<script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-6707625-5', 'auto');
-            ga('send', 'pageview');
-
-        </script>
-
-
-	<div id="userPrivacy" class="modal" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content"></div>
-		</div>
-	</div>
-
-	<div id="userAgreement" class="modal" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content"></div>
-		</div>
-	</div>
+		$(function() {
+			$('.category-sort-link').click(function(e) {
+				$('#category-sort-input').val($(this).data('sort'));
+				$('#category-order-input').val($(this).data('order'));
+				e.preventDefault();
+				$('#category-filter-form')[0].submit();
+			});
+		});
+	</script>
 
 </body>
 </html>

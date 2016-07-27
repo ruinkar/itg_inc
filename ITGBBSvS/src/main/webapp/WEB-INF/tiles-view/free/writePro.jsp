@@ -4,4 +4,4 @@
 <%
 	   //response.sendRedirect(request.getContextPath()+"/free/list.do");
 	%>
-	<meta http-equiv="Refresh" content="0;url=/ITGBBS/free/list.do">
+	<meta http-equiv="Refresh" content="0;url=list.do">

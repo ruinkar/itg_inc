@@ -5,5 +5,5 @@ var cmd2move= [
     "/rank.do",
     "/evinfo/list.do"
     ];
-location.href = "${pageContext.request.contextPath}" + cmd2move[3];
+location.href = "${pageContext.request.contextPath}" + cmd2move[1];
 </script>

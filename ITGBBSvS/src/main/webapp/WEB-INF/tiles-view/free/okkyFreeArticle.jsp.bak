@@ -22,16 +22,30 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>${article.title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon"
+	href="http://okky.kr/assets/favicon-4ddd8035b72404da5a8c298cbaacad86.ico"
+	type="image/x-icon">
+<link rel="apple-touch-icon"
+	href="http://okky.kr/assets/icon_57x57-5611bd33d9f2b2d84c22219e248455b6.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="http://okky.kr/assets/icon_114x114-b2b627dfde8a040fe54fd257244ba191.png">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="http://okky.kr/assets/application-178a471b205e52821f985abddea1ac34.css" />
 
 <!--[if lt IE 9]>
             <script src="http://okky.kr/assets/libs/html5-ca664f64318d191265abf57fdf467aec.js" type="text/javascript" ></script>
         <![endif]-->
-        
+
+
 <meta name="layout" content="main">
 
 </head>
 <body>
-	<div class="layout-container container" style="margin:0;">
+	<div class="layout-container">
 		<div class="main ">
 
 			<div id="article" class="content" role="main">
@@ -45,12 +59,10 @@
 				<div class="panel panel-default clearfix">
 					<div class="panel-heading clearfix">
 						<div class='avatar avatar-medium clearfix pull-left'>
-							<a
-								href='${pageContext.request.contextPath}/memberInfo.do?id=${article.writer}'
-								class='avatar-photo'><img class="img-circle" src='/img/noimage.jpg' /></a>
+							<a href='${pageContext.request.contextPath}/memberInfo.do?id=${article.writer}' class='avatar-photo'><img
+								src='/img/noimage.jpg' /></a>
 							<div class="avatar-info">
-								<a class="nickname"
-									href="${pageContext.request.contextPath}/memberInfo.do?id=${article.writer}">${article.writer}</a>
+								<a class="nickname" href="${pageContext.request.contextPath}/memberInfo.do?id=${article.writer}">${article.writer}</a>
 								<div class="activity">
 									<span class="fa fa-flash"></span> 10
 								</div>
@@ -59,10 +71,10 @@
 						</div>
 						<div class="content-identity pull-right">
 							<div class="content-identity-count">
-								<span class="glyphicon glyphicon-comment"></span> 0
+								<i class="fa fa-comment"></i> 0
 							</div>
 							<div class="content-identity-count">
-								<span class="glyphicon glyphicon-eye-open"></span>${article.readcount}</div>
+								<i class="fa fa-eye"></i>${article.readcount}</div>
 						</div>
 					</div>
 					<div class="content-container clearfix">
@@ -70,17 +82,11 @@
 							<div class="content-tags">
 								<span class="list-group-item-text article-id">${article.anum}</span>
 								<a href="/articles/life"
-									class="list-group-item-text item-tag label label-info"> <!--
+									class="list-group-item-text item-tag label label-info"><!--
 									
-									--> <i class="fa fa-comments"></i>${article.tag1}</a>
-								<!--  
-									-->
-								<a href="#"
-									class="list-group-item-text item-tag label label-gray">${article.tag2}</a>
-								<!--  
-									-->
-								<a href="#"
-									class="list-group-item-text item-tag label label-gray">${article.tag3}</a>
+									--><i class="fa fa-comments"></i>${article.tag1}</a><!--  
+									--><a href="#" class="list-group-item-text item-tag label label-gray">${article.tag2}</a><!--  
+									--><a href="#" class="list-group-item-text item-tag label label-gray">${article.tag3}</a>
 							</div>
 							<h2 class="panel-title">${article.title}</h2>
 							<hr />
@@ -97,16 +103,40 @@
 								<div id="content-vote-count-1082476" class="content-count">0</div>
 							</div>
 						</div>
-						<div class="btn-group">
-							<button type="button"
-								class="btn btn-default btn-lg dropdown-toggle col-xs-12"
-								data-toggle="dropdown" data-placement="left" title="게시물 설정">
-								<span class="glyphicon glyphicon-cog"></span>
+						<div class="content-function-cog share-btn-wrapper">
+							
+							<button type="button" class="btn btn-primary dropdown-toggle"
+								data-toggle="dropdown">
+								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="updateForm.do?anum=${article.anum}">수정</a></li>
 								<li><a href="deletePro.do?anum=${article.anum}">삭제</a></li>
 							</ul>
+
+							<div class="dropdown">
+								<form action="/article/delete/334602" method="post"
+									name="article-delete-form" id="article-delete-form">
+									<input type="hidden" name="_method" value="DELETE" id="_method" />
+									<div class="dropdown">
+										<a href="javascript://" data-toggle="dropdown"><i
+											class="fa fa-cog" data-toggle="tooltip" data-placement="left"
+											title="게시물 설정"></i></a>
+										<ul class="dropdown-menu" role="menu">
+											<li><a
+												href="updateForm.do?anum=${article.anum}"
+												class="edit"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>
+
+											<li><a
+												href="deletePro.do?anum=${article.anum}"
+												id="article-delete-btn"><i class="fa fa-trash-o fa-fw"></i>
+													삭제 </a></li>
+
+										</ul>
+									</div>
+								</form>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -143,17 +173,15 @@
 
 
 											<div class='avatar avatar-medium clearfix '>
-												<a
-													href='${pageContext.request.contextPath}/memberInfo.do?id=${reply.writer}'
-													class='avatar-photo'><img
+												<a href='${pageContext.request.contextPath}/memberInfo.do?id=${reply.writer}' class='avatar-photo'><img
 													src='//graph.facebook.com/1056089894473018/picture?width=40&height=40' /></a>
 												<div class="avatar-info">
-													<a class="nickname"
-														href="${pageContext.request.contextPath}/memberInfo.do?id=${reply.writer}">${reply.writer}</a>
+													<a class="nickname" href="${pageContext.request.contextPath}/memberInfo.do?id=${reply.writer}">${reply.writer}</a>
 													<div class="activity">
 														<span class="fa fa-flash"></span> 1k
 													</div>
-													<div class="date-created timeago" title="${reply.adate}">${reply.adate}</div>
+													<div class="date-created timeago"
+														title="${reply.adate}">${reply.adate}</div>
 												</div>
 											</div>
 											<fieldset class="form">
@@ -249,7 +277,58 @@
 				</ul>
 			</div>
 		</div>
+
+
+		<form action="/article/assent/334602" method="post"
+			name="note-vote-form" id="note-vote-form">
+			<input type="hidden" name="_method" value="PUT" id="_method" />
+		</form>
+
+		<form action="/article/unvote/334602" method="post"
+			name="note-unvote-form" id="note-unvote-form">
+			<input type="hidden" name="_method" value="PUT" id="_method" />
+		</form>
+		<form action="/article/selectNote/334602" method="post"
+			name="note-select-form" id="note-select-form">
+			<input type="hidden" name="_method" value="PUT" id="_method" />
+		</form>
+		<form action="/article/deselectNote/334602" method="post"
+			name="note-deselect-form" id="note-deselect-form">
+			<input type="hidden" name="_method" value="PUT" id="_method" />
+		</form>
+		<form action="/article/scrap/334602" method="post"
+			name="article-scrap-form" id="article-scrap-form"></form>
+
 	</div>
+	
+	<script
+		src="http://okky.kr/assets/application-196466c60cf4e718162e141a5acdf612.js"
+		type="text/javascript"></script>
+	<script
+		src="http://okky.kr/assets/apps/search-a672360634f56105585df31fcdb69705.js"
+		type="text/javascript"></script>
+
+	<script
+		src="http://okky.kr/assets/apps/notification-f91d194e3ba2944508aa3af101c4498a.js"
+		type="text/javascript"></script>
+
+
+	<div id="fb-root"></div>
+	<script
+		src="http://okky.kr/assets/apps/article-ea46aa62f8c1cced8e0e35a962a7b49c.js"
+		type="text/javascript"></script>
+
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=1539685662974940&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 
 
 </body>
