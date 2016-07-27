@@ -2,7 +2,8 @@
 var cmd2move= [
 	"/review/list.do",
     "/free/list.do",
-    "/rank.do" ];
-
-location.href = "${pageContext.request.contextPath}" + cmd2move[0];
+    "/rank.do",
+    "/evinfo/list.do"
+    ];
+location.href = "${pageContext.request.contextPath}" + cmd2move[3];
 </script>

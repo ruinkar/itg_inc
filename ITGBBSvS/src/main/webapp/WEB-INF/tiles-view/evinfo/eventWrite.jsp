@@ -7,20 +7,64 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
-	type="text/css" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-
+<!-- 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> -->
 
 <script>
 $(function(){
-    $(".DatePicker").datepicker({
-        changeMonth : true,
-        changeYear : true
+	    
+	// 시작 날짜와 끝나는 날짜를 지정한다. 여기에서는 30일로 설정하엿다
+	var start_date = moment().subtract(29, 'days');
+	var end_date = moment();
+	// var fmt = "YYYY-MM-DD";
+	var fmt = "MM/DD/YYYY"
+	function cb(start, end) {
+		$('#reportrange span').html(
+				start.format(fmt) + ' - '
+						+ end.format(fmt));
+		$("input[name=beginStr]").val(start.format(fmt));
+		$("input[name=endStr]").val(end.format(fmt));
+	}
+	cb(start_date, end_date);
+
+	$('#reportrange')
+			.daterangepicker(
+					{
+						ranges : {
+							'오늘' : [ moment(), moment() ],
+							'어제' : [ moment().subtract(1, 'days'),
+										moment().subtract(1, 'days') ],
+							'지난 7일' : [ moment().subtract(6, 'days'),
+									moment() ],
+							'지난 30일' : [ moment().subtract(29, 'days'),
+									moment() ],
+							'이번 달' : [ moment().startOf('month'),
+									moment().endOf('month') ],
+							'지난 달' : [
+									moment().subtract(1, 'month')
+											.startOf('month'),
+									moment().subtract(1, 'month')
+											.endOf('month') ]
+						},
+						'startDate' :  start_date,
+						'endDate' : end_date
+					}, cb);
+		
+    // summernote on
+    var $snote = $("textarea[name=acontent]");
+    $snote.on("click", function (){
+    	$snote.summernote({
+        	focus,
+        	callbacks: {
+        		onBlur: function() {
+        			$snote.summernote("destroy");
+        		}
+        	}
+        });
     });
+    
 });
 
 </script>
@@ -48,6 +92,18 @@ $(function(){
 				id="host" type="text" name="host" size="20" title="행사주최자 입력"
 				maxlength="10" class="text" />
 		</div>
+		
+		<input id="begin" type="hidden" name="beginStr" />
+		<input  id="end" type="hidden" name="endStr" />
+		<div class="container col-xs-5">
+			<label for="reportrange">행사기간</label>
+				<div id="reportrange" class="pull-right"
+					style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp; <span></span>
+					<b class="caret"></b>
+				</div>
+		</div>
+		
 		<div class="col-xs-12">
 			<label for="comment">글 내용</label>
 			<pre>
@@ -69,6 +125,7 @@ $(function(){
 			<label for="comment">태그</label>
 		</div>
 		<div class="col-xs-2">
+
 			<input class="form-control" id="tag1" type="text" name="tag1"
 				size="20" title="태그1 입력" maxlength="10" class="text" />
 		</div>
@@ -88,17 +145,15 @@ $(function(){
 			<input class="form-control" id="tag5" type="text" name="tag5"
 				size="20" title="태그5 입력" maxlength="10" class="text" />
 		</div>
-		<div class="col-xs-6">
-			<label for="beginStr">시작일</label> <input id="begin" type="text"
-				name="beginStr" size="20" title="행사 시작일 입력" maxlength="20"
-				class="DatePicker form-control" />
+		<!-- <div class="col-xs-6">
+	<label for="beginStr">시작일</label>    
+		<input id="begin" type="text" name="beginStr" size="20" title="행사 시작일 입력" maxlength="20" class="DatePicker form-control"/>
 		</div>
 		<div class="col-xs-6">
-			<label for="endStr">종료일</label> <input id="end" type="text"
-				name="endStr" size="20" title="행사 종료일 입력" maxlength="20"
-				class="DatePicker form-control" />
-		</div>
-
+	<label for="endStr">종료일</label>    
+		<input  id="end" type="text" name="endStr" size="20" title="행사 종료일 입력" maxlength="20" class="DatePicker form-control"/>
+		</div> -->
+		
 		<div class="col-xs-8">
 			<label for="location">위치</label> <input class="form-control"
 				id="location" type="text" name="location" size="20" title="행사 위치 입력"

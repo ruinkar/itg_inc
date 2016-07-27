@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import inc.itgbbs.dao.IRankDao;
+import inc.itgbbs.domain.PageCommand;
 import inc.itgbbs.domain.RankCommand;
 import inc.itgbbs.util.PagingUtil;
 
@@ -32,9 +33,12 @@ public class RankController {
 		
 		int count = rankDao.getMemberCount(rtype);
 		PagingUtil pagingUtil = new PagingUtil(pageNum, count, blockCount, blockPage, pageUrl);
+		PageCommand pageCommand = new PageCommand();
+		pageCommand.setStart(pagingUtil.getStartCount());
+		pageCommand.setEnd(pagingUtil.getEndCount());
 		
 		List<RankCommand> listTop = rankDao.getListTop(rtype, top);
-		List<RankCommand> listPage = rankDao.getListPage(rtype, pagingUtil);
+		List<RankCommand> listPage = rankDao.getListPage(rtype, pageCommand);
 		String json_top = list2Json(listTop);
 		String json_page = list2Json(listPage);
 		
@@ -55,9 +59,12 @@ public class RankController {
 		
 		int count = rankDao.getMemberCount(rtype);
 		PagingUtil pagingUtil = new PagingUtil(pageNum, count, blockCount, blockPage, pageUrl);
+		PageCommand pageCommand = new PageCommand();
+		pageCommand.setStart(pagingUtil.getStartCount());
+		pageCommand.setEnd(pagingUtil.getEndCount());
 		
 		List<RankCommand> listTop = rankDao.getListTop(rtype, top);
-		List<RankCommand> listPage = rankDao.getListPage(rtype, pagingUtil);
+		List<RankCommand> listPage = rankDao.getListPage(rtype, pageCommand);
 		
 		StringBuffer json = new StringBuffer("{");
 		json.append("\"json_top\":"+ list2Json(listTop) );

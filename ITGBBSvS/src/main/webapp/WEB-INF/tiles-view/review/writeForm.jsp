@@ -7,6 +7,9 @@
 
 <script>
 	$(function() {
+		$("textarea[name=acontent]").summernote({
+			height: 500
+		});		
 	})
 </script>
 
@@ -92,8 +95,7 @@
 
 				<tr>
 					<td width="70" bgcolor="#b0e0e6" align="center">내 용</td>
-					<td width="330"><textarea  class="form-control" name="acontent" rows="13" cols="40"></textarea>
-					</td>
+					<td width="330"><textarea name="acontent"></textarea></td>
 				</tr>
 				<tr>
 					<td width="70" bgcolor="#b0e0e6" align="center">첨부파일</td>

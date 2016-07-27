@@ -144,7 +144,7 @@
     
     <!-- 글쓰기 -->
  <insert id="insertReview" parameterType="BoardDTO">
-     INSERT INTO BOARD (ANUM, WRITER, CATEGORY, ADATE, IP, TITLE, ACONTENT, TAG1, TAG2, TAG3, TAG4,TAG5 , AFILE )
+     INSERT INTO BOARD (ANUM, WRITER, CATEGORY, ADATE, IP, TITLE, ACONTENT, TAG1, TAG2, TAG3, TAG4, TAG5, AFILE )
             VALUES  ( #{anum},#{writer},#{category},sysdate, #{ip},#{title},#{acontent} ,#{tag1},#{tag2},#{tag3},#{tag4},#{tag5} ,#{afile})
  </insert>
  

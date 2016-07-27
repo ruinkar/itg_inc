@@ -18,16 +18,10 @@
 </head>
 <body>
 <table border="0" cellpadding="0" cellspacing="1" bgcolor="#a0a0a0" width="100%">
-	<%-- <tr height="100" valign="middle" bgcolor="#ffffff">
-		<td colspan="2"><tiles:insertAttribute name="header" /></td>
-	</tr> --%>
-	<tr height="600" width="600px" bgcolor="#ffffff">
+	<tr height="600" bgcolor="#ffffff">
 		<td width="15%" valign="top"><tiles:insertAttribute name="menu" /></td>
 		<td width="85%" valign="top"><tiles:insertAttribute name="body" /></td>
 	</tr>
-	<%-- <tr bgcolor="#ffffff">
-		<td colspan="2"><tiles:insertAttribute name="footer" /></td>
-	</tr> --%>
 </table>
 </body>
 </html>

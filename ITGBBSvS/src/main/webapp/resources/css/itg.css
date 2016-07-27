@@ -26,7 +26,7 @@ div {margin:0; padding:0; border-style:none; border:0; text-decoration:none; tex
 .list-item {color:blue; list-style:none; width:100%; height:100%; }
 
 .outer {display: table; width: 100%; height: 100%; }
-.inner {display: table-cell; vertical-align: middle; text-align: center; }
+.inner {display: table-cell; vertical-align:middle; text-align: center; }
 .centered {position:relative; display:inline-block; font-size:50px; }
 
 #pagebox {background-color:gray; margin:auto; }
