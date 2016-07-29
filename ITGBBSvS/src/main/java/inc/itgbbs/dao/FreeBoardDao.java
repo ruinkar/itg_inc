@@ -33,6 +33,13 @@ public interface FreeBoardDao {
 	
 	// 9. 답글목록
 	public List<FreeBoardDTO> repliesList(int anum);
+
+	// 10. 답글 수
 	public int getReplyCount(int pnum);
 	
+	// 11. 추천 수
+	public int getVoteCount(int anum);
+	
+	// 12. 추천 확인
+	public int insertVote(String id);
 }

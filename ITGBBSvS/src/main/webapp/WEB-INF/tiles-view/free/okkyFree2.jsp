@@ -158,7 +158,7 @@
 									<div class="list-group-item-author clearfix">
 										<div class='avatar avatar-list clearfix '>
 											<a href="${pageContext.request.contextPath}/memberInfo.do?id=${article.writer}" class='avatar-photo'><img
-												src="/img/noimage.jpg" /></a>
+												src="itgUtil.imgCheck(${article.writer}, 40})" /></a>
 											<div class="avatar-info">
 												<a class="nickname" href="${pageContext.request.contextPath}/memberInfo.do?id=${article.writer}">${article.writer}</a>
 												<div class="activity">

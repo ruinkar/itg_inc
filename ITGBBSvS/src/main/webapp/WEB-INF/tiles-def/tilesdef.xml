@@ -4,6 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+<!-- 자유게시판 ~ -->
 	<definition name="boardList" template="/WEB-INF/tiles-view/template/layout.jsp">
 		<put-attribute name="title" value="메인 페이지" />
 		<put-attribute name="menu"
@@ -15,12 +16,71 @@
 		<put-list-attribute name="javascripts">
 			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
 			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
-			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
+			<!-- <add-attribute value="http://code.jquery.com/jquery-1.12.4.js" /> -->
+			<add-attribute value="/resources/js/itgUtil.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
 			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
 		</put-list-attribute>
 	</definition>
+	
+	
+	<!--글 상세보기/답글 결과 확인 -->
+	<definition name="boardView" extends="boardList">
+		<put-attribute name="title" value="글 상세보기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/free/okkyFreeArticle.jsp" />
+		<put-list-attribute name="javascripts" inherit="true">
+			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js" />
+		</put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" />
+		</put-list-attribute>
+	</definition>
+	
+	
+	<!--글쓰기 -->
+	<definition name="boardWrite" extends="boardView">
+		<put-attribute name="title" value="글쓰기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/free/okkyFreeWrite.jsp" />
+	</definition>
+	
+	
+	<!--글 수정하기 -->
+	<definition name="boardModify" extends="boardView">
+		<put-attribute name="title" value="글 수정하기" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/free/updateForm.jsp" />
+	</definition>	
+<!-- ~ 자유게시판 -->
+
+<!-- 랭킹 페이지 -->
+	<definition name="rankList" extends="boardList">
+		<put-attribute name="title" value="순위표" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
+		<put-list-attribute name="javascripts" inherit="true">
+			<add-attribute value="/resources/js/itg.js" />
+		</put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+			<add-attribute value="/resources/css/itg.css" />
+		</put-list-attribute>
+	</definition>
+
+<!-- 회원정보 -->
+	<definition name="mpage" extends="boardList">
+		<put-attribute name="title" value="회원 활동정보" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/rank/memberInfo.jsp" />
+		<put-list-attribute name="javascripts" inherit="true">
+			<add-attribute value="/resources/js/itg.js" />
+		</put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+			<add-attribute value="/resources/css/itg.css" />
+		</put-list-attribute>
+	</definition>
+
 
 <!-- review layout ~ -->
 	<definition name="reviewList"
@@ -80,6 +140,7 @@
 	</definition>
 <!-- ~ review layout -->
 
+
 <!-- event layout ~ -->
     <definition name="eventList" extends="reviewList">
 	<!-- <definition name="eventList"
@@ -134,43 +195,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/evinfo/deleteForm.jsp" />
 	</definition>
-<!-- ~ event layout -->
-
-	<!--글쓰기 -->
-	<definition name="boardWrite" extends="boardList">
-		<put-attribute name="title" value="글쓰기" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles-view/free/okkyFreeWrite.jsp" />
-	</definition>
-
-
-
-	<!--글 상세보기/답글 결과 확인 -->
-	<definition name="boardView" extends="boardList">
-		<put-attribute name="title" value="글 상세보기" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles-view/free/okkyFreeArticle.jsp" />
-	</definition>
-
-	<definition name="pageError" extends="boardList">
-		<put-attribute name="title" value="" />
-		<put-attribute name="js" value="" />
-		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
-	</definition>
-
-	<!--글 수정하기 -->
-	<definition name="boardModify" extends="boardList">
-		<put-attribute name="title" value="글 수정하기" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles-view/free/updateForm.jsp" />
-	</definition>
-
+	
 	<definition name="LocSearchForm" template="/WEB-INF/tiles-view/evinfo/mapsearch.jsp">
 		<put-attribute name="title" value="위치 검색" />
 	</definition>
-
+	
 	<definition name="eventMap" extends="eventList">
-
 		<!-- <definition name="eventMap" template="/WEB-INF/tiles-view/evinfo/eventMap.jsp"> -->
 		<put-attribute name="title" value="이벤트 맵 리스트" />
 		<put-attribute name="body"
@@ -178,30 +208,14 @@
 		<put-attribute name="css"
             value="" />
 	</definition>
+<!-- ~ event layout -->
 
-	<!-- 랭킹 페이지 -->
-	<definition name="rankList" extends="boardList">
-		<put-attribute name="title" value="순위표" />
+
+<!-- error page -->
+	<definition name="pageError" extends="boardList">
+		<put-attribute name="title" value="" />
 		<put-attribute name="js" value="" />
 		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
-		<put-list-attribute name="javascripts" inherit="true">
-			<add-attribute value="/resources/js/itg.js" />
-		</put-list-attribute>
-		<put-list-attribute name="stylesheets" inherit="true">
-			<add-attribute value="/resources/css/itg.css" />
-		</put-list-attribute>
-	</definition>
-
-	<definition name="mpage" extends="boardList">
-		<put-attribute name="title" value="회원 활동정보" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles-view/rank/memberInfo.jsp" />
-		<put-list-attribute name="javascripts" inherit="true">
-			<add-attribute value="/resources/js/itg.js" />
-		</put-list-attribute>
-		<put-list-attribute name="stylesheets" inherit="true">
-			<add-attribute value="/resources/css/itg.css" />
-		</put-list-attribute>
 	</definition>
 
 </tiles-definitions>

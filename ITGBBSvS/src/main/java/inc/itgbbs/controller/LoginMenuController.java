@@ -38,6 +38,7 @@ public class LoginMenuController {
 		if (result != 0 )
 		{
 			session.setAttribute("userLoginInfo", login);
+			session.setAttribute("id", login.getId());
 		}
 		String referer = request.getHeader("REFERER");
 		referer = referer.substring(referer.compareTo("ITGBBSvS"));

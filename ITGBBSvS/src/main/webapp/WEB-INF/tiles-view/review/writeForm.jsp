@@ -9,7 +9,7 @@
 	$(function() {
 		$("textarea[name=acontent]").summernote({
 			height: 500
-		});		
+		});
 	})
 </script>
 

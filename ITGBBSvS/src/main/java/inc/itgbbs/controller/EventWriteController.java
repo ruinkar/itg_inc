@@ -37,10 +37,10 @@ public class EventWriteController implements ContentPath {
 	//submit->요청명령어가 틀리면->따로 작성(p303)
 	//1.Get방식value="/요청명령어",method=RequestMethod.GET
 	@RequestMapping(value=EVINFO+"/eventWrite.do",method=RequestMethod.GET)
-		public String form(){
-		    System.out.println("form()");
-			return "eventWriteForm";//이동할 페이지명
-		}
+	public String form(){
+	    System.out.println("form()");
+		return "eventWriteForm";//이동할 페이지명
+	}
 	//커맨드 객체 초기화->사용자로부터 값을 입력받은 부분(객체)->Model
 	@ModelAttribute("command")
 	//public MemberCommand test(){
@@ -48,7 +48,6 @@ public class EventWriteController implements ContentPath {
 		System.out.println("makeBoardDTO()호출됨");
 		return new BoardDTO();
 	}
-	
 	
 	
 	//2.Post방식

@@ -43,7 +43,15 @@
 
 
 <meta name="layout" content="main">
+<script>
+$(function(){
+	$("textarea[name=acontent]").summernote({
+		height: 800,
+		focus: true
+	});
+});
 
+</script>
 
 
 </head>

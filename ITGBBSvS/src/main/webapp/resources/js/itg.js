@@ -285,31 +285,3 @@ itg.mpage.print = function (json) {
 		$("#list").append(li);
 	});
 }
-
-
-var itgUtil = {
-	
-};
-
-itgUtil.paramFromGet = function(href, param) {
-	var p = href.indexOf(param);
-	var value = href.substr(p);
-	p = value.indexOf("&");
-	value = p !== -1 ? value.substring(0, p) : value;
-	p = value.indexOf("=");
-	value = value.substr(p + 1);
-	console.log(value);
-	
-	return value;
-}
-
-itgUtil.thumbCheck = function(thumb) {
-	var result = "url('/img/noimage.jpg')";
-	var suffix = " no-repeat center";
-	
-	if (thumb.indexOf(".jpg") !== -1) {
-		result = "url('" + thumb + "')";
-	}
-	
-	return result + suffix;
-}

@@ -82,6 +82,14 @@ public class FreeBoardDaoImpl extends SqlSessionDaoSupport
 		return getSqlSession().selectOne("Board.getReplyCount", pnum);
 	}
 	
+	@Override
+	public int getVoteCount(int anum) {
+		return getSqlSession().selectOne("Board.votecount", anum);
+	}
 	
+	@Override
+	public int insertVote(String id) {
+		return getSqlSession().insert("Board.insertVote", id);
+	}
 }
 
