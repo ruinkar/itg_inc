@@ -1,9 +1,12 @@
 package inc.itgbbs.domain;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * member(회원) 테이블의 DTO 클래스
  * @author son
  */
+@Alias("MemberCommand")
 public class MemberCommand {
 	private String id; // 아이디
 	private String name; // 이름

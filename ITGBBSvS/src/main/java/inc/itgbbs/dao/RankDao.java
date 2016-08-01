@@ -3,10 +3,12 @@ package inc.itgbbs.dao;
 import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Component;
 
 import inc.itgbbs.domain.PageCommand;
 import inc.itgbbs.domain.RankCommand;
 
+@Component
 public class RankDao extends SqlSessionDaoSupport implements IRankDao {
 	
 	@Override

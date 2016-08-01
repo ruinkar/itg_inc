@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
-
+import org.springframework.stereotype.Component;
 
 import inc.itgbbs.domain.FreeBoardDTO;
 
-
+@Component
 public class FreeBoardDaoImpl extends SqlSessionDaoSupport 
                                          implements FreeBoardDao {
 
@@ -82,14 +82,5 @@ public class FreeBoardDaoImpl extends SqlSessionDaoSupport
 		return getSqlSession().selectOne("Board.getReplyCount", pnum);
 	}
 	
-	@Override
-	public int getVoteCount(int anum) {
-		return getSqlSession().selectOne("Board.votecount", anum);
-	}
-	
-	@Override
-	public int insertVote(String id) {
-		return getSqlSession().insert("Board.insertVote", id);
-	}
 }
 

@@ -102,10 +102,10 @@
 				</div>
 				<div class="col-xs-2 button-group pull-right text-center">
 					<div class="text-center">
-						<a href="vote.do?anum=${article.anum}"
-							class="row btn btn-default btn-lg btn-wide"><span
+						<a onclick="itgUtil.voteAjax(${article.anum})"
+							class="row btn btn-default btn-lg btn-wide" id="btn-vote"><span
 							class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-							<!-- 추천 수 -->0 </a>
+							<!-- 추천 수 --><span id="txt-vote">0</span></a>
 
 					</div>
 					<div class="dropdown text-center">

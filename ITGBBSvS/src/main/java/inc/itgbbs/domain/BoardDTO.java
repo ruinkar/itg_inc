@@ -2,6 +2,7 @@
 
 import java.sql.Timestamp;
 
+import org.apache.ibatis.type.Alias;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author oh
  */
 
+@Alias("BoardDTO")
 public class BoardDTO {
 	private int anum; //게시물번호
 	private String writer; //작성자

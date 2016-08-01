@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Component;
 
 import inc.itgbbs.domain.BoardDTO;
 import inc.itgbbs.domain.ReviewAllDTO;
 import inc.itgbbs.domain.ReviewDTO;
 
+@Component
 public class ReviewDaoImpl extends SqlSessionDaoSupport 
                                          implements ReviewDao {
 

@@ -2,6 +2,8 @@ package inc.itgbbs.domain;
 
 import java.sql.Timestamp;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * event(행사게시판) 테이블의 DTO 클래스
  * 
@@ -10,6 +12,7 @@ import java.sql.Timestamp;
  *         enum -> evnum으로 수정
  */
 
+@Alias("EventDTO")
 public class EventDTO {
 
 	private int evnum; // 행사번호

@@ -3,15 +3,7 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias alias="RankCommand" type="inc.itgbbs.domain.RankCommand" />
-		<typeAlias alias="PageCommand" type="inc.itgbbs.domain.PageCommand" />
-		<typeAlias alias="BoardCommand" type="inc.itgbbs.domain.BoardCommand" />
-		<typeAlias alias="BoardDTO" type="inc.itgbbs.domain.BoardDTO" />
-		<typeAlias alias="ReviewDTO" type="inc.itgbbs.domain.ReviewDTO" />
-		<typeAlias alias="ReviewAllDTO" type="inc.itgbbs.domain.ReviewAllDTO" />
-		<typeAlias alias="LoginInfoDTO" type="inc.itgbbs.domain.LoginInfoDTO" />
-		<typeAlias alias="EventDTO" type="inc.itgbbs.domain.EventDTO" />
-		<typeAlias alias="FreeBoardDTO" type="inc.itgbbs.domain.FreeBoardDTO" />
+		<package name="inc.itgbbs.domain"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="inc/itgbbs/dao/FreeBoardMapper.xml" />
@@ -20,6 +12,7 @@
 		<mapper resource="inc/itgbbs/dao/ReviewMapper.xml" />
 		<mapper resource="inc/itgbbs/dao/LoginMapper.xml" />
 		<mapper resource="inc/itgbbs/dao/EventMapper.xml" />
+		<mapper resource="inc/itgbbs/dao/VoteMapper.xml" />
 	</mappers>
 
 </configuration>

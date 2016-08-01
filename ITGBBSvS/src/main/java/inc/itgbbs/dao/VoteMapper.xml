@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Vote">
+	<select id="voteCheck" parameterType="likeListDTO" resultType="int">
+		SELECT COUNT(*)
+		FROM likelist
+		WHERE id = #{id} AND anum = #{anum}
+	</select>
+	
+	
+	<insert id="vote" parameterType="likeListDTO">
+		INSERT INTO likelist VALUES(
+			(SELECT MAX(lnum) FROM likelist) + 1,
+			#{id},
+			SYSDATE,
+			#{anum}
+		)
+	</insert>
+	
+	<delete id="unvote" parameterType="likeListDTO">
+		DELETE 
+		FROM likelist
+		WHERE
+			id = #{id}
+			AND anum = #{anum}
+	</delete>
+	
+	
+	<select id="voteCount" parameterType="int" resultType="int">
+		SELECT count(*)
+		FROM likelist
+		WHERE anum = #{anum}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+

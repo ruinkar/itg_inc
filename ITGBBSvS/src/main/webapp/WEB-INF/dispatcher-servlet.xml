@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- @Autowired 사용을 위해 -->
-	<context:annotation-config />
+	<!-- <context:annotation-config />
 
 	<bean class="inc.itgbbs.dao.RankDao" />
 	<bean class="inc.itgbbs.dao.MPageDao" />
@@ -40,8 +40,30 @@
 	<bean class="inc.itgbbs.controller.MPageController" />
 	<bean class="inc.itgbbs.controller.RankController" />
 	
-	<bean id="downloadView" class="com.board.view.DownloadView" />
+	<bean id="downloadView" class="com.board.view.DownloadView" /> -->
 
+	<context:component-scan base-package="inc.itgbbs"></context:component-scan>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/evinfo/deleteForm.do"/>
+			<mvc:mapping path="/evinfo/updateForm.do"/>
+			<mvc:mapping path="/evinfo/eventWrite.do"/>
+			<mvc:mapping path="/free/deletePro.do"/>
+			<mvc:mapping path="/free/updateForm.do"/>
+			<mvc:mapping path="/free/updatePro.do"/>
+			<mvc:mapping path="/free/writeForm.do"/>
+			<mvc:mapping path="/free/writePro.do"/>
+			<mvc:mapping path="/free/replyPro.do"/>
+			<mvc:mapping path="/free/vote.do"/>
+			<mvc:mapping path="/review/deleteForm.do"/>
+			<mvc:mapping path="/review/replyDelete.do"/>
+			<mvc:mapping path="/review/replyWrite.do"/>
+			<mvc:mapping path="/review/updateForm.do"/>
+			<mvc:mapping path="/review/writeForm.do"/>
+			<bean class="inc.itgbbs.controller.LoginCheckInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- tiles (ViewResolver)설정 -->
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">

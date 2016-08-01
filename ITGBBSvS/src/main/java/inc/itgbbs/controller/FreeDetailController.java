@@ -59,26 +59,6 @@ public class FreeDetailController {
 		
 	}
 	
-	
-	// 추천 동작
-	// 현재 아이디의 현재 글 추천 기록 검색 후
-	// 존재하지 않으면 새 추천 정보 등록
-	// 최종적으로 총 추천 수 반환
-	@RequestMapping("/free/vote.do")
-	@ResponseBody
-	public String vote(
-			@RequestParam("anum") int anum,
-			HttpServletRequest request
-			){
-		
-		String id = request.getSession().getAttribute("id").toString();
-		
-		
-		int votecount = 0;
-		votecount = freeBoardDao.getVoteCount(anum);
-		
-		return String.valueOf(votecount);
-	}
 /*	//파일 다운로드에 해당하는 요청이 들어왔을 때 처리해주는 메서드
 	@RequestMapping("/board/file.do")
 	public ModelAndView download(@RequestParam("filename") String fileName) throws Exception {

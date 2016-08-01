@@ -2,11 +2,13 @@
 
 import java.sql.Timestamp;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * board(게시판) 테이블의 DTO 클래스
  * @author oh
  */
-
+@Alias("FreeBoardDTO")
 public class FreeBoardDTO {
 	private int anum; //게시물번호
 	private String writer; //작성자

@@ -41,3 +41,33 @@ itgUtil.imgCheck = function(writer, size) {
 	
 	return result;
 }
+
+itgUtil.voteAjax = function(anum) {
+	
+	var waitSec = 3000;
+	var $txt = $("#txt-vote");
+	var old = $txt.text();
+	var $btn = $("#btn-vote");
+	
+	$.ajax({
+		url:"./vote.do",
+		data:{
+			anum: anum
+		},
+		dataType: "text"
+	}).done(function(data){
+		console.log(data);
+		
+		$txt.text(data);
+		
+		if(old < data) {
+			alert("추천 성공");
+		} else {
+			alert("추천 취소");
+		}
+		
+	}).fail(function(request, status, error) {
+		console.log(error);
+		console.log(request.responseText);
+	});
+}

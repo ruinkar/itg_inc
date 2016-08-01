@@ -2,6 +2,9 @@ package inc.itgbbs.domain;
 
 import java.sql.Timestamp;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("ReviewAllDTO")
 public class ReviewAllDTO {
 
 	private int anum;	//게시물번호

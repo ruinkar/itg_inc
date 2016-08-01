@@ -72,7 +72,6 @@
 		select count(*) from board where pnum=#{pnum}
 	</select>
 	
-	
 </mapper>
 
 

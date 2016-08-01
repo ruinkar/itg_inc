@@ -1,5 +1,8 @@
 package inc.itgbbs.domain;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("PageCommand")
 public class PageCommand {
 	private String id;
 	private int start;

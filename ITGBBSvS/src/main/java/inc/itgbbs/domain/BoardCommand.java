@@ -3,11 +3,14 @@
 import java.sql.Timestamp;
 import java.time.Instant;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * board(게시판) 테이블의 DTO 클래스
  * @author oh
  */
 
+@Alias("BoardCommand")
 public class BoardCommand {
 	private int anum; // 게시물번호
 	private int category; // 카테고리

@@ -1,6 +1,9 @@
 package inc.itgbbs.domain;
 
+import org.apache.ibatis.type.Alias;
+
 // rank page용 클래스
+@Alias("RankCommand")
 public class RankCommand {
 	private String id;
 	private String nick; // 닉네임

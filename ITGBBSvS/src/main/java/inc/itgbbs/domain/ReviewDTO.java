@@ -1,5 +1,7 @@
 package inc.itgbbs.domain;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * review(후기게시판) 테이블의 DTO 클래스
  * @author oh
@@ -7,7 +9,7 @@ package inc.itgbbs.domain;
  * enum -> evnum으로 수정
  */
 
-
+@Alias("ReviewDTO")
 public class ReviewDTO {
 
 	private int anum;	//게시물번호

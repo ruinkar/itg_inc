@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Component;
 
 import inc.itgbbs.domain.BoardDTO;
 import inc.itgbbs.domain.EventDTO;
 
+@Component
 public class EventDaoImpl extends SqlSessionDaoSupport 
                                          implements EventDao {
 

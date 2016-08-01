@@ -9,11 +9,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
 //뷰클래스의 객체를 생성 -> 뷰클래스 -> AbstractView 클래스를 상속받음.(대화상자)
-
+@Component
 public class DownloadView extends AbstractView {
 
 	public DownloadView() {

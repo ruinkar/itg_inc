@@ -63,7 +63,7 @@ $(function(){
     var $snote = $("textarea[name=acontent]");
     $snote.on("click", function (){
     	$snote.summernote({
-        	focus,
+        	focus: true,
         	callbacks: {
         		onBlur: function() {
         			$snote.summernote("destroy");
