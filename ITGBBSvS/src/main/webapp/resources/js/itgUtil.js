@@ -50,7 +50,7 @@ itgUtil.voteAjax = function(anum) {
 	var $btn = $("#btn-vote");
 	
 	$.ajax({
-		url:"./vote.do",
+		url:"../vote.do",
 		data:{
 			anum: anum
 		},

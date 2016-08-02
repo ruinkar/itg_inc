@@ -94,6 +94,7 @@
 			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
 			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
 			<add-attribute value="/resources/js/reviewscript.js" />
+			<add-attribute value="/resources/js/itgUtil.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
 			<add-attribute value="/resources/css/reviewstyle.css" />
@@ -156,6 +157,7 @@
 			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
 			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
 			<add-attribute value="/resources/js/reviewscript.js" />
+			<add-attribute value="/resources/js/itgUtil.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
 			<add-attribute value="/resources/css/reviewstyle.css" />

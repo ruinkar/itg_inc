@@ -62,6 +62,38 @@
         <b>${earticle.ename}</b>
         </p>
         </td>
+        <td rowspan="4">
+        <div class="text-center">
+                        <a onclick="itgUtil.voteAjax(${barticle.anum})"
+                            class="row btn btn-default btn-lg" id="btn-vote"><span
+                            class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            <!-- 추천 수 --><span id="txt-vote">${voteNum}</span></a>
+         
+						<c:choose><c:when test="${not empty sessionScope.userLoginInfo}">
+						<c:if test="${barticle.writer == sessionScope.userLoginInfo.id}">
+									<div class="dropdown text-center">
+										<button type="button"
+											class="row btn btn-default btn-lg btn-wide dropdown-toggle"
+											id="dropdownMenu1" title="게시물 설정" data-toggle="dropdown"
+											data-placement="left" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true">
+											</span><span class="caret">
+											</span>
+											</button>
+										<ul class="dropdown-menu" role="menu"
+											aria-labelledby="dropdownMenu1">
+											<li role="presentation"><a role="menuitem" tabindex="-1"
+												href="updateForm.do?anum=${barticle.anum}&pageNum=${pageNum}">수정</a></li>
+											<li role="presentation"><a role="menuitem" tabindex="-1"
+												href="deleteForm.do?anum=${barticle.anum}&pageNum=${pageNum}">삭제</a></li>
+										</ul>
+									</div>
+								</c:if>
+								</c:when>
+						</c:choose>
+						<p>
+						<button type="button" class="row btn btn-default btn-lg" OnClick="window.location='list.do'">목록</button>
+</div>
+			</td>
       </tr>
       <tr>
       <td>주최자 </td>
@@ -123,16 +155,3 @@
 			
 		</div>
 	</div> --%>
-	    <c:choose>
-<c:when test="${not empty sessionScope.userLoginInfo}">
-        <c:if test="${barticle.writer == sessionScope.userLoginInfo.id}"> 
-        <input type="button" value="글수정" 
-       onclick="document.location.href='updateForm.do?anum=${barticle.anum}&pageNum=${pageNum}'">
-       &nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="button" value="글삭제" 
-       onclick="document.location.href='deleteForm.do?anum=${barticle.anum}&pageNum=${pageNum}'">
-       &nbsp;&nbsp;&nbsp;&nbsp;  
-        </c:if>
-    </c:when>
-</c:choose>
-<input type="button" value="목록보기" OnClick="window.location='list.do'">

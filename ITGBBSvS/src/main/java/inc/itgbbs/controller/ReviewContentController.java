@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import inc.itgbbs.dao.IVoteDao;
 import inc.itgbbs.dao.ReviewDao;
 import inc.itgbbs.domain.BoardDTO;
 import inc.itgbbs.domain.ReviewAllDTO;
@@ -22,7 +23,9 @@ public class ReviewContentController {
 	private Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	private ReviewDao reviewDao;//메서드호출
-
+	
+	@Autowired
+	IVoteDao voteDao;
 	
 	@RequestMapping("/review/content.do")
 	public ModelAndView process(@RequestParam("anum") int anum,
@@ -61,6 +64,7 @@ public class ReviewContentController {
 		mav.addObject("pageNum", pageNum);
 		mav.addObject("replyNum", replyNum); 
 		mav.addObject("repliesList", repliesList); 
+		mav.addObject("voteNum" , voteDao.voteCount(anum));
 		return mav;
 	}
 	//파일 다운로드에 해당하는 요청이 들어왔을 때 처리해주는 메서드

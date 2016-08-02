@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import inc.itgbbs.dao.EventDao;
+import inc.itgbbs.dao.IVoteDao;
 import inc.itgbbs.domain.BoardDTO;
 import inc.itgbbs.domain.EventDTO;
 import inc.itgbbs.util.ContentPath;
@@ -23,7 +24,9 @@ public class EventContentController implements ContentPath{
 	private Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	private EventDao eventDao;//메서드호출
-
+	
+	@Autowired
+	IVoteDao voteDao;
 	
 	@RequestMapping(EVINFO + "/content.do")
 	public ModelAndView process(@RequestParam("anum") int anum,
@@ -63,6 +66,7 @@ public class EventContentController implements ContentPath{
 		mav.addObject("pageNum", pageNum);
 		mav.addObject("replyNum", replyNum); 
 		mav.addObject("repliesList", repliesList); 
+		mav.addObject("voteNum" , voteDao.voteCount(anum));
 		return mav;
 	}
 	//파일 다운로드에 해당하는 요청이 들어왔을 때 처리해주는 메서드

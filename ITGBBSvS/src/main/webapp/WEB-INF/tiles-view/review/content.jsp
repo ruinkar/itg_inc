@@ -18,7 +18,8 @@ function  delreply (idx)
 <center>      
 <b>글내용 보기</b>
 <br>
-<table width="800" border="1" cellspacing="0" cellpadding="0"  align="center">  
+<table width="800" border="1" cellspacing="0" cellpadding="0"  align="center"
+           class="table table-bordered table-hover" >  
   <tr height="30">
     <td align="center" width="125" class="menuName">글번호</td>
     <td align="center" width="125" colspan="2">${article.anum}</td>
@@ -59,28 +60,32 @@ function  delreply (idx)
   
   	<!-- <pre>태그 사용 : 웹 상에 불러올 때, 줄바꿈을 만나면 <br>태그로 변환해서 불러오던 메서드 대신  -->
     <td align="center" width="125" class="menuName" >글내용</td>
-    <td align="left" width="375" colspan="5"><pre>${article.acontent}</pre></td>
+    <td align="left" width="375" colspan="5">${article.acontent}</td>
   </tr>
   <tr>
   <td class="menuName">첨부파일</td>
         <td align="left" width="375" colspan="5"><a href="file.do?filename=${article.afile}">${article.afile.substring(5)}</a></td>
    </tr>     
   <tr height="30">      
-    <td colspan="6"  align="center" > 
+    <td colspan="6"  align="center" >
     <c:choose>
-<c:when test="${not empty sessionScope.userLoginInfo}">
-        <c:if test="${article.writer == sessionScope.userLoginInfo.id}"> 
-        <input type="button" value="글수정" 
-       onclick="document.location.href='updateForm.do?anum=${article.anum}&pageNum=${pageNum}'">
-       &nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="button" value="글삭제" 
-       onclick="document.location.href='deleteForm.do?anum=${article.anum}&pageNum=${pageNum}'">
-       &nbsp;&nbsp;&nbsp;&nbsp;  
-        </c:if>
-    </c:when>
-</c:choose>
-       <input type="button" value="글목록" 
+					<c:when test="${not empty sessionScope.userLoginInfo}">
+						<c:if test="${article.writer == sessionScope.userLoginInfo.id}">
+							<input type="button" class="btn btn-default btn-lg btn-wide"
+								value="글수정"
+								onclick="document.location.href='updateForm.do?anum=${article.anum}&pageNum=${pageNum}'">
+							<input type="button" class="btn btn-default btn-lg btn-wide"
+								value="글삭제"
+								onclick="document.location.href='deleteForm.do?anum=${article.anum}&pageNum=${pageNum}'">
+						</c:if>
+					</c:when>
+				</c:choose>
+	   <input type="button" class="btn btn-default btn-lg btn-wide" value="글목록" 
        onclick="document.location.href='list.do?pageNum=${pageNum}'">
+       <a onclick="itgUtil.voteAjax(${article.anum})"
+                            class="row btn btn-default btn-lg btn-wide" style="margin:2px" id="btn-vote"><span
+                            class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            <!-- 추천 수 --><span id="txt-vote">${voteNum}</span></a>
     </td>
   </tr>
 </table>
@@ -91,7 +96,8 @@ function  delreply (idx)
   <input type="hidden" name="title" value="덧글">
   <input type="hidden" name="pageNum" value="${pageNum}">
   <input type="hidden" name="anum" value="">
-<table width="500" border="1" cellspacing="0" cellpadding="0"  align="center">
+<table width="500" border="1" cellspacing="0" cellpadding="0"  align="center"
+ class="table table-bordered table-hover">
 <c:if test="${replyNum == 0}">
 <tr height="30">
 <td align="center" width="500"  colspan="4">덧글이 없습니다.</td>
@@ -104,14 +110,7 @@ function  delreply (idx)
     <c:choose>
         <c:when test="${not empty sessionScope.userLoginInfo}">
         <td align="center" width="125" >
-        <c:if test="${reply.writer == sessionScope.userLoginInfo.id}">
-        
-        
-        <input type="button" name="${reply.anum}" value="덧글삭제" onclick="delreply(${reply.anum})">
-        </c:if>
-        </td>
-        </c:when>
-    </c:choose>
+        <c:if test="${reply.writer == sessionScope.userLoginInfo.id}"><input type="button" name="${reply.anum}" class="btn btn-default btn-lg btn-wide" value="덧글삭제" onclick="delreply(${reply.anum})"></c:if></td></c:when></c:choose>
   </tr>
 </c:forEach>
 </table>
@@ -123,22 +122,22 @@ function  delreply (idx)
   <input type="hidden" name="title" class="menuName" value="덧글">
   <input type="hidden" name="pageNum" value="${pageNum}">
 
-<table width="500" border="1" cellspacing="0" cellpadding="0"   align="center"> 
+<table width="500" border="1" cellspacing="0" cellpadding="0"   align="center"
+class="table table-bordered table-hover"> 
     <c:choose>
 <c:when test="${not empty sessionScope.userLoginInfo}">
 <input  type="hidden" name="writer" value="${sessionScope.userLoginInfo.id}">
 <tr height="30">
     <td align="center" width="125" class="menuName">${sessionScope.userLoginInfo.id}</td>
     <td align="left" width="250" colspan="2"><textarea id="summernote" name="acontent" onfocus="$(this).summernote({focus, height:300});"></textarea></td>
-    <td align="center" width="125" ><input type="submit" value="덧글달기"></td>
+    <td align="center" width="125" ><input type="submit"  class="btn btn-default btn-lg btn-wide" value="덧글달기"></td>
   </tr>
-    </c:when>
-<c:otherwise>
-<tr height="30">
-    <td align="center" width="125" colspan="7">로그인을 하셔야 덧글을 달 수 있습니다.</td>
-
-</c:otherwise>
-</c:choose>
+  </c:when>
+  <c:otherwise>
+  <tr height="30">
+  <td align="center" width="125" colspan="7">로그인을 하셔야 덧글을 달 수 있습니다.</td>
+  </c:otherwise>
+  </c:choose>
   </table>
 </form>
 </center>

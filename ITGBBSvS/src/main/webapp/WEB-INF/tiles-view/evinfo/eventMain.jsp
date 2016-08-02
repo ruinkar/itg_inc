@@ -16,7 +16,7 @@ div#mainContent {
 <div class="container-fluid text-center bg-grey">
 	<div class="row text-center">
 		<c:forEach var="article" items="${articleList}">
-			<div class="col-sm-4 col-md-3">
+			<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
 					<a href="content.do?anum=${article.evnum}&pageNum=${currentPage}">
 						<img src="${article.eimg}" alt="Paris" width="400" height="300">
