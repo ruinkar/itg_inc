@@ -50,7 +50,10 @@ function  delreply (idx)
                 </tr>
                 <tr>
 <td align="center" width="125" class="menuName">점수</td>
-    <td align="center" width="375"  colspan="5">${article.rating}</td>
+    <td align="center" colspan="5">
+    <input id="input-21b" name="rating" value="${article.rating}" readonly type="number" class="rating" min=0 max=5 step=0.1 data-size="lg">
+    </td>
+    
                 </tr>
   <tr>
 <td align="center" width="125" class="menuName">이미지</td>

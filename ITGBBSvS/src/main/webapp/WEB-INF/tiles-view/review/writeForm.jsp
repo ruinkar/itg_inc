@@ -10,6 +10,11 @@
 		$("textarea[name=acontent]").summernote({
 			height: 500
 		});
+		/* $("input[type=number]").click( function()
+				{
+			       alert(1234);
+			       console.log($(this).value);
+				}); */
 	})
 </script>
 
@@ -20,8 +25,7 @@
 		<form:errors path="command"/>
 		<form  enctype="multipart/form-data" method="post" name="writeForm" action="writeForm.do"
 			onsubmit="return writeSave()"> 
-			<!-- hidden -->
-			<input type="hidden" name="anum" value="${anum}"> 
+			<!-- hidden --> 
 			<input type="hidden" name="category" value="2">
 
 			<table width="400" border="1" cellspacing="0" cellpadding="0"
@@ -50,7 +54,7 @@
 				<tr>
 					<td width="70" bgcolor="#b0e0e6" align="center">행사명</td>
 					<td width="330">
-						<input class="form-control" type="text" size="40" maxlength="50" name="evnum" value="1">
+						<input class="form-control" type="hidden" size="40" maxlength="50" name="evnum" value="1">
 						<!-- 신규 게시물 -->
 						<div class="col-xs-4"> 
 						<input class="form-control" type="text" size="40" maxlength="50" name="evtitle">
@@ -90,9 +94,11 @@
 				<tr>
 					<td width="70" bgcolor="#b0e0e6" align="center">점수</td>
 					<td width="330">
-					<input  class="form-control" type="text" size="8" maxlength="12" name="rating">
-					<!-- <input id="input-2" name="rating" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1"> -->
+					<!-- <input  class="form-control" type="text" size="8" maxlength="12" name="rating"> -->
+					<!-- <input id="input-21b" name="rating" value="2" type="number" class="rating" min=0 max=5 step=0.1 data-size="lg"> -->
+					    <input id="rating" name="rating" value="2" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" data-size="lg">
 					</td>
+					
 				</tr>
 
 				<tr>

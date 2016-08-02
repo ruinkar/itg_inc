@@ -62,11 +62,10 @@ public class ReviewWriteController {
 	//2.Post방식
 	@RequestMapping(value="/review/writeForm.do",method=RequestMethod.POST)
 	public String submit(@ModelAttribute("command") BoardDTO command,
-									//@ModelAttribute("review") ReviewDTO review,
-									
+									@ModelAttribute("review") ReviewDTO review,
 			                        BindingResult result
 			                        ){
-		ReviewDTO review = new ReviewDTO();
+		//ReviewDTO review = new ReviewDTO();
 		
 		System.out.println("writeForm post="+command +"review="+ review);
 //전달되는 입력값들,유효성검사 결과값
@@ -106,9 +105,6 @@ public class ReviewWriteController {
 			if (ip == null)
 			ip = request.getRemoteAddr();
 			command.setIp(ip);
-			System.out.printf("evnum= %d ,rating= %d " , request.getParameter("evnum") , request.getParameter("rating") );
-			review.setEvnum(Integer.parseInt(request.getParameter("evnum") ) );
-			review.setRating(Integer.parseInt(request.getParameter("rating") ) );
 			review.setAnum(command.getAnum());
 			
 			reviewDao.insertReview(command);//파일업로드인 경우만 따로 처리->DB에 저장

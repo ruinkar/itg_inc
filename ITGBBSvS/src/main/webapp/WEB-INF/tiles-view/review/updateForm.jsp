@@ -18,7 +18,7 @@ $(function(){
 <spring:hasBindErrors name="command"/>
 <form:errors path="command"/>
 <form method="post" enctype="multipart/form-data" name="writeForm" 
-           action="updateForm.do?anum=${article.anum}&pageNum=${pageNum}" onsubmit="return writeSave()">
+           action="updateForm.do?anum=${article.anum}&pageNum=${pageNum}" onsubmit="return updateSave()">
 <input type="hidden" size="10" maxlength="10" name="anum" value="${article.anum}">
 <table width="400" border="1" cellspacing="0" cellpadding="0"  bgcolor="#e0ffff" align="center" class="table table-bordered table-hover">
   <tr>
@@ -70,8 +70,11 @@ $(function(){
                 <tr>
                     <td width="70" bgcolor="#b0e0e6" align="center">점수</td>
                     <td width="330">
-                    <div class="col-xs-4"> <input  class="form-control" type="text" size="8" maxlength="12" name="rating" value="${article.rating}">
-                    </div></td>
+                    
+                    <%-- <input  class="form-control" type="text" size="8" maxlength="12" name="rating" value="${article.rating}"> --%>
+                    <%-- <input id="input-21b" name="rating" value="${article.rating}" type="number" class="rating" min=0 max=5 step=0.1 data-size="lg"> --%>
+                    <input id="rating" name="rating" value="${article.rating}" class="rating rating-loading" type="text" data-min="0" data-max="5" data-step="0.1" data-size="lg">
+                    </td>
                     
                 </tr>
 

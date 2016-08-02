@@ -14,7 +14,7 @@ public class ReviewDTO {
 
 	private int anum;	//게시물번호
 	private int evnum;	//행사번호
-	private int rating;	//평가점수
+	private float rating;	//평가점수
 	
 	public int getAnum() {
 		return anum;
@@ -28,10 +28,10 @@ public class ReviewDTO {
 	public void setEvnum(int evnum) {
 		this.evnum = evnum;
 	}
-	public int getRating() {
+	public float getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 	/* (non-Javadoc)

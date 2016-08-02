@@ -9,7 +9,7 @@ public class ReviewAllDTO {
 
 	private int anum;	//게시물번호
 	private int evnum;	//행사번호
-	private int rating;	//평가점수
+	private float rating;	//평가점수
 	private String writer; //작성자
 	private int category;	//카테고리
 	private Timestamp adate; //작성날짜
@@ -136,10 +136,10 @@ public class ReviewAllDTO {
 	public void setEvnum(int evnum) {
 		this.evnum = evnum;
 	}
-	public int getRating() {
+	public float getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 	
