@@ -16,7 +16,7 @@
 		<put-list-attribute name="javascripts">
 			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
 			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
-			<!-- <add-attribute value="http://code.jquery.com/jquery-1.12.4.js" /> -->
+			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
 			<add-attribute value="/resources/js/itgUtil.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
@@ -209,6 +209,15 @@
             value="" />
 	</definition>
 <!-- ~ event layout -->
+
+
+<!-- member ~ -->
+	<definition name="signUpForm" extends="boardList">
+		<put-attribute name="title" value="회원가입" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/member/signUpForm.jsp" />
+	</definition>
+<!-- ~ member -->
 
 
 <!-- error page -->
