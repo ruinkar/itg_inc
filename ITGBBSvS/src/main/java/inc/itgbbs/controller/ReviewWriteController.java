@@ -49,14 +49,27 @@ public class ReviewWriteController {
 		return new BoardDTO();
 	}
 	
+	/*
+	@ModelAttribute("review")
+	//public MemberCommand test(){
+	public ReviewDTO Review(){
+		System.out.println("reviewBacking()호출됨");
+		return new ReviewDTO();
+	}*/
+	
+	
+	
 	//2.Post방식
 	@RequestMapping(value="/review/writeForm.do",method=RequestMethod.POST)
 	public String submit(@ModelAttribute("command") BoardDTO command,
-									@ModelAttribute("review") ReviewDTO review,
-			                        BindingResult result){
+									//@ModelAttribute("review") ReviewDTO review,
+									
+			                        BindingResult result
+			                        ){
+		ReviewDTO review = new ReviewDTO();
+		
 		System.out.println("writeForm post="+command +"review="+ review);
-//		ReviewDTO review = null;
-		//전달되는 입력값들,유효성검사 결과값
+//전달되는 입력값들,유효성검사 결과값
 		if(log.isDebugEnabled()){
 			log.debug("BoardDTO="+command);//앞에서 입력받은값을 확인
 		}
@@ -86,12 +99,16 @@ public class ReviewWriteController {
 			System.out.println("newSeq="+newSeq);
 			
 			command.setAnum(newSeq);
-			HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-			String ip = req.getHeader("X-FORWARDED-FOR");
-			if (ip == null)
-			ip = req.getRemoteAddr();
-			command.setIp(ip);
+			String ip = null;
+			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 			
+			ip = request.getHeader("X-FORWARDED-FOR");
+			if (ip == null)
+			ip = request.getRemoteAddr();
+			command.setIp(ip);
+			System.out.printf("evnum= %d ,rating= %d " , request.getParameter("evnum") , request.getParameter("rating") );
+			review.setEvnum(Integer.parseInt(request.getParameter("evnum") ) );
+			review.setRating(Integer.parseInt(request.getParameter("rating") ) );
 			review.setAnum(command.getAnum());
 			
 			reviewDao.insertReview(command);//파일업로드인 경우만 따로 처리->DB에 저장

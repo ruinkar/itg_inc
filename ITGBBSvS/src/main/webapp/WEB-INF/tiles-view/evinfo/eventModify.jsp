@@ -81,7 +81,7 @@ $(function(){
 	<form  enctype="multipart/form-data" method="post" name="writeForm" action="updateForm.do">
 	<input type="hidden" size="10" maxlength="10" name="writer" value="${sessionScope.userLoginInfo.id}">
     <input type="hidden" size="10" maxlength="10" name="anum" value="${barticle.anum}">
-    <input type="hidden" size="10" maxlength="10" name="evnum" value="${earticle.evnum}">
+    <%-- <input type="hidden" size="10" maxlength="10" name="evnum" value="${earticle.evnum}">
     <h4>*글 제목 입력</h4>
         <input id="title" type="text" name="title" size="100" title="글 제목 입력" maxlength="50" class="text" value="${barticle.title}" />
     <h4>*글 내용 입력</h4>
@@ -121,7 +121,7 @@ ${barticle.acontent}
         <input id="lat" type="hidden" name="lat" size="5" title="위도" maxlength="3" class="text" value="${earticle.lat}"/>
         <input id="lng" type="hidden" name="lng" size="5" title="경도" maxlength="3" class="text" value="${earticle.lng}"/>
         <input id="lng" type="hidden" name="afile" size="5" title="경도" maxlength="3" class="text" value="${barticle.afile}"/>
-        <br><br><br>
+        <br><br><br> --%>
     <input type="hidden" size="10" maxlength="10" name="evnum" value="${earticle.evnum}"><!-- 
     
     --><div class="form-group"><!-- 

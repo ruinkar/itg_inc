@@ -10,7 +10,7 @@ function writeSave(){
 		  document.writeForm.evtitle.focus();
 		  return false;
 		}
-	if(document.writeForm.content.value==""){
+	if(document.writeForm.acontent.value==""){
 	  alert("내용을 입력하십시요.");
 	  document.writeForm.content.focus();
 	  return false;

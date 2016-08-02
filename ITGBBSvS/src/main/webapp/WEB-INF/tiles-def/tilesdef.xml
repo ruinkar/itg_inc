@@ -116,9 +116,12 @@
 			value="/WEB-INF/tiles-view/review/writeForm.jsp" />
 		<put-list-attribute name="javascripts" inherit="true">
 			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js" />
+			<add-attribute value="/resources/js/star-rating.js" />
+			
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets" inherit="true">
 			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" />
+			<add-attribute value="/resources/css/star-rating.css" />
 		</put-list-attribute>
 	</definition>
 

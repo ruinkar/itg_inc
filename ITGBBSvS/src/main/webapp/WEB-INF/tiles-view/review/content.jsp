@@ -19,7 +19,7 @@ function  delreply (idx)
 <b>글내용 보기</b>
 <br>
 <table width="800" border="1" cellspacing="0" cellpadding="0"  align="center"
-           class="table table-bordered table-hover" >  
+           class="table table-striped" >  
   <tr height="30">
     <td align="center" width="125" class="menuName">글번호</td>
     <td align="center" width="125" colspan="2">${article.anum}</td>

@@ -19,11 +19,11 @@ div#mainContent {
 			<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
 					<a href="content.do?anum=${article.evnum}&pageNum=${currentPage}">
-						<img src="${article.eimg}" alt="Paris" width="400" height="300">
-							<p>
+							<img class="" src="${article.eimg}"/>
+						<p>
 								<strong>${article.ename}</strong>
 							</p>
-							<p>${article.host}</p> </img>
+							<p>${article.host}</p> 
 							</a>
 				</div>
 			</div>
