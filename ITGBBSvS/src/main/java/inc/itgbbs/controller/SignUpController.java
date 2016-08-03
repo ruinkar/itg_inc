@@ -21,28 +21,37 @@ import inc.itgbbs.util.ContentPath;
 public class SignUpController implements ContentPath{
 	@Autowired
 	private LoginDao loginDao;
-	/*
+	
 	@ModelAttribute("memberCommand")
 	public MemberCommand formBacking() {
 		return new MemberCommand();
-	}*/
+	}
 	
 	@RequestMapping(value=MEMBER + "/signup.do", method=RequestMethod.GET)
-	public String form(Model model){
-		model.addAttribute("memberCommand", new MemberCommand());
+	public String form(){
+		// model.addAttribute("memberCommand", new MemberCommand());
 		System.out.println("form()");
 		return "signUpForm";
 	}
 	
 	@RequestMapping(value=MEMBER + "/signup.do", method=RequestMethod.POST)
-	public String signUp(@ModelAttribute @Valid MemberCommand memberCommand, BindingResult result, SessionStatus sessionStatus) {
+	public String signUp(@Valid MemberCommand memberCommand, BindingResult result, SessionStatus sessionStatus) {
+		
+		System.out.println(memberCommand.toString() );
 		
 		if(result.hasErrors() ){
 			return "signUpForm";
 		} else {
 			sessionStatus.setComplete();
-			loginDao.signUpMember(memberCommand);
-			return "redirect:/memberInfo.do?id=" + memberCommand.getId();
+			int data = loginDao.getMember(memberCommand.getId());
+			
+			if (data == 0) {
+				loginDao.signUpMember(memberCommand);
+				return "redirect:/memberInfo.do?id=" + memberCommand.getId();
+			} else {
+				
+				return "signUpForm";
+			}
 		}
 	}
 

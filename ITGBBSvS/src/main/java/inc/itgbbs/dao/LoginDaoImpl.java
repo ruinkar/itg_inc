@@ -15,6 +15,13 @@ public class LoginDaoImpl extends SqlSessionDaoSupport
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("Login.findUser",login);
 	}
+	
+
+	@Override
+	public int getMember(String id) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("Login.getMember", id);
+	}
 
 	@Override
 	public void signUpMember(MemberCommand memberCommand) {
@@ -27,6 +34,5 @@ public class LoginDaoImpl extends SqlSessionDaoSupport
 		getSqlSession().delete("Login.deleteLoginInfo", loginInfoDTO);
 	}
 
-	
 }
 

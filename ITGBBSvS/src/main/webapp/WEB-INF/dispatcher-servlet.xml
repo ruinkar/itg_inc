@@ -43,7 +43,9 @@
 	<bean id="downloadView" class="com.board.view.DownloadView" /> -->
 
 	<context:component-scan base-package="inc.itgbbs"></context:component-scan>
+	
 	<mvc:annotation-driven />
+	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/evinfo/deleteForm.do"/>

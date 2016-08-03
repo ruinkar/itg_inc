@@ -1,6 +1,7 @@
 package inc.itgbbs.domain;
 
 import org.apache.ibatis.type.Alias;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * logininfo(로그인정보) 테이블의 DTO 클래스
@@ -9,6 +10,8 @@ import org.apache.ibatis.type.Alias;
 @Alias("LoginInfoDTO")
 public class LoginInfoDTO {
 	private String id; //아이디
+	
+	@NotBlank(message="암호를 입력하세요")
 	private String password; //비밀번호
 	
 	public String getId() {
