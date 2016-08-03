@@ -51,7 +51,7 @@ function  delreply (idx)
                 <tr>
 <td align="center" width="125" class="menuName">점수</td>
     <td align="center" colspan="5">
-    <input id="input-21b" name="rating" value="${article.rating}" readonly type="number" class="rating" min=0 max=5 step=0.1 data-size="lg">
+    <input id="input-21b" name="rating" value="${article.rating}" readonly type="number" data-show-clear="false" class="rating" min=0 max=5 step=0.1 data-size="lg">
     </td>
     
                 </tr>

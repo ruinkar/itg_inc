@@ -73,7 +73,7 @@ $(function(){
                     
                     <%-- <input  class="form-control" type="text" size="8" maxlength="12" name="rating" value="${article.rating}"> --%>
                     <%-- <input id="input-21b" name="rating" value="${article.rating}" type="number" class="rating" min=0 max=5 step=0.1 data-size="lg"> --%>
-                    <input id="rating" name="rating" value="${article.rating}" class="rating rating-loading" type="text" data-min="0" data-max="5" data-step="0.1" data-size="lg">
+                    <input id="rating" name="rating" value="${article.rating}" data-show-clear="false"  class="rating rating-loading" type="text" data-min="0" data-max="5" data-step="0.1" data-size="lg">
                     </td>
                     
                 </tr>

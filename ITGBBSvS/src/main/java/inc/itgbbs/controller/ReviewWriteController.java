@@ -3,14 +3,17 @@ package inc.itgbbs.controller;
 import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -20,18 +23,13 @@ import inc.itgbbs.domain.ReviewDTO;
 import inc.itgbbs.util.FileUtil;
 
 @Controller
+@SessionAttributes("command")
 public class ReviewWriteController {
 
 	private Logger log=Logger.getLogger(this.getClass());
 	
 	@Autowired
 	private ReviewDao reviewDao;//메서드호출
-
-	/*
-	  public void setMemberDao(MemberDao memberDao) {
-		this.memberDao = memberDao;
-		System.out.println("InsertController의 setMemberDao()호출");
-	}*/
 	
 	//입력->insertForm.jsp->액션컨트롤러 필요
 	//submit->요청명령어가 틀리면->따로 작성(p303)
@@ -45,40 +43,40 @@ public class ReviewWriteController {
 	@ModelAttribute("command")
 	//public MemberCommand test(){
 	public BoardDTO formBacking(){
-		System.out.println("formBacking()호출됨");
+		System.out.println("command()호출됨");
 		return new BoardDTO();
 	}
 	
-	/*
+	
 	@ModelAttribute("review")
 	//public MemberCommand test(){
 	public ReviewDTO Review(){
-		System.out.println("reviewBacking()호출됨");
+		System.out.println("review()호출됨");
 		return new ReviewDTO();
-	}*/
+	}
 	
 	
 	
 	//2.Post방식
 	@RequestMapping(value="/review/writeForm.do",method=RequestMethod.POST)
-	public String submit(@ModelAttribute("command") BoardDTO command,
-									@ModelAttribute("review") ReviewDTO review,
+	public String submit( @ModelAttribute("review") ReviewDTO review,
+			@Valid BoardDTO command,
 			                        BindingResult result
 			                        ){
 		//ReviewDTO review = new ReviewDTO();
 		
-		System.out.println("writeForm post="+command +"review="+ review);
+		
 //전달되는 입력값들,유효성검사 결과값
 		if(log.isDebugEnabled()){
-			log.debug("BoardDTO="+command);//앞에서 입력받은값을 확인
+			log.debug("BoardDTO="+command + "review="+ review);//앞에서 입력받은값을 확인
+			log.debug("result="+result.getModel());//앞에서 입력받은값을 확인
 		}
-/*		//유효성 체크메서드 호출
-		new ReviewWriteValidator().validate(command, result);
 		//만약에 필수입력인데 입력을 하지 않았다면
 		if(result.hasErrors()){ //입력받은 값에 문제가 발생이 된다면
-			return form();//insertForm.jsp로 되돌아가라
+			return "reviewWriteForm";//이동할 페이지명
+			//return form();//insertForm.jsp로 되돌아가라
 		}
-*/		//파일업로드 유무
+		//파일업로드 유무
 		try{
 			String newName="";//업로드할 파일명 저장
 			//파일업로드된 파일이 존재한다면

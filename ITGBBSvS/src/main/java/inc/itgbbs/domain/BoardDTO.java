@@ -3,13 +3,15 @@
 import java.sql.Timestamp;
 
 import org.apache.ibatis.type.Alias;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
  * board(게시판) 테이블의 DTO 클래스
  * @author oh
  */
-
+@Component
 @Alias("BoardDTO")
 public class BoardDTO {
 	private int anum; //게시물번호
@@ -17,7 +19,9 @@ public class BoardDTO {
 	private int category;	//카테고리
 	private Timestamp adate; //작성날짜
 	private String ip; //ip 
+	@NotEmpty (message="제목을 입력하세요123")
 	private String title;	//제목
+	@NotEmpty (message="내용을 입력하세요1234")
 	private String acontent;//글내용
 	private String afile;	//첨부파일
 	private int readcount;//조회수
