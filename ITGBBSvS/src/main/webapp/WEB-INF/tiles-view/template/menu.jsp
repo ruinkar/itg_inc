@@ -36,8 +36,7 @@
       <a href="javascript:;" class="list-group-item">Subitem 2</a>
       <a href="javascript:;" class="list-group-item">Subitem 3</a>
     </div> -->
-			<a href="#" class="list-group-item list-group-item-success">메인</a> <a
-				href="#menu-evinfo" class="list-group-item list-group-item-success"
+			<a href="#menu-evinfo" class="list-group-item list-group-item-success"
 				data-toggle="collapse" data-parent="#MainMenu">행사 정보</a>
 			<div class="collapse" id="menu-evinfo">
 				<a href="${pageContext.request.contextPath}/evinfo/list.do"
@@ -69,13 +68,14 @@
 		<c:when test="${not empty sessionScope.userLoginInfo}">
 			<div width="100px">
 				이름 : ${sessionScope.userLoginInfo.id}<br> <a
-					href="../login/deleteSession.do">로그아웃</a>
-				<a href="${pageContext.request.contextPath}/member/delete.do" class="btn btn-default btn-md btn-wide">회원탈퇴</a>
+					href="${pageContext.request.contextPath}/login/deleteSession.do">로그아웃</a>
+				<a href="${pageContext.request.contextPath}/member/delete.do"
+					class="btn btn-default btn-md btn-wide">회원탈퇴</a>
 			</div>
 		</c:when>
 		<c:otherwise>
         <form name="loginForm" method="post"
-				action="../login/makeSession.do">
+				action="${pageContext.request.contextPath}/login/makeSession.do">
 				<table>
 					<tr height="40px">
 						<td>유저ID</td>
@@ -92,8 +92,11 @@
 				</table>
 				<table>
 					<tr>
-						<td align="center"><input type="submit" class="btn btn-default btn-md btn-wide" value="로그인"></td>
-						<td align="center"><a href="${pageContext.request.contextPath}/member/signup.do" class="btn btn-default btn-md btn-wide">회원가입</a></td>
+						<td align="center"><input type="submit"
+							class="btn btn-default btn-md btn-wide" value="로그인"></td>
+						<td align="center"><a
+							href="${pageContext.request.contextPath}/member/signup.do"
+							class="btn btn-default btn-md btn-wide">회원가입</a></td>
 					</tr>
 				</table>
 				        

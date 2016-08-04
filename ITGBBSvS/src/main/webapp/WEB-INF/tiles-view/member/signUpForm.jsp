@@ -32,7 +32,7 @@
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><form:input path="password" /></td>
+			<td><form:password path="password" showPassword="false"/></td>
 			<td><form:errors path="password" element="div"
 					cssClass="one-line-box" /></td>
 		</tr>

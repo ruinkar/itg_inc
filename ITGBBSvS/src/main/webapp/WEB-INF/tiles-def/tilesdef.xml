@@ -221,7 +221,10 @@
 		<put-attribute name="title" value="이벤트 맵 리스트" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/evinfo/eventMap.jsp" />
-
+		<put-list-attribute name="stylesheets">
+			<add-attribute
+				value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
+		</put-list-attribute>
 	</definition>
 	<!-- ~ event layout -->
 
