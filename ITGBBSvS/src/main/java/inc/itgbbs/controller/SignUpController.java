@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,40 +17,37 @@ import inc.itgbbs.util.ContentPath;
 
 @Controller
 @SessionAttributes("memberCommand")
-public class SignUpController implements ContentPath{
+public class SignUpController implements ContentPath {
 	@Autowired
 	private LoginDao loginDao;
-	
+
 	@ModelAttribute("memberCommand")
 	public MemberCommand formBacking() {
 		return new MemberCommand();
 	}
-	
-	@RequestMapping(value=MEMBER + "/signup.do", method=RequestMethod.GET)
-	public String form(){
+
+	@RequestMapping(value = MEMBER + "/signup.do", method = RequestMethod.GET)
+	public String form() {
 		// model.addAttribute("memberCommand", new MemberCommand());
 		System.out.println("form()");
 		return "signUpForm";
 	}
-	
-	@RequestMapping(value=MEMBER + "/signup.do", method=RequestMethod.POST)
+
+	@RequestMapping(value = MEMBER + "/signup.do", method = RequestMethod.POST)
 	public String signUp(@Valid MemberCommand memberCommand, BindingResult result, SessionStatus sessionStatus) {
+
+		System.out.println(memberCommand.toString());
+
 		
-		System.out.println(memberCommand.toString() );
 		
-		if(result.hasErrors() ){
+		if (result.hasErrors()) {
+			System.out.println("sign up error");
 			return "signUpForm";
 		} else {
 			sessionStatus.setComplete();
-			int data = loginDao.getMember(memberCommand.getId());
-			
-			if (data == 0) {
-				loginDao.signUpMember(memberCommand);
-				return "redirect:/memberInfo.do?id=" + memberCommand.getId();
-			} else {
-				
-				return "signUpForm";
-			}
+			loginDao.signUpMember(memberCommand);
+
+			return "redirect:/memberInfo.do?id=" + memberCommand.getId();
 		}
 	}
 

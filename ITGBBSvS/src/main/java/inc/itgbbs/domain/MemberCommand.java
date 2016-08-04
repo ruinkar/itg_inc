@@ -4,9 +4,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.apache.ibatis.type.Alias;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
+
+import inc.itgbbs.validator.Unique;
 
 /**
  * member(회원) 테이블의 DTO 클래스
@@ -15,8 +16,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Alias("MemberCommand")
 public class MemberCommand {
+	
 	@NotBlank(message="ID 필수")
 	@Pattern(regexp="^[0-9a-zA-Z_-]{1,20}$", message="20자 이내 숫자,알파벳 대소문자")
+	@Unique(message="중복 ID")
 	private String id; // 아이디
 	
 	@NotBlank(message="이름 필수")
