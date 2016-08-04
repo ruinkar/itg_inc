@@ -7,7 +7,32 @@
     <select id="findUser" parameterType="LoginInfoDTO" resultType="Integer">
         SELECT count(*) FROM LOGININFO WHERE id=#{id} and password=#{password} 
     </select>
- </mapper>
+    
+    <insert id="signUpMember" parameterType="MemberCommand">
+    	INSERT INTO member(id,name,nick,email) 
+    	VALUES(
+    		#{id},
+    		#{name}, 
+    		#{nick}, 
+    		#{email}
+    	)
+    </insert>
+    
+    <insert id="signUpLoginInfo" parameterType="MemberCommand">
+    	INSERT INTO logininfo 
+    	VALUES(
+    		#{id},
+    		#{password}
+    	)
+    </insert>
+    
+    <delete id="deleteLoginInfo" parameterType="LoginInfoDTO">
+		DELETE FROM logininfo
+		WHERE id = #{id} 
+			AND password = #{password}
+    </delete>
+    
+</mapper>
 
 
 

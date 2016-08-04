@@ -51,7 +51,7 @@ public class RankController {
 				.addObject("rtype", rtype);
 	}
 	
-	@RequestMapping("/rank_ajax.do")
+	@RequestMapping(value="/rank_ajax.do", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String rankAjax(
 			@RequestParam(value="rtype", defaultValue="0")int rtype,

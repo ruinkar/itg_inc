@@ -92,7 +92,7 @@
 				<table>
 					<tr>
 						<td align="center"><input type="submit" value="로그인"></td>
-						<td align="center"><input type="reset" value="리셋"></td>
+						<td align="center"><a href="${pageContext.request.contextPath}/member/signup.do" class="btn btn-default btn-md btn-wide">회원가입</a></td>
 					</tr>
 				</table>
 				        

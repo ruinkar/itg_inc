@@ -57,7 +57,7 @@ public class MPageController implements ContentPath{
 				.addObject("pagingHtml", pagingUtil.getPagingHtml());
 	}
 	
-	@RequestMapping("/mpage_ajax.do" )
+	@RequestMapping(value="/mpage_ajax.do")
 	@ResponseBody
 	public String rankAjax(
 			@RequestParam(value="pageNum", defaultValue="1")int pageNum, 
