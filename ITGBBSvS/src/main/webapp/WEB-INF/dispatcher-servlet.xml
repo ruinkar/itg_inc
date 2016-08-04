@@ -60,7 +60,7 @@
 			<mvc:mapping path="/review/replyDelete.do"/>
 			<mvc:mapping path="/review/replyWrite.do"/>
 			<mvc:mapping path="/review/updateForm.do"/>
-			<mvc:mapping path="/review/writeForm.do"/>
+			<!-- <mvc:mapping path="/review/writeForm.do"/> -->
 			<bean class="inc.itgbbs.controller.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

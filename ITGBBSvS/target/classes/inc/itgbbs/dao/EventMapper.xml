@@ -55,7 +55,7 @@
             </if>
         </where> 
         <![CDATA[
-        order by evnum desc  ) c   where rownum <= #{end})  where rnum >=#{start} 
+        order by evnum desc  ) c   where rownum <= #{end})  where rnum >=#{start} and evnum > 1
             ]]>    
 	</select>
 

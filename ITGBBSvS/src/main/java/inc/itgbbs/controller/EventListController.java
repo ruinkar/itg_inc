@@ -118,10 +118,8 @@ public class EventListController implements ContentPath {
 				json.append(data + (i < size - 1 ? "," : "") ); 
 			} 
 			json.append("]"); 
-	
 			// System.out.println(json); 
 			return json.toString(); 
 		} 
-
 }
 

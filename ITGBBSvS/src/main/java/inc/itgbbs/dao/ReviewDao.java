@@ -30,16 +30,16 @@ public interface ReviewDao {
    //3.최대 글번호 구하기
    public int getNewAnum();
    //4.게시판의 글쓰기 ( board )
-   public void insertReview (BoardDTO board);
+   public void insertReview (ReviewAllDTO board);
    //4.게시판의 글쓰기 ( review )
-   public void insertRating (ReviewDTO review);
+   public void insertRating (ReviewAllDTO review);
    // 이벤트 검색 카운트 불러오기
    public Integer getEventCount ( Map<String,Object>map);
    // 이벤트 검색 리스트 불러오기
    public List<BoardDTO> getEventList ( Map<String,Object>map);
    // 글 수정하기
-   public void updateReview ( BoardDTO board);
-   public void updateRating (ReviewDTO review);
+   public void updateReview ( ReviewAllDTO board);
+   public void updateRating (ReviewAllDTO review);
    
    // 글 얻어오기
   public BoardDTO getBoard ( Integer anum);

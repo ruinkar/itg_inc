@@ -18,11 +18,7 @@ public class BoardDTO {
 	private String writer; //작성자
 	private int category;	//카테고리
 	private Timestamp adate; //작성날짜
-	private String ip; //ip 
-	@NotEmpty (message="제목을 입력하세요123")
-	private String title;	//제목
-	@NotEmpty (message="내용을 입력하세요1234")
-	private String acontent;//글내용
+	
 	private String afile;	//첨부파일
 	private int readcount;//조회수
 	private String tag1; //태그1
@@ -32,7 +28,13 @@ public class BoardDTO {
 	private String tag5;//태그5
 	private int pnum; //대상글번호
 	
-	//파일업로드->관련된 클래스 객체를 선언
+
+	private String ip; //ip 
+	@NotEmpty (message="제목을 입력하세요123")
+	private String title;	//제목
+	@NotEmpty (message="내용을 입력하세요1234")
+	private String acontent;//글내용
+//파일업로드->관련된 클래스 객체를 선언
 	private MultipartFile upload;//업로드된 정보
 
 	

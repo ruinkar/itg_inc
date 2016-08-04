@@ -2,21 +2,28 @@ package inc.itgbbs.domain;
 
 import java.sql.Timestamp;
 
-import org.apache.ibatis.type.Alias;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 
+import org.apache.ibatis.type.Alias;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+@Component
 @Alias("ReviewAllDTO")
 public class ReviewAllDTO {
 
 	private int anum;	//게시물번호
+	@DecimalMin(value = "1" , message="행사를 검색하세요")
 	private int evnum;	//행사번호
+	@DecimalMin(value = "0.1" , message="후기 점수는 0.1점 이상 입력하셔야 합니다. ")
 	private float rating;	//평가점수
 	private String writer; //작성자
 	private int category;	//카테고리
 	private Timestamp adate; //작성날짜
-	private String ip; //ip 
-	private String title;	//제목
 	private String evtitle;	//title
-	private String acontent;//글내용
 	private String afile;	//첨부파일
 	private int readcount;//조회수
 	private String tag1; //태그1
@@ -26,6 +33,29 @@ public class ReviewAllDTO {
 	private String tag5;//태그5
 	private int pnum; //대상글번호
 	
+	private String ip; //ip 
+	@NotEmpty (message="제목을 입력하세요.")
+	@Length (min=5 , message="제목은 5글자 이상 입력하셔야 합니다.")
+	private String title;	//제목
+	@NotEmpty (message="내용을 입력하세요.")
+	@Length (min=20 , message="내용은 10글자 이상 입력하셔야 합니다.")
+//파일업로드->관련된 클래스 객체를 선언
+	private String acontent;//글내용
+	private MultipartFile upload;//업로드된 정보
+
+	
+	/**
+	 * @return the upload
+	 */
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	/**
+	 * @param upload the upload to set
+	 */
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
 	
 	/**
 	 * @return the evtitle
@@ -141,6 +171,17 @@ public class ReviewAllDTO {
 	}
 	public void setRating(float rating) {
 		this.rating = rating;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ReviewAllDTO [anum=" + anum + ", evnum=" + evnum + ", rating=" + rating + ", writer=" + writer
+				+ ", category=" + category + ", adate=" + adate + ", evtitle=" + evtitle + ", afile=" + afile
+				+ ", readcount=" + readcount + ", tag1=" + tag1 + ", tag2=" + tag2 + ", tag3=" + tag3 + ", tag4=" + tag4
+				+ ", tag5=" + tag5 + ", pnum=" + pnum + ", ip=" + ip + ", title=" + title + ", acontent=" + acontent
+				+ ", upload=" + upload + "]";
 	}
 	
 	

@@ -40,7 +40,7 @@ public class ReviewContentController {
 		//레코드를 한개 얻어오는 메서드호출
 		ReviewAllDTO article = reviewDao.selectReview(anum);
 		ReviewAllDTO rating = null;
-		if ( article.getEvnum() != 0 )
+		if (  article.getEvnum() > 1)
 		{
 			rating = reviewDao.selectRating(anum);
 			article.setEvtitle(rating.getEvtitle());

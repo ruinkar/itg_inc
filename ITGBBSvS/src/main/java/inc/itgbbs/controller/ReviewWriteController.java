@@ -8,22 +8,18 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import inc.itgbbs.dao.ReviewDao;
-import inc.itgbbs.domain.BoardDTO;
-import inc.itgbbs.domain.ReviewDTO;
+import inc.itgbbs.domain.ReviewAllDTO;
 import inc.itgbbs.util.FileUtil;
 
 @Controller
-@SessionAttributes("command")
 public class ReviewWriteController {
 
 	private Logger log=Logger.getLogger(this.getClass());
@@ -42,33 +38,24 @@ public class ReviewWriteController {
 	//커맨드 객체 초기화->사용자로부터 값을 입력받은 부분(객체)->Model
 	@ModelAttribute("command")
 	//public MemberCommand test(){
-	public BoardDTO formBacking(){
+	public ReviewAllDTO formBacking(){
+		ReviewAllDTO rev = new ReviewAllDTO();
+		String id = (String)((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest().getSession().getAttribute("id");
+		rev.setWriter(id);
 		System.out.println("command()호출됨");
-		return new BoardDTO();
+		return rev;
 	}
-	
-	
-	@ModelAttribute("review")
-	//public MemberCommand test(){
-	public ReviewDTO Review(){
-		System.out.println("review()호출됨");
-		return new ReviewDTO();
-	}
-	
-	
 	
 	//2.Post방식
 	@RequestMapping(value="/review/writeForm.do",method=RequestMethod.POST)
-	public String submit( @ModelAttribute("review") ReviewDTO review,
-			@Valid BoardDTO command,
+	public String submit(
+			@ModelAttribute("command") @Valid ReviewAllDTO command,
 			                        BindingResult result
 			                        ){
 		//ReviewDTO review = new ReviewDTO();
-		
-		
 //전달되는 입력값들,유효성검사 결과값
 		if(log.isDebugEnabled()){
-			log.debug("BoardDTO="+command + "review="+ review);//앞에서 입력받은값을 확인
+			log.debug("ReviewAllDTO="+command );//앞에서 입력받은값을 확인
 			log.debug("result="+result.getModel());//앞에서 입력받은값을 확인
 		}
 		//만약에 필수입력인데 입력을 하지 않았다면
@@ -103,10 +90,10 @@ public class ReviewWriteController {
 			if (ip == null)
 			ip = request.getRemoteAddr();
 			command.setIp(ip);
-			review.setAnum(command.getAnum());
+			//review.setAnum(command.getAnum());
 			
 			reviewDao.insertReview(command);//파일업로드인 경우만 따로 처리->DB에 저장
-			reviewDao.insertRating(review);
+			reviewDao.insertRating(command);
 			
 		    ///실질적인 업로드가 될 수있도록
 		    if(!command.getUpload().isEmpty()){ //탐색기의 파일=>업로드위치 복사

@@ -68,12 +68,12 @@ public class ReviewDaoImpl extends SqlSessionDaoSupport
 		return getSqlSession().selectOne("Review.getNewAnum");
 	}
 	@Override
-	public void insertReview(BoardDTO board) {
+	public void insertReview(ReviewAllDTO board) {
 		// TODO Auto-generated method stub
 		getSqlSession().insert("Review.insertReview", board);
 	}
 	@Override
-	public void insertRating(ReviewDTO review) {
+	public void insertRating(ReviewAllDTO review) {
 		// TODO Auto-generated method stub
 		getSqlSession().insert("Review.insertRating", review);
 	}
@@ -88,13 +88,13 @@ public class ReviewDaoImpl extends SqlSessionDaoSupport
 		return getSqlSession().selectList("Review.getEventList" , map);
 	}
 	@Override
-	public void updateReview(BoardDTO board) {
+	public void updateReview(ReviewAllDTO board) {
 		// TODO Auto-generated method stub
 		getSqlSession().update("Review.updateReview" , board);
 		
 	}
 	@Override
-	public void updateRating(ReviewDTO review) {
+	public void updateRating(ReviewAllDTO review) {
 		// TODO Auto-generated method stub
 		getSqlSession().update("Review.updateRating" , review);
 	}
