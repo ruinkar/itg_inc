@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-<!-- 자유게시판 ~ -->
+	<!-- 자유게시판 ~ -->
 	<definition name="boardList" template="/WEB-INF/tiles-view/template/layout.jsp">
 		<put-attribute name="title" value="메인 페이지" />
 		<put-attribute name="menu"
@@ -14,48 +14,53 @@
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/free/okkyFree2.jsp" />
 		<put-list-attribute name="javascripts">
-			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
-			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
+			<add-attribute
+				value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
+			<add-attribute
+				value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
 			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
 			<add-attribute value="/resources/js/itgUtil.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
-			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
+			<add-attribute
+				value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
 		</put-list-attribute>
 	</definition>
-	
-	
+
+
 	<!--글 상세보기/답글 결과 확인 -->
 	<definition name="boardView" extends="boardList">
 		<put-attribute name="title" value="글 상세보기" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/free/okkyFreeArticle.jsp" />
 		<put-list-attribute name="javascripts" inherit="true">
-			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js" />
+			<add-attribute
+				value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets" inherit="true">
-			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" />
+			<add-attribute
+				value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" />
 		</put-list-attribute>
 	</definition>
-	
-	
+
+
 	<!--글쓰기 -->
 	<definition name="boardWrite" extends="boardView">
 		<put-attribute name="title" value="글쓰기" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/free/okkyFreeWrite.jsp" />
 	</definition>
-	
-	
+
+
 	<!--글 수정하기 -->
 	<definition name="boardModify" extends="boardView">
 		<put-attribute name="title" value="글 수정하기" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/free/updateForm.jsp" />
-	</definition>	
-<!-- ~ 자유게시판 -->
+	</definition>
+	<!-- ~ 자유게시판 -->
 
-<!-- 랭킹 페이지 -->
+	<!-- 랭킹 페이지 -->
 	<definition name="rankList" extends="boardList">
 		<put-attribute name="title" value="순위표" />
 		<put-attribute name="js" value="" />
@@ -68,7 +73,7 @@
 		</put-list-attribute>
 	</definition>
 
-<!-- 회원정보 -->
+	<!-- 회원정보 -->
 	<definition name="mpage" extends="boardList">
 		<put-attribute name="title" value="회원 활동정보" />
 		<put-attribute name="body"
@@ -82,7 +87,7 @@
 	</definition>
 
 
-<!-- review layout ~ -->
+	<!-- review layout ~ -->
 	<definition name="reviewList"
 		template="/WEB-INF/tiles-view/template/reviewLayout.jsp">
 		<put-attribute name="title" value="후기 페이지" />
@@ -91,14 +96,17 @@
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/review/list.jsp" />
 		<put-list-attribute name="javascripts">
-			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
-			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
+			<add-attribute
+				value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
+			<add-attribute
+				value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
 			<add-attribute value="/resources/js/reviewscript.js" />
 			<add-attribute value="/resources/js/itgUtil.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
 			<add-attribute value="/resources/css/reviewstyle.css" />
-			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
+			<add-attribute
+				value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
 		</put-list-attribute>
 	</definition>
 
@@ -117,7 +125,6 @@
 		<put-list-attribute name="javascripts" inherit="true">
 			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js" />
 			<add-attribute value="/resources/js/star-rating.js" />
-			
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets" inherit="true">
 			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" />
@@ -129,7 +136,7 @@
 		<put-attribute name="title" value="상세 보기" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/review/content.jsp" />
-	</definition>	
+	</definition>
 
 	<definition name="reviewUpdateForm" extends="reviewWriteForm">
 		<put-attribute name="title" value="글쓰기" />
@@ -142,29 +149,31 @@
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/review/deleteForm.jsp" />
 	</definition>
-<!-- ~ review layout -->
+	<!-- ~ review layout -->
 
 
-<!-- event layout ~ -->
-    <definition name="eventList" extends="reviewList">
-	<!-- <definition name="eventList"
-		template="/WEB-INF/tiles-view/template/eventmenuTemplate.jsp"> -->
+	<!-- event layout ~ -->
+	<definition name="eventList" extends="reviewList">
+		<!-- <definition name="eventList" template="/WEB-INF/tiles-view/template/eventmenuTemplate.jsp"> -->
 		<put-attribute name="title" value="행사 페이지" />
 		<put-attribute name="menu"
 			value="/WEB-INF/tiles-view/template/menu.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/evinfo/eventMain.jsp" />
-		<!-- <put-attribute name="top"
-			value="/WEB-INF/tiles-view/template/top.jsp" /> -->
+		<!-- <put-attribute name="top" value="/WEB-INF/tiles-view/template/top.jsp" 
+			/> -->
 		<put-list-attribute name="javascripts">
-			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
-			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
+			<add-attribute
+				value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
+			<add-attribute
+				value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
 			<add-attribute value="/resources/js/reviewscript.js" />
 			<add-attribute value="/resources/js/itgUtil.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets">
 			<add-attribute value="/resources/css/reviewstyle.css" />
-			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
+			<add-attribute
+				value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
 		</put-list-attribute>
 	</definition>
 
@@ -173,12 +182,14 @@
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/evinfo/eventWrite.jsp" />
 		<put-list-attribute name="javascripts" inherit="true">
-			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js" />
+			<add-attribute
+				value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js" />
 			<add-attribute value="/resources/js/moment.js" />
 			<add-attribute value="/resources/js/daterangepicker.js" />
 		</put-list-attribute>
 		<put-list-attribute name="stylesheets" inherit="true">
-			<add-attribute value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" />
+			<add-attribute
+				value="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" />
 			<add-attribute value="/resources/css/daterangepicker.css" />
 		</put-list-attribute>
 	</definition>
@@ -200,32 +211,42 @@
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/evinfo/deleteForm.jsp" />
 	</definition>
-	
+
 	<definition name="LocSearchForm" template="/WEB-INF/tiles-view/evinfo/mapsearch.jsp">
 		<put-attribute name="title" value="위치 검색" />
 	</definition>
-	
+
 	<definition name="eventMap" extends="eventList">
 		<!-- <definition name="eventMap" template="/WEB-INF/tiles-view/evinfo/eventMap.jsp"> -->
 		<put-attribute name="title" value="이벤트 맵 리스트" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/evinfo/eventMap.jsp" />
-		<put-attribute name="css"
-            value="" />
+
 	</definition>
-<!-- ~ event layout -->
+	<!-- ~ event layout -->
 
 
-<!-- member ~ -->
+	<!-- member ~ -->
 	<definition name="signUpForm" extends="boardList">
 		<put-attribute name="title" value="회원가입" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles-view/member/signUpForm.jsp" />
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
+		</put-list-attribute>
 	</definition>
-<!-- ~ member -->
+	<definition name="memberDeleteForm" extends="boardList">
+		<put-attribute name="title" value="회원탈퇴" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles-view/member/deleteForm.jsp" />
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
+		</put-list-attribute>
+	</definition>
+	<!-- ~ member -->
 
 
-<!-- error page -->
+	<!-- error page -->
 	<definition name="pageError" extends="boardList">
 		<put-attribute name="title" value="Error" />
 		<put-attribute name="js" value="" />

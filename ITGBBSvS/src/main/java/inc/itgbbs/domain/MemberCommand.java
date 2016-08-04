@@ -2,9 +2,10 @@ package inc.itgbbs.domain;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import org.apache.ibatis.type.Alias;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,24 +15,21 @@ import org.springframework.stereotype.Component;
 @Component
 @Alias("MemberCommand")
 public class MemberCommand {
-	@NotNull(message="빈 칸")
-	@Size(min=1, max=20, message="20자를 초과할 수 없습니다")
-	@Pattern(regexp="^[0-9a-zA-Z_-]+$", message="올바른 값을 입력하세요")
+	@NotBlank(message="ID 필수")
+	@Pattern(regexp="^[0-9a-zA-Z_-]{1,20}$", message="20자 이내 숫자,알파벳 대소문자")
 	private String id; // 아이디
 	
-	@NotNull
-	@Size(min=1, max=20, message="20자를 초과할 수 없습니다")
-	@Pattern(regexp="^[0-9a-zA-Z_-]+$", message="올바른 값을 입력하세요")
+	@NotBlank(message="이름 필수")
+	@Pattern(regexp="^[0-9a-zA-Z가-힣_-]{1,20}$", message="20자 이내 숫자, 한글, 알파벳 대소문자")
 	private String name; // 이름
 	
-	@NotNull
-	@Size(min=1, max=20, message="20자를 초과할 수 없습니다")
-	@Pattern(regexp="^[0-9a-zA-Z_-]+$", message="올바른 값을 입력하세요")
+	@NotBlank(message="닉네임 필수")
+	@Pattern(regexp="^[0-9a-zA-Z가-힣_-]{1,20}$", message="20자 이내 숫자, 한글, 알파벳 대소문자")
 	private String nick; //닉네임
 	
-	@NotNull
-	@Size(min=1, max=40, message="40자를 초과할 수 없습니다")
-	@Pattern(regexp="^[0-9a-zA-Z_-]+@[0-9a-zA-Z]+(.[0-9a-zA-Z_-]+)*$", message="올바른 주소를 입력하세요")
+	@NotBlank(message="이메일 필수")
+	
+	@Pattern(regexp="^[0-9a-zA-Z_-]+@[0-9a-zA-Z]+(.[0-9a-zA-Z_-]+)*$", message="바르지 않은 주소 형식(40자 이내)")
 	private String email; //이메일
 	
 	private String thumbnail; //섬네일(등록사진)
@@ -39,9 +37,8 @@ public class MemberCommand {
 	private String fkey; //페이스북 로그인 인증키
 	private String gkey; //구글 로그인 인증키
 	
-	@NotNull
-	@Size(min=8, max=20, message="8-20자 범위에서 입력하세요")
-	@Pattern(regexp="^(?=.*[a-zA-Z])(?=.*[0-9])[0-9a-zA-Z]$", message="올바른 값을 입력하세요")
+	@NotNull(message="암호 필수")
+	@Pattern(regexp="^(?=.*[a-zA-Z])(?=.*[0-9])[0-9a-zA-Z]{8,20}$", message="8-20자 이내 숫자,알파벳 대소문자")
 	private String password;
 	
 	public String getId() {

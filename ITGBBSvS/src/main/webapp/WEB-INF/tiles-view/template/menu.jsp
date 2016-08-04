@@ -70,6 +70,7 @@
 			<div width="100px">
 				이름 : ${sessionScope.userLoginInfo.id}<br> <a
 					href="../login/deleteSession.do">로그아웃</a>
+				<a href="${pageContext.request.contextPath}/member/delete.do" class="btn btn-default btn-md btn-wide">회원탈퇴</a>
 			</div>
 		</c:when>
 		<c:otherwise>
@@ -91,7 +92,7 @@
 				</table>
 				<table>
 					<tr>
-						<td align="center"><input type="submit" value="로그인"></td>
+						<td align="center"><input type="submit" class="btn btn-default btn-md btn-wide" value="로그인"></td>
 						<td align="center"><a href="${pageContext.request.contextPath}/member/signup.do" class="btn btn-default btn-md btn-wide">회원가입</a></td>
 					</tr>
 				</table>

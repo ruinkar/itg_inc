@@ -8,6 +8,12 @@
         SELECT count(*) FROM LOGININFO WHERE id=#{id} and password=#{password} 
     </select>
     
+    <select id="getMember" parameterType="string" resultType="int">
+    	SELECT count(*)
+    	FROM member
+    	WHERE id = #{id}
+    </select>
+    
     <insert id="signUpMember" parameterType="MemberCommand">
     	INSERT INTO member(id,name,nick,email) 
     	VALUES(
