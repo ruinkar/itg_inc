@@ -51,7 +51,7 @@ public class MPageController implements ContentPath{
 		RankCommand mem = mPageDao.meminfo(id);
 		List<BoardCommand> list = mPageDao.list(pageCommand);
 				
-		return new ModelAndView("mpage")
+		return new ModelAndView("tiles/rank/mpage")
 				.addObject("mem", mem)
 				.addObject("json_page", list2Json(list))
 				.addObject("pagingHtml", pagingUtil.getPagingHtml());

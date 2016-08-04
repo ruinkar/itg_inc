@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="legacy.model.*, java.util.*, java.text.SimpleDateFormat"%>
+	pageEncoding="UTF-8" import="inc.itgbbs.domain.*, java.util.*, java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -8,7 +8,7 @@
 div#mainContent {
  	/* width: 800px;
 	height: 1500px;*/
-	float: left;  
+	/* float: left; */  
 }
  
 </style>

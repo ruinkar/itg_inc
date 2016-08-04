@@ -40,7 +40,7 @@ public class MemberDeleteController implements ContentPath{
 	public String form(){
 		// model.addAttribute("memberCommand", new MemberCommand());
 		System.out.println("form()");
-		return "memberDeleteForm";
+		return "tiles/member/delete";
 	}
 	
 	@RequestMapping(value=MEMBER + "/delete.do", method=RequestMethod.POST)
@@ -49,7 +49,7 @@ public class MemberDeleteController implements ContentPath{
 		System.out.println(loginInfoDTO.toString() );
 		
 		if(result.hasErrors() ){
-			return "memberDeleteForm";
+			return "tiles/member/delete";
 		} else {
 			((ServletRequestAttributes)RequestContextHolder
 					.currentRequestAttributes())

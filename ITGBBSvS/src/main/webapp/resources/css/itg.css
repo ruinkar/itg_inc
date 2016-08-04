@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 * {}
 
-div {margin:0; padding:0; border-style:none; border:0; text-decoration:none; text-align:center; text_align:center;  }
+/* div {margin:0; padding:0; border-style:none; border:0; text-decoration:none; text-align:center; text_align:center;  } */
 
 #left {top:0; left:0; width:10%; background:purple; position:fixed;}
 
@@ -34,3 +34,43 @@ div {margin:0; padding:0; border-style:none; border:0; text-decoration:none; tex
 #pages {margin:auto; }
 #pages a,font {top:10px; padding:10px; border:3px solid white; }
 #pages a:hover {color:white; background-color:black; }
+
+
+.navbar-fixed-left {
+  width: 140px;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+}
+
+.navbar-fixed-left .navbar-nav > a {
+  float: none;  /* Cancel default li float: left */
+  width: 139px;
+}
+
+.navbar-fixed-left + .container {
+  padding-left: 160px;
+}
+
+/* On using dropdown menu (To right shift popuped) */
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+  margin-top: -50px;
+  margin-left: 140px;
+}
+
+/*
+====================================================================================================
+reviewstyle.css
+====================================================================================================
+*/
+
+.main_table {
+    height:800px; 
+    max-width:1200px;
+    min-width:600px;
+}
+
+
+ .main_menu {
+    min-width:200px;
+}

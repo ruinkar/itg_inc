@@ -27,7 +27,7 @@ public class FreeUpdateController {
 		mav.setViewName("boardModify");
 		mav.addObject("article", freeBoardDTO);
 
-		return new ModelAndView("boardModify", "article", freeBoardDTO);// 이동할
+		return new ModelAndView("tiles/free/update", "article", freeBoardDTO);// 이동할
 																		// 페이지명
 	}
 

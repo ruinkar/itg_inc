@@ -67,7 +67,7 @@ public class FreeListController {
 		}
 		
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("boardList");
+		mav.setViewName("tiles/free/list");
 		mav.addObject("count",count);
 		mav.addObject("list",list);
 		mav.addObject("pagingHtml",page.getPagingHtml());

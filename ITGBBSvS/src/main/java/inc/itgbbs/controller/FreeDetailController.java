@@ -51,11 +51,10 @@ public class FreeDetailController {
 		}
 		System.out.println("replyNum = "+replyNum+", repliesList = " +repliesList);
 		
-		ModelAndView mav = new ModelAndView("boardView", "article", freeBoardDTO);
-		mav.addObject("replyNum", replyNum);
-		mav.addObject("repliesList", repliesList);
 		
-		return mav;
+		return new ModelAndView("tiles/free/content", "article", freeBoardDTO)
+				.addObject("replyNum", replyNum)
+				.addObject("repliesList", repliesList);
 		
 	}
 	

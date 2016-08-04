@@ -42,7 +42,7 @@ public class RankController {
 		String json_top = list2Json(listTop);
 		String json_page = list2Json(listPage);
 		
-		return new ModelAndView("rankList")
+		return new ModelAndView("tiles/rank/rank")
 				/*.addObject("listTop", listTop)
 				.addObject("listPage", listPage)*/
 				.addObject("json_top", json_top)

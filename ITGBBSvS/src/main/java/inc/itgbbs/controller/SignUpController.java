@@ -34,7 +34,7 @@ public class SignUpController implements ContentPath {
 	public String form() {
 		// model.addAttribute("memberCommand", new MemberCommand());
 		System.out.println("form()");
-		return "signUpForm";
+		return "tiles/member/signup";
 	}
 
 	@RequestMapping(value = MEMBER + "/signup.do", method = RequestMethod.POST)
@@ -46,7 +46,7 @@ public class SignUpController implements ContentPath {
 		
 		if (result.hasErrors()) {
 			System.out.println("sign up error");
-			return "signUpForm";
+			return "tiles/member/signup";
 		} else {
 			sessionStatus.setComplete();
 			loginDao.signUpMember(memberCommand);

@@ -31,7 +31,7 @@ private Logger log=Logger.getLogger(this.getClass());
 	@RequestMapping(value="/free/writeForm.do")
 		public String form(){
 			System.out.println("writeForm으로 이동 중");
-			return "boardWrite";
+			return "tiles/free/write";
 		}
 	
 	//커맨드 객체 초기화->사용자로부터 값을 입력받은 부분(객체)->Model
