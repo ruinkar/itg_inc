@@ -16,7 +16,6 @@
 				value="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" />
 			<add-attribute
 				value="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" />
-			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
 			<add-attribute value="/resources/js/itg.js" />
 			<add-attribute value="/resources/js/itgUtil.js" />
 		</put-list-attribute>
@@ -81,10 +80,13 @@
 	<definition name="tiles/rank/rank" extends="default-layout">
 		<put-attribute name="title" value="순위표" />
 		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/rank.jsp" />
+		<put-list-attribute name="javascripts" inherit="true">
+			<add-attribute value="http://code.jquery.com/jquery-1.12.4.js" />
+		</put-list-attribute>
 	</definition>
 
 	<!-- 회원 활동 정보 -->
-	<definition name="tiles/rank/mpage" extends="default-layout">
+	<definition name="tiles/rank/mpage" extends="tiles/rank/rank">
 		<put-attribute name="title" value="회원 활동정보" />
 		<put-attribute name="body" value="/WEB-INF/tiles-view/rank/mpage.jsp" />
 	</definition>

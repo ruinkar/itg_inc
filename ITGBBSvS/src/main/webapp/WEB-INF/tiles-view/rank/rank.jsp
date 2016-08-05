@@ -26,7 +26,7 @@ $(function() {
 			</c:forEach>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row text-center">
 		<div class="list-container col-xs-12">
 			<ul id="list-group">
 			</ul>

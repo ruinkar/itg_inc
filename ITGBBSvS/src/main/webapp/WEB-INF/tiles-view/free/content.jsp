@@ -1,26 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- 오키자유게시판 상세보기   http://okky.kr/article/334602
 	기능구현
 	1. 댓글 작성(작성하고 바로 현 페이지 하단에 보임(ajax), )
 	2. -->
-
 <!--[if lt IE 7 ]> <html lang="ko" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="ko" class="no-js ie7"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="ko" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="ko" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="ko" class="no-js">
 <!--<![endif]-->
-
-
-<head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>${article.title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!--[if lt IE 9]>
@@ -44,9 +37,7 @@
 		});
 	});
 </script>
-</head>
-<body>
-	<div class="container" style="margin: 0;">
+	<div class="container">
 		<div class="nav" role="navigation">
 			<a href="writeForm.do"
 				class="create btn btn-success btn-wide pull-right"><span
@@ -269,7 +260,3 @@
 		</div>
 	</div>
 	</div>
-
-
-</body>
-</html>

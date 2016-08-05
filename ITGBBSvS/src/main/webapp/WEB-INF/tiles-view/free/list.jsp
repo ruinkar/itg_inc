@@ -186,13 +186,13 @@
 
 		</div>
 	</div>
-	
+<!-- 	
 	<script
 		src="http://okky.kr/assets/application-196466c60cf4e718162e141a5acdf612.js"
 		type="text/javascript"></script>
 	<script
 		src="http://okky.kr/assets/apps/search-a672360634f56105585df31fcdb69705.js"
-		type="text/javascript"></script>
+		type="text/javascript"></script> -->
 
 
 	<script>

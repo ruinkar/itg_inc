@@ -13,10 +13,10 @@ div#mainContent {
  
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<div class="container-fluid text-center bg-grey">
-	<div class="row text-center">
+<div class="container text-center bg-grey">
+	<div class="row">
 		<c:forEach var="article" items="${articleList}">
-			<div class="col-sm-6 col-md-4">
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 				<div class="thumbnail">
 					<a href="content.do?anum=${article.evnum}&pageNum=${currentPage}">
 							<img class="" src="${article.eimg}"/>
@@ -29,8 +29,9 @@ div#mainContent {
 			</div>
 		</c:forEach>
 	</div>
+	${pagingHtml }
 </div>
-<center>${pagingHtml }</center>
+
 
 <%-- <div id="mainContent">
 		<br/>

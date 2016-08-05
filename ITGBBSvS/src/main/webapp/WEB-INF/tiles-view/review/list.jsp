@@ -5,35 +5,44 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <style>
+
 /* Animation Canvas */
 .animation_canvas {
 	overflow: hidden;
 	position: relative;
 	width: 900px;
 	height: 400px;
+	margin:0 auto;
 }
 
 .top_pannel {
 	overflow: hidden;
+	position: relative;
 	width: 900px;
 	height: 400px;
+	padding-top: 270px;
+	margin:0 auto;
 }
 
 .top1st {
 	width: 900px;
 	height: 400px;
 }
+.top1st:hover {
+	text-decoration: none;
+}
 
 .top_text {
-	position: absolute;
-	top: 30%;
-	left: 30%;
+
+	/* left:30%; */
 	color: gold;
 }
+
 /* Slider Panel */
 .slider_panel {
 	width: 2700px;
 	position: relative;
+	
 }
 
 .slider_image {
@@ -56,8 +65,9 @@
 
 .slider_text {
 	position: absolute;
-	width: 250px;
+	width: 300px;
 	height: 150px;
+	margin: auto 0;
 }
 
 /* Control Panel */
@@ -124,14 +134,14 @@
 			});
 </script>
 
-<center>
+<div class="container text-center">
 
     <c:if test="${count > 0}">
-		<div class="top_pannel">
+		<div class="top_pannel" style="background:url('${firstRank.afile}')">
 			<a class="top1st"
 				href="content.do?anum=${firstRank.anum}&pageNum=${currentPage}">
-				<img src="${firstRank.afile}" class="top1st" />
-				<div class="top_text">
+				<%-- <img src="${firstRank.afile}" class="top1st" /> --%>
+				<div class="top_text text-center">
 					<h1>${firstRank.title }</h1>
 					<p>${firstRank.acontent}</p>
 				</div>
@@ -146,18 +156,16 @@
 						<img src="${ranklist.afile}" class="slider_image" />
 					</a>
 				</c:forEach>
-			</div>
-			<div class="slider_text_panel">
-				<c:forEach var="ranklist" items="${otherRank}">
-
-					<a href="content.do?anum=${ranklist.anum}&pageNum=${currentPage}">
-						<div class="slider_text">
+			</div><!--  
+			--><div class="slider_text_panel"><!--  
+				--><c:forEach var="ranklist" items="${otherRank}"><!--  
+					--><a href="content.do?anum=${ranklist.anum}&pageNum=${currentPage}"><!--  
+						--><div class="slider_text">
 							<h1>${ranklist.title}</h1>
 							<p>${ranklist.acontent}</p>
-						</div>
-					</a>
-				</c:forEach>
-
+						</div><!--  
+					--></a><!--  
+				--></c:forEach>
 			</div>
 
 			<div class="control_panel">
@@ -241,7 +249,7 @@
 		</c:if>
 
 		<c:if test="${count > 0}">
-			<thead height="30" bgcolor="#b0e0e6">
+			<thead height="30" bgcolor="#b0e0e6" class="text-center">
 				<tr>
 					<th align="center" width="50">번 호</th>
 					<th align="center" width="250">제 목</th>
@@ -285,4 +293,4 @@
 			type="submit" value="검색">
 	</form>
 	<p>
-</center>
+</div>

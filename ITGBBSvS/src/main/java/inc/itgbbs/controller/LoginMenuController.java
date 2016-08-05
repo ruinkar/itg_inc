@@ -40,10 +40,10 @@ public class LoginMenuController {
 			session.setAttribute("userLoginInfo", login);
 			session.setAttribute("id", login.getId());
 		}
-		String referer = request.getHeader("REFERER");
-		referer = referer.substring(referer.compareTo("ITGBBSvS"));
-		
-		return "redirect:/"+referer;
+		String ref2 = request.getHeader("REFERER");
+		ref2 = ref2.substring(8);
+		ref2 = ref2.substring((ref2.indexOf('/', ref2.indexOf('/')+1)+1));
+		return "redirect:/"+ref2;
 	}
 	
 	@RequestMapping("login/deleteSession.do")
@@ -53,7 +53,10 @@ public class LoginMenuController {
 		String referer = request.getHeader("REFERER");
 		referer = referer.substring(referer.compareTo("ITGBBSvS"));
 		
-		return "redirect:/"+referer;
+		String ref2 = request.getHeader("REFERER");
+		ref2 = ref2.substring(8);
+		ref2 = ref2.substring((ref2.indexOf('/', ref2.indexOf('/')+1)+1));
+		return "redirect:/"+ref2;
 		
 	}
 	

@@ -34,10 +34,11 @@ itg.getSizeBG = function() {
 	var wtemp = h;
 	this.back_width = wtemp > this.back_width ? wtemp : this.back_width;
 	
-	var litemp = h / 11;
-	this.list_item_height = litemp > this.list_item_height ? litemp : this.list_item_height;
-	
-	this.pages_height = h - (10 * this.list_item_height);
+	// var litemp = h / 11;
+	// this.list_item_height = litemp > this.list_item_height ? litemp : this.list_item_height;
+	this.list_item_height = 60;
+	// this.pages_height = h - (10 * this.list_item_height);
+	this.pages_height = 60;
 }
 
 // 초기화
@@ -276,6 +277,9 @@ itg.mpage.print = function (json) {
 		
 		$a.attr("href", pageType[cat] + param1 + this.anum);
 		$a.text(this.title);
+		
+		$div.addClass("pull-left");
+		$a.addClass("pull-right");
 		
 		$li.css({
 			height: itg.list_item_height

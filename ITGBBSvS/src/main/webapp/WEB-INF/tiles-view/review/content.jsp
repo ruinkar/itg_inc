@@ -8,14 +8,14 @@
 function  delreply (idx)
 {	
 	document.replydelform.anum.value=idx;
-	document.replydelform.submit();	
+	document.replydelform.submit();
 }
 </script>
 <style>
 .menuName{background:#b0e0e6}
 </style>
 
-<center>      
+<div class="container text-center">
 <b>글내용 보기</b>
 <br>
 <table width="800" border="1" cellspacing="0" cellpadding="0"  align="center"
@@ -143,4 +143,4 @@ class="table table-bordered table-hover">
   </c:choose>
   </table>
 </form>
-</center>
+</div>

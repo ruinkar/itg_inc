@@ -18,7 +18,7 @@
 <body>
 <div id="wrapper">
 	<div id="sidebar-wrapper">
-		<ul class="sidebar-nav"><tiles:insertAttribute name="menu" /></ul></div>
+		<tiles:insertAttribute name="menu" /></div>
 	<div class="page-content-wrapper"><tiles:insertAttribute name="body" />
 		<%-- <table class="main_table" border="0" cellpadding="0" cellspacing="1" bgcolor="#a0a0a0" width="100%">
 			<tr bgcolor="#ffffff">
